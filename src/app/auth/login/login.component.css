@@ -1,0 +1,36 @@
+.login-page {
+    background-image: url('../../../assets/dist/img/costanera_center_bg_oscur.png');
+    background-position: center center;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+}
+
+.login-card-body,
+.login-box {
+    background-image: url('../../../assets/dist/img/bg_blue_gradient.webp');
+    background-position: center center;
+    background-size: cover;
+    color: white
+}
+
+.login-box,
+a {
+    color: white;
+}
+
+.social-auth-links,
+a {
+    color: black;
+}
+
+.link-pass {
+    color: white;
+}
+
+.link-reg {
+    color: white;
+}
+.cursor{
+cursor: pointer;
+}

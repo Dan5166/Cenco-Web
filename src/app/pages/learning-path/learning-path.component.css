@@ -1,0 +1,117 @@
+body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.card{
+    background-color: #dbe4e3;
+}
+
+.card:hover{
+    box-shadow: 0px 0px 10px;
+    cursor: pointer;
+}
+
+.border-secondary{
+    border: 1px solid;
+}
+
+.carousel-item{
+    height: 32rem;
+    background:#777;
+    color:white;
+    position:relative;
+    background-position: center;
+    background-size: cover;
+}
+
+.container{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    padding-bottom: 50px;
+}
+
+/* Carousel base class */
+.carousel {
+    margin-bottom: 4rem;
+  }
+  /* Since positioning the image, we need to help out the caption */
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  /* Declare heights because of positioning of img element */
+  .carousel-item {
+    height: 32rem;
+  }
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
+
+  .overlay-image{
+    position:absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+  }
+
+#bg{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+}
+
+.producto {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.producto .imagen {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.producto .imagen img {
+  width: 100%;
+}
+
+.producto .informacion {
+  flex-basis: 70%;
+  padding: 0 20px;
+}
+
+.producto h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+
+.producto p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.producto .precio {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}

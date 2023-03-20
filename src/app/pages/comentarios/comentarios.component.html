@@ -1,0 +1,50 @@
+<div class="comment-container" style="padding-bottom: 100px;">
+    <div class="comment-header">
+      <h2>Comentarios</h2>
+    </div>
+    <div class="comment-form">
+      <form>
+        <div class="form-group">
+          <label for="name">Asunto:</label>
+          <input type="text" id="name" name="name" required [(ngModel)]="cajaNombre">
+        </div>
+        <div class="form-group">
+          <label for="comment">Comentario:</label>
+          <textarea id="comment" name="comment" required [(ngModel)]="cajaComentario"></textarea>
+        </div>
+        <button class="btn btn-secondary" type="submit" (click)="agregaComentario()">Enviar Comentario</button>
+      </form>
+    </div>
+    <div class="comment-list" style="margin-top: 160px;">
+      <div class="comment-item" *ngFor="let comment of comments" style="margin-top: 30px;border-radius: 10px;border:rgba(88, 133, 175,0.2) solid 1px;background-color: rgb(237, 239, 243); ">
+        <div>
+            <div style="width: 100%;
+            height: 90px;
+            background-color: #ffffff;
+            border-bottom: solid 1px #E0E0E0;
+            display:flex;
+            align-items: center;
+            cursor: pointer;">
+            <div style="background: #E6E7ED;background-image: url({{comment.foto}}); margin-left:20px;
+              display: block;
+              width: 45px;
+              height: 45px;
+              border-radius: 50px;
+              background-position: center;
+              background-size: cover;
+              background-repeat: no-repeat; margin-right: 15px;"><div class="online"></div>
+            </div>
+            <h3 style="font-size: 25px;">{{ comment.name }}</h3>
+            
+          </div>
+          <div class="cuerpo-comentario" style="padding-left: 20px;padding-top: 20px;">
+            <h3 style="font-size: 20px; color:blue">{{ comment.asunto }}</h3>
+          
+            <p style="margin-top: 20px;">{{ comment.comment }}</p>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+</div>

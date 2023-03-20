@@ -1,0 +1,200 @@
+<body>
+  <div class="container" style="margin-top: 10px;margin-left: 200px;">
+    <div class="row">
+      <nav class="menu">
+        <ul class="items">
+          <li class="item">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </li>
+          <li class="item">
+            <fa-icon [icon]="faSquarePlus"></fa-icon>
+          </li>
+          <li class="item item-active">
+            <fa-icon [icon]="faUserTie"></fa-icon>
+          </li>
+          <li class="item">
+            <i class="fa fa-commenting" aria-hidden="true"></i>
+          </li>
+          <li class="item">
+            <i class="fa fa-file" aria-hidden="true"></i>
+          </li>
+          <li class="item">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="discussions">
+        <div class="discussion search">
+          <div class="searchbar">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" placeholder="Search...">
+          </div>
+        </div>
+        <div class="discussion message-active">
+          <div class="photo" style="background-image: url('../../../assets/dist/img/IconoUsuarioNoFoto.png')">
+            <div class="online"></div>
+          </div>
+          <div class="desc-contact">
+            <p class="name">Asesoría Amazon EKS</p>
+            <p class="message">Lucas Sottil.</p>
+          </div>
+          <div class="timer">12 sec</div>
+        </div>
+
+        <div class="discussion">
+          <div class="photo" style="background-image: url('../../../assets/dist/img/IconoUsuarioNoFoto.png')">
+            <div class="online"></div>
+          </div>
+          <div class="desc-contact">
+            <p class="name">Levantamiento Amazon Lambda</p>
+            <p class="message">George Hernandez.</p>
+          </div>
+          <div class="timer">3 min</div>
+        </div>
+
+        <div class="discussion">
+          <div class="photo" style="background-image: url('../../../assets/dist/img/IconoUsuarioNoFotoVarios.png')">
+            <div class="ocupado"></div>
+          </div>
+          <div class="desc-contact">
+            <p class="name">Asesoría Código Amazon Lambda</p>
+            <p class="message">Joaquín Fernandez. Danyael Vásquez.</p>
+          </div>
+          <div class="timer">42 min</div>
+        </div>
+
+        <div class="discussion">
+          <div class="photo" style="background-image: url('../../../assets/dist/img/IconoUsuarioNoFotoVarios.png')">
+            <div class="online"></div>
+          </div>
+          <div class="desc-contact">
+            <p class="name">Asesoría Amazon EBS</p>
+            <p class="message">Lucas Sottil. George Hernandez.</p>
+          </div>
+          <div class="timer">2 hour</div>
+        </div>
+
+        <div class="discussion">
+          <div class="photo" style="background-image: url('../../../assets/dist/img/IconoUsuarioNoFotoMujer.png')">
+            <div class="ausente"></div>
+          </div>
+          <div class="desc-contact">
+            <p class="name">Complot CCT</p>
+            <p class="message">Vinka Buzdon.</p>
+          </div>
+          <div class="timer">1 day</div>
+        </div>
+
+        <div class="discussion">
+          <div class="photo" style="background-image: url('../../../assets/dist/img/IconoUsuarioNoFotoVarios.png')">
+            <div class="ausente"></div>
+          </div>
+          <div class="desc-contact">
+            <p class="name">Levantamiento Amazon EKS</p>
+            <p class="message">Lucas Sottil. George Hernandez.</p>
+          </div>
+          <div class="timer">4 days</div>
+        </div>
+
+        <div class="discussion">
+          <div class="photo" style="background-image: url('../../../assets/dist/img/IconoUsuarioNoFotoVarios.png')">
+            <div class="online"></div>
+          </div>
+          <div class="desc-contact">
+            <p class="name">Reunión Dudas Amazon EBS</p>
+            <p class="message">Rodrigo caballero. Lucas Sottil. George Hernandez.</p>
+          </div>
+          <div class="timer">1 week</div>
+        </div>
+      </section>
+
+      
+
+      
+      <section class="chat">
+        <div style="height: 100%;">
+          <div class="header-chat">
+            <fa-icon [icon]="faUserTie" class="icon"></fa-icon>
+            <p class="name">Asesoría Amazon EKS</p>
+            <i class="icon clickable fa fa-ellipsis-h" aria-hidden="true"></i>
+          </div>
+          
+          <div class="chat-app-container">
+            
+            <div class="chat-container" #scrollBar id="chatContainer">
+              <div *ngFor="let message of messages" [ngClass]="{'sent-message': message.sender === 'me', 'received-message': message.sender === 'other', 'bot-inicia-caso': message.sender === 'bot-inicia-caso'} " class="mensaje">
+                <div *ngIf="message.sender==='other'" class="emisor" style="color:black;font-size: 17px;font-weight: 500;">{{message.emisor}}</div><p style="">{{message.text}}</p><div class="time">{{message.timestamp}}</div>
+                
+              </div>
+            </div>
+          
+            <form (submit)="sendMessage()" class="inputMensaje">
+              <input [(ngModel)]="message" name="mensaje"  type="text" placeholder="Escribe un mensaje..." class="form-control">
+              <button class="btn btn-primary" type="submit">Enviar</button>
+            </form>
+          </div>
+        </div>
+        
+        
+      </section>
+
+
+
+    </div>
+  </div>
+</body>
+  <!--
+<div class="chat-app-container">
+    <div class="chat-container" #scrollBar id="chatContainer">
+      <p *ngFor="let message of messages" [ngClass]="{'sent-message': message.sender === 'me', 'received-message': message.sender !== 'me'} " class="mensaje">
+        {{message.text}}
+      </p>
+    </div>
+  
+    <form (submit)="sendMessage()">
+      <input [(ngModel)]="message" name="mensaje"  type="text" placeholder="Escribe un mensaje...">
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  -->
+  
+  
+  
+  
+  
+
+
+
+
+
+<!--
+
+  IMPORTANTE, ESTO ES UN EJEMPLO DE PRODUCTO
+
+
+
+<div style="margin: 20px; background-color: white; border-radius: 4px; box-shadow: 0px 0px 5px 0px #ccc; display: flex; flex-direction: column;">
+    <div style="padding: 10px;">
+      <img src="https://picsum.photos/300/200" alt="Product photo" style="max-width: 100%; height: auto; display: inline-block; margin-right: 10px;">
+      <div style="display: inline-block; max-width: 60%;">
+        <h2 style="margin: 0px; font-size: 24px;">Product Name</h2>
+        <p style="color: #666; margin: 5px 0px;">Product description goes here</p>
+        <p style="margin: 5px 0px;">Price: $25.00</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: flex-end; padding: 10px;">
+      <button style="background-color: #1976d2; color: white; border: none; border-radius: 4px; padding: 10px; display: flex; align-items: center;">
+        <span class="material-icons">edit</span>
+        <span style="margin-left: 5px;">Edit</span>
+      </button>
+      <button style="background-color: #d32f2f; color: white; border: none; border-radius: 4px; padding: 10px; display: flex; align-items: center; margin-left: 10px;">
+        <span class="material-icons">delete</span>
+        <span style="margin-left: 5px;">Delete</span>
+      </button>
+    </div>
+  </div>
+
+
+-->
