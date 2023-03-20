@@ -1,0 +1,139 @@
+body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.card{
+    background-color: #dbe4e3;
+}
+
+.card:hover{
+    box-shadow: 0px 0px 10px;
+    cursor: pointer;
+}
+
+.border-secondary{
+    border: 1px solid;
+}
+
+.carousel-item{
+    height: 32rem;
+    background:#777;
+    color:white;
+    position:relative;
+    background-position: center;
+    background-size: cover;
+}
+
+.container{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    padding-bottom: 50px;
+}
+
+/* Carousel base class */
+.carousel {
+    margin-bottom: 4rem;
+  }
+  /* Since positioning the image, we need to help out the caption */
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  /* Declare heights because of positioning of img element */
+  .carousel-item {
+    height: 32rem;
+  }
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
+
+  .overlay-image{
+    position:absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+  }
+
+#bg{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+}
+.box {
+    max-width: 1250px;
+    margin: 58px auto;
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+    border-color: rgb(235, 180, 111);
+    border-width: 1px;
+  }
+
+  #heading {
+    background-color: #3F51B5;
+    text-align: center;
+  }
+  
+  .item {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ffffff;
+  }
+  
+  .item:last-child {
+    border-bottom: 0;
+  }
+
+  .img {
+    width: 280px; 
+    height: 180px; 
+    object-fit: cover; 
+    align-self: center; 
+    border-radius: 8px;
+    margin-top: 5px;
+    border-color: rgb(235, 180, 111);
+    border-style: solid;
+    border-width: 2px;
+  }
+
+  .icon {
+    width: 30px;
+    border-style: solid;
+    height: 30px; 
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+    object-fit: cover; 
+    align-self: center;
+    border-radius: 50px;
+  }
+
+
+  .column {
+    float: right;
+    margin-top: auto;
+    border-top: 0px solid rgb(235, 180, 111);
+    width: 60%;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

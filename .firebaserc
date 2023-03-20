@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "adminlte-proy": {
+      "hosting": {
+        "proy-adminlte3": [
+          "adminlte-proy"
+        ]
+      }
+    },
+    "cenco-web-prot": {
+      "hosting": {
+        "proy-adminlte3": [
+          "cencoweb-app-protu"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cenco-web-prot"
+  }
+}
