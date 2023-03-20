@@ -98,7 +98,27 @@ export class NotificacionesService {
     return this.notificacionesCollection.doc(id).delete();
   }
 
+  async editarPublicacion(notificacion:{nombreNotificacion:string, imgUrl:string, info:string, usuarioResponsable:string, fechaSubido:string, linkArchivo:string, icono:string, iconoClass:string;}):Promise<any>{
+    try{
 
+
+      if(notificacion.imgUrl == null){
+        console.log("IMG NULL")
+        notificacion.imgUrl='../../../assets/noimage.png';
+      }
+      return await this.db.collection('notificaciones').add(notificacion);
+
+    }catch(error){
+      console.log("NO FUNCIONA------------------------------------");
+      
+
+
+
+
+
+      console.log(error);
+    }
+  }
 
   editar(id:string, notificacion:NotificacionModel):Promise<any>{
     return this.notificacionesCollection.doc(id).update(notificacion);
