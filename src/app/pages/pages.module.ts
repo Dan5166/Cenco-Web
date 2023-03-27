@@ -38,6 +38,17 @@ import { LearningPathComponent } from './learning-path/learning-path.component';
 import { ReconocimientoExcelenciaComponent } from './reconocimiento-excelencia/reconocimiento-excelencia.component';
 import { AgradecimientoReconocimientoComponent } from './agradecimiento-reconocimiento/agradecimiento-reconocimiento.component';
 import { NominaAAlguienComponent } from './nomina-a-alguien/nomina-a-alguien.component';
+import { ContactoRapidoService } from '../services/contacto-rapido.service';
+import { ServicioComponent } from './servicio/servicio.component';
+import { DocsComponent } from './docs/docs.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 
 @NgModule({
@@ -67,6 +78,8 @@ import { NominaAAlguienComponent } from './nomina-a-alguien/nomina-a-alguien.com
     ReconocimientoExcelenciaComponent,
     AgradecimientoReconocimientoComponent,
     NominaAAlguienComponent,
+    ServicioComponent,
+    DocsComponent,
   ],
   imports: [
     CommonModule,
@@ -80,7 +93,18 @@ import { NominaAAlguienComponent } from './nomina-a-alguien/nomina-a-alguien.com
     GalleriaModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxExtendedPdfViewerModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    BrowserModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+
   ],
   exports: [
     DashboardComponent,
@@ -89,7 +113,7 @@ import { NominaAAlguienComponent } from './nomina-a-alguien/nomina-a-alguien.com
     
   ],
   providers:[
-    PhotoService, ProductService
+    PhotoService, ProductService, ContactoRapidoService
   ]
 })
 export class PagesModule { }

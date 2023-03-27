@@ -23,6 +23,7 @@ import { LearningPathComponent } from './learning-path/learning-path.component';
 import { ReconocimientoExcelenciaComponent } from './reconocimiento-excelencia/reconocimiento-excelencia.component';
 import { NominaAAlguienComponent } from './nomina-a-alguien/nomina-a-alguien.component';
 import { AgradecimientoReconocimientoComponent } from './agradecimiento-reconocimiento/agradecimiento-reconocimiento.component';
+import { ServicioComponent } from './servicio/servicio.component';
 
 
 const routes:Routes=[
@@ -51,6 +52,7 @@ const routes:Routes=[
     {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}},
     {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}},
     {path:'dashboard', component:DashboardComponent, data:{titulo:'Dashboard'}},
+    {path:'servicio', component:ServicioComponent, data:{titulo:'Servicio'}},
     
 ]}];
 

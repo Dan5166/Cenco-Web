@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ContactoRapidoService } from 'src/app/services/contacto-rapido.service';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  asuntoContacto = '';
+  infoContacto = '';
 
+  constructor(private contactoRapidoService:ContactoRapidoService) { }
+
+  enviarConsultaRapida(){
+    let cargaConsulta:any={
+      asuntoContacto:this.asuntoContacto, info:this.infoContacto, usuarioResponsable:'Juanito', fechaSubido:'Hoy'
+    }
+    this.contactoRapidoService.cargarContactoFirebase(cargaConsulta);
+  }
 }

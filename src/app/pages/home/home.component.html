@@ -115,7 +115,7 @@
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">Asunto</label>
         </div>
-        <select class="custom-select" id="inputGroupSelect01">
+        <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="asuntoContacto">
           <option selected>Selecciona el asunto...</option>
           <option value="1">Consulta de servicio</option>
           <option value="2">Petición de reunión</option>
@@ -127,10 +127,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Cuerpo</span>
         </div>
-        <textarea class="form-control" aria-label="" placeholder="¿Qué necesitas?"></textarea>
+        <textarea class="form-control" aria-label="" placeholder="¿Qué necesitas?"  [(ngModel)]="infoContacto"></textarea>
       </div>
   
-      <button type="button" class="btn btn-secondary" style="margin-top: 20px;">Enviar consulta</button>
+      <button type="button" class="btn btn-secondary" style="margin-top: 20px;" (click)="enviarConsultaRapida()">Enviar consulta</button>
   
     </div>
     

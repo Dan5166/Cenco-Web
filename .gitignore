@@ -7,6 +7,7 @@
 /bazel-out
 
 # Node
+/src/assets/video/*
 /node_modules
 npm-debug.log
 yarn-error.log
@@ -21,7 +22,6 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-/.vscode/*
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -30,8 +30,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular
-.angular/*
+/.angular/cache
 .sass-cache/
 /connect.lock
 /coverage
