@@ -23,10 +23,11 @@ import { HttpClient } from '@angular/common/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    NopageFoundComponent,
+    NopageFoundComponent
 
    
   ],
@@ -44,7 +45,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+
    
   ],
   providers: [PhotoService, ProductService],

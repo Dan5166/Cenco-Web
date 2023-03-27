@@ -1,0 +1,37 @@
+
+<div class="container" style="margin-top: 80px;">
+    
+    <!-- Título de la página -->
+    
+  
+    <!-- Lista de novedades -->
+    <ul class="list-group">
+      <li class="list-group-item" style="margin-bottom: 50px; background-color: #2a5a74;color:#fff; border-radius: 7px; min-height: 500px;">
+        <h2>PDF Documentación</h2>
+
+        <ngx-extended-pdf-viewer src="../../../assets/PDF/aws-overview.pdf"></ngx-extended-pdf-viewer>
+      </li>
+      <li class="list-group-item" style="margin-bottom: 50px; background-color: #2a5a74;color:#fff; border-radius: 7px">
+
+        <h2>Video Documentación</h2>
+        <vg-player style="min-height: 500px;">
+            <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" controls>
+                <source [src]=videoUrl type="video/mp4">
+            </video>
+        </vg-player>
+      </li>
+      <!-- Primera novedad -->
+      
+
+      
+      
+    </ul>
+  
+</div>
+  
+
+
+
+
+
+

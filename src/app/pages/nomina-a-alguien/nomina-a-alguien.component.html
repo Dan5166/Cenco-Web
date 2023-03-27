@@ -74,13 +74,14 @@
             <h4></h4>
             <p style="font-size: 20px; margin-left: 25px;margin-top: 25px;">
 
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" [(ngModel)]="nominado">
                     <option selected>Escoge un empleado...</option>
-                    <option value="1">Rodrigo Caballero</option>
-                    <option value="2">Joaquín Fernandez</option>
-                    <option value="3">Maryuris Torres</option>
-                    <option value="4">Danyael Vásquez</option>
+                    <option value="Rodrigo Caballero">Rodrigo Caballero</option>
+                    <option value="Joaquín Fernandez">Joaquín Fernandez</option>
+                    <option value="Maryuris Torres">Maryuris Torres</option>
+                    <option value="Danyael Vásquez">Danyael Vásquez</option>
                   </select>
+                  <button class="btn btn-success" style="margin-left: 25px;margin-top: 25px; color:white" (click)="nominaAAlguien()">Envía un Agradecimiento</button>
                 
                 
                 
