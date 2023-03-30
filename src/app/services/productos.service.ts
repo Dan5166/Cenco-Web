@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, filter, first, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { FileItems } from '../models/file-items';
 import { ProductoModel } from '../models/productos-model';
@@ -22,6 +22,7 @@ export class ProductosService {
   constructor(private db:AngularFirestore) { 
 
     this.productosCollection=db.collection<ProductoModel>('productos');
+    console.log("Productos: "+this.productosCollection);
 
   }
 
@@ -30,14 +31,19 @@ export class ProductosService {
     return this.productosCollection.snapshotChanges().pipe(
       map(actions=>actions.map(a=>{
         const data=a.payload.doc.data() as ProductoModel;
+        data.id=a.payload.doc.id;
         const id =a.payload.doc.id;
+        console.log("DATOS:       "+data);
         return {id, ...data}
       }))
     )
   }
 
 
-  
+  getProducto(id:string): Observable<ProductoModel> {
+    return this.db.collection('productos').doc(id).valueChanges() as Observable<ProductoModel>;
+}
+
 
   cargarProductosFirebase(imagenes:FileItems[], productos:ProductoModel){
     const storage=getStorage();

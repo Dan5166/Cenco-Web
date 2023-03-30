@@ -52,7 +52,7 @@ const routes:Routes=[
     {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}},
     {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}},
     {path:'dashboard', component:DashboardComponent, data:{titulo:'Dashboard'}},
-    {path:'servicio', component:ServicioComponent, data:{titulo:'Servicio'}},
+    {path:'servicio/:id', component:ServicioComponent, data:{titulo:'Servicio'}},
     
 ]}];
 
