@@ -71,6 +71,7 @@ export class ProductosService {
     }
   }
 
+  
 
 
 
@@ -121,7 +122,85 @@ export class ProductosService {
 
 
   editarProducto(id:string, producto:ProductoModel):Promise<any>{
+
     return this.productosCollection.doc(id).update(producto);
+
+  }
+
+  async guardarFotoEditada(id:string, nombre:string, imagenes:FileItems[], info:string){
+    const storage=getStorage();
+    let imgURL="../../../assets/noimage.png";
+
+    for(const item of imagenes){
+      let productoTrim=nombre;
+
+      //Extrae la referencia de storage no incluyendo en el nombre espacios.
+      const storageRef=ref(storage, `${this.CARPETA_IMAGENES}/${productoTrim.replace(/ /g, "")}`);
+
+      const uploadTask=uploadBytesResumable(storageRef,item.archivo);
+
+      uploadTask.on('state_changed', (snapshot)=>{
+        const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      }, (err)=>{
+        console.log("Error al subir el archivo");
+      }, ()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
+          item.url=downloadUrl;
+          this.editarProductoCampo(id, nombre, item.url, info);
+          return downloadUrl;
+        })
+      })
+
+
+    }
+
+
+    this.editarProductoCampo(id, nombre, imgURL, info);
+  }
+
+  async editarProductoCampo(id:string, nombre:string, imgURL:string, info:string){
+    try{
+
+      Swal.fire({
+        icon:'success',
+        title:'El archivo se subió correctamente',
+        confirmButtonText:'Aceptar',
+        allowOutsideClick:false,
+      }).then((result)=>{
+
+        if(result.value){
+          $('#productosEditarModal').modal('hide');
+        }
+
+      })
+      if(imgURL!="../../../assets/noimage.png"){
+        console.log("Servicio actualizado: "+id+" "+nombre+" "+info+" "+imgURL);
+        return await this.productosCollection.doc(id).update({nombreProducto:nombre, info:info, imgUrl:imgURL});
+      }
+      return await this.productosCollection.doc(id).update({nombreProducto:nombre, info:info});
+
+    }catch(error){
+      console.log("NO SE PUDO ACTUALIZAR");
+      
+
+
+
+
+
+      console.log(error);
+    }
+
+
+
+    /*
+    if(imgURL!="../../../assets/noimage.png"){
+      console.log("Servicio actualizado: "+id+" "+nombre+" "+info+" "+imgURL);
+      this.productosCollection.doc(id).update({nombreProducto:nombre, info:info, imgUrl:imgURL});
+    }else{
+      console.log("Servicio actualizado: "+id+" "+nombre+" "+info);
+      this.productosCollection.doc(id).update({nombreProducto:nombre, info:info});
+    }
+    */
   }
 
 }

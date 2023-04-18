@@ -54,7 +54,7 @@
           <h3 style="font-size: 30px; color:white;">{{producto.nombreProducto}}</h3>
           <p style="color:white; font-size: 20px;">{{producto.info}}</p>
           <div style="position: absolute; bottom: 20px;">
-            <button class="btn btn-primary" style="margin-right: 20px;" data-toggle="modal" data-target="#productosEditarModal">Editar</button>
+            <button class="btn btn-primary" style="margin-right: 20px;" data-toggle="modal" data-target="#productosEditarModal" (click)="setServicioSeleccionado(producto.id)">Editar</button>
             <button class="btn btn-danger" (click)="eliminar(producto.id, producto.nombreProducto, indice)">Eliminar</button>
           </div>
             
@@ -91,7 +91,7 @@
               <img [src]="imgURL" with="100" height="100">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiarForm()">Cerrar</button>
               <button type="submit" class="btn btn-primary" [disabled]="productosForm.invalid">Guardar Cambios</button>
             </div>
           </form>
@@ -111,20 +111,20 @@
           </button>
         </div>
         <div class="modal-body">
-          <form (ngSubmit)="registrarProducto()" [formGroup]="productosForm">
+          <form (ngSubmit)="editarProducto()" [formGroup]="productosForm2">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" formControlName ="nombre" placeholder="Producto" required>
+              <input type="text" class="form-control" formControlName ="nombre" placeholder="{{nombreEditando}}">
             </div>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" formControlName ="info" required>
+              <input type="text" class="form-control" formControlName ="info" placeholder="{{infoEditando}}">
             </div>
             <div class="form-group">
               <input type="file" class="form-control-file" accept="image/*" (change)="selectChange($event)"><br>
-              <img [src]="imgURL" with="100" height="100">
+              <img src="{{imgUrlEditando}}" with="100" height="100">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary" [disabled]="productosForm.invalid">Guardar Cambios</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiarForm()">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
             </div>
           </form>
         </div>

@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 export class ProductosComponent implements OnInit {
   productos: ProductoModel[]=[];
   imagenes:FileItems[]=[];
+  servicioSeleccionado:string="";
   imgURL= '../../../assets/noimage.png';
   file:any;
 
@@ -24,6 +25,14 @@ export class ProductosComponent implements OnInit {
     info:['',[Validators.required]]
   });
 
+  productosForm2=this.fb.group({
+    nombre:['', [Validators.required]],
+    info:['',[Validators.required]]
+  });
+
+  imgUrlEditando:any;
+  nombreEditando:any;
+  infoEditando:any;
 
   constructor(private router:Router, private fb:UntypedFormBuilder, private productoSvc:ProductosService, private notificacionesSvc:NotificacionesService) { }
 
@@ -125,12 +134,42 @@ export class ProductosComponent implements OnInit {
   }
 
 
+  setServicioSeleccionado(nombre:any){
+    this.servicioSeleccionado=nombre;
+    console.log("Servicio seleccionado: "+this.servicioSeleccionado);
+    this.cargarServicioSeleccionado();
+  }
 
-  editarProducto(producto:ProductoModel, indice:number){
-    console.log("Producto a editar: "+producto);
-    console.log("Indice: "+indice);
+  cargarServicioSeleccionado(){
+    console.log("Servicios: "+this.productos.find(producto=>producto.id==this.servicioSeleccionado));
+    this.imgUrlEditando = this.productos.find(producto=>producto.id==this.servicioSeleccionado)?.imgUrl;
+    this.nombreEditando = this.productos.find(producto=>producto.id==this.servicioSeleccionado)?.nombreProducto;
+    this.infoEditando = this.productos.find(producto=>producto.id==this.servicioSeleccionado)?.info;
+
+    console.log("imgUrlEditando: "+this.imgUrlEditando);
+    console.log("nombreEditando: "+this.nombreEditando);
+    console.log("infoEditando: "+this.infoEditando);
+  }
+
+  editarProducto(){
+    console.log("Producto a editar: "+this.nombreEditando);
+    console.log("Indice: "+this.servicioSeleccionado);
+    
+    if(this.productosForm2.value.nombre || this.productosForm2.value.info || this.imgURL != '../../../assets/noimage.png'){
+      console.log("Si hay info cambiada en: "+this.servicioSeleccionado);
+      if(this.productosForm2.value.nombre){this.nombreEditando=this.productosForm2.value.nombre;}
+      if(this.productosForm2.value.info){this.infoEditando=this.productosForm2.value.info;}
+      if(this.imgURL != '../../../assets/noimage.png'){
+        this.imgUrlEditando=this.imgURL;
+        this.productoSvc.guardarFotoEditada(this.servicioSeleccionado, this.nombreEditando, this.imagenes, this.infoEditando);
+      }
+      else{
+        this.productoSvc.editarProductoCampo(this.servicioSeleccionado, this.nombreEditando, this.imgUrlEditando, this.infoEditando);
+      }
+      
+      
+    }
     //obten el id del producto  a editar
-    let productoid=producto.id;
 
 
 

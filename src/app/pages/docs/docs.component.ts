@@ -16,7 +16,7 @@ export class DocsComponent implements OnInit{
   indice:string;
   
   imagenes:FileItems[]=[];
-  imgURL= '../../../assets/noimage.png';
+  documento= '../../../assets/noimage.png';
   file:any;
 
   porcentaje:number=30;
@@ -79,8 +79,8 @@ export class DocsComponent implements OnInit{
       let reader=new FileReader();
       reader.readAsDataURL($event.target.files[0]);
       reader.onload=($event:any)=>{
-        this.imgURL=$event.target.result;
-        console.log("LA URL ES: "+this.imgURL);
+        this.documento=$event.target.result;
+        console.log("LA URL ES: "+this.documento);
         this.imagenes.push({
           archivo:this.file[0]
         });
@@ -91,7 +91,7 @@ export class DocsComponent implements OnInit{
 
     else{
       console.log("NO HAY IMAGEN CHAVAL");
-      this.imgURL;
+      this.documento;
     }
   }
 
@@ -114,14 +114,14 @@ export class DocsComponent implements OnInit{
 
   limpiarForm(){
     this.doscForm.reset();
-    this.imgURL= '../../../assets/noimage.png';
+    this.documento= '../../../assets/noimage.png';
   }
 
   actualizarServicio(){
     let pdf:string[]=[];
     let cargaProducto:ProductoModel={
       nombreProducto:this.nombreProducto,
-      imgUrl:this.imgURL,
+      imgUrl:this.imgUrl,
       info:this.info,
       docsPdf:this.docs,
       docsVideo:this.videos
@@ -133,8 +133,8 @@ export class DocsComponent implements OnInit{
     this.imagenes=[];
   }
 
-  eliminarDoc(pdf:string){
-    this.docsSvc.eliminarDoc(this.indice, pdf);
+  eliminarDoc(pdf:string, tipo:number){
+    this.docsSvc.eliminarDoc(this.indice, pdf, tipo);
   }
  
     

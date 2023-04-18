@@ -23,6 +23,7 @@
                 <source [src]="videoR" type="video/mp4">
                 Tu navegador no soporta el elemento de video.
               </video>
+              <a (click)="eliminarDoc(videoR, 1)" target="_blank" class="btn-delete">Eliminar Video</a>
             </div>
             
             
@@ -41,8 +42,7 @@
               <h3>PDF {{indice+1}}</h3>
               <p>Nombre del PDF: {{pdf}}</p>
               <a href={{pdf}} target="_blank" class="btn-visualizar">Visualizar PDF</a>
-              <a href="" target="_blank" class="btn-edit">Modificar PDF</a>
-              <a (click)="eliminarDoc(pdf)" target="_blank" class="btn-delete">Eliminar PDF</a>
+              <a (click)="eliminarDoc(pdf, 0)" target="_blank" class="btn-delete">Eliminar PDF</a>
             </div>
           </div>
         </section>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DocsModel } from '../models/docs-model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { Observable, map, pluck, switchMap, take } from 'rxjs';
+import { Observable, map, of, pluck, switchMap, take } from 'rxjs';
 import { FileItems } from '../models/file-items';
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 
@@ -148,7 +148,7 @@ export class DocsService {
 
 
 
-  public eliminarDoc(llaveServicio:string, docsNombre:string){
+  public eliminarDoc(llaveServicio:string, docsNombre:string, tipo:number){
     //recibir el array de pdfs
     let listaPdf=[""];
 
@@ -163,12 +163,21 @@ export class DocsService {
       switchMap((doc) => {
         let data = doc.data();
         let pdfs = data?.docsPdf || [];
+        let video = data?.docsVideo || [];
         const indiceDelElemento = pdfs.indexOf(docsNombre);
+        const indiceDelElementoVideo = video.indexOf(docsNombre);
 
-        if (indiceDelElemento > -1) {
+        if (indiceDelElemento > -1 && tipo==0) {
           pdfs.splice(indiceDelElemento, 1);
+          return productoRef.update({docsPdf: pdfs});
         }
-        return productoRef.update({docsPdf: pdfs});
+        else if(indiceDelElementoVideo > -1 && tipo==1){
+          video.splice(indiceDelElementoVideo, 1);
+          return productoRef.update({docsVideo: video});
+        }
+        else{
+          return of(null);
+        }
       })
     ).subscribe({
         next: () => {
