@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
             localStorage.removeItem('email');
             localStorage.removeItem('remember');
             this.router.navigateByUrl('/login');
+            
           }
         })
 

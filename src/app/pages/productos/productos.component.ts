@@ -88,9 +88,11 @@ export class ProductosComponent implements OnInit {
   }
 
   registrarProducto(){
+    let pdf:string[]=[];
     let cargaProducto:any={
       nombreProducto:this.productosForm.value.nombre,
-      info:this.productosForm.value.info
+      info:this.productosForm.value.info,
+      docsPdf:pdf,
     }
     
     this.productoSvc.cargarProductosFirebase(this.imagenes, cargaProducto);

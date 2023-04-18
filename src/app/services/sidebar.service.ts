@@ -20,7 +20,7 @@ export class SidebarService {
       titulo:'Catálogo de Servicios',
       icono:'fa-regular fa-rectangle-list',
       submenu:[
-        {titulo:'Servicios', url:'servicios', icono:'fa-solid fa-clipboard-list'},
+        {titulo:'Servicios', url:'servicio', icono:'fa-solid fa-clipboard-list'},
         {titulo:'Ayuda', url:'ayuda-servicios', icono:'fa-solid fa-circle-question'},
       
       ]

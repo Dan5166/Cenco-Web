@@ -45,7 +45,7 @@ export class ProductosService {
 }
 
 
-  cargarProductosFirebase(imagenes:FileItems[], productos:ProductoModel){
+  async cargarProductosFirebase(imagenes:FileItems[], productos:ProductoModel): Promise<any>{
     const storage=getStorage();
     for(const item of imagenes){
       let productoTrim=productos.nombreProducto;
@@ -62,7 +62,8 @@ export class ProductosService {
       }, ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
           item.url=downloadUrl;
-          this.guardarProducto({nombreProducto:productos.nombreProducto, imgUrl:item.url, info:productos.info});
+          this.guardarProducto({nombreProducto:productos.nombreProducto, imgUrl:item.url, info:productos.info, docs:productos.docsPdf});
+          return downloadUrl;
         })
       })
 
@@ -73,7 +74,7 @@ export class ProductosService {
 
 
 
-  async guardarProducto(producto:{nombreProducto:string, imgUrl:string, info:string}):Promise<any>{
+  async guardarProducto(producto:{nombreProducto:string, imgUrl:string, info:string, docs:string[]}):Promise<any>{
     try{
 
       Swal.fire({

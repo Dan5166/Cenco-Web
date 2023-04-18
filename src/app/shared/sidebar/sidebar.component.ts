@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { faSignOutAlt, faCircleInfo, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
 
+
+
 declare var $:any;
 
 

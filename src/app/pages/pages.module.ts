@@ -79,7 +79,7 @@ import { BrowserModule } from '@angular/platform-browser';
     AgradecimientoReconocimientoComponent,
     NominaAAlguienComponent,
     ServicioComponent,
-    DocsComponent,
+    DocsComponent
   ],
   imports: [
     CommonModule,

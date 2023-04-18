@@ -1,19 +1,11 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-<<<<<<< HEAD
-=======
-/dist
->>>>>>> a8fa7bd7769769027068c2f50d5413a3fba09b24
 /tmp
 /out-tsc
 /bazel-out
 
 # Node
-<<<<<<< HEAD
-=======
-/src/assets/video/*
->>>>>>> a8fa7bd7769769027068c2f50d5413a3fba09b24
 /node_modules
 npm-debug.log
 yarn-error.log
@@ -36,15 +28,9 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-<<<<<<< HEAD
 .angular/*
 /.angular/cache
 .sass-cache/
-=======
-.angular
-.sass-cache/
-.vscode
->>>>>>> a8fa7bd7769769027068c2f50d5413a3fba09b24
 /connect.lock
 /coverage
 /libpeerconnection.log

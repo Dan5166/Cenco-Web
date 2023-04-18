@@ -24,18 +24,19 @@ import { ReconocimientoExcelenciaComponent } from './reconocimiento-excelencia/r
 import { NominaAAlguienComponent } from './nomina-a-alguien/nomina-a-alguien.component';
 import { AgradecimientoReconocimientoComponent } from './agradecimiento-reconocimiento/agradecimiento-reconocimiento.component';
 import { ServicioComponent } from './servicio/servicio.component';
+import { DocsComponent } from './docs/docs.component';
 
 
 const routes:Routes=[
   {path:'home', component:PagesComponent, canActivate:[AuthGuard],
   children:[
-    {path:'', component:HomeComponent, data:{titulo:'Home'}}, 
+    {path:'', component:HomeComponent, data:{titulo:'Home'}, canActivate:[AuthGuard]}, 
 
-    {path:'nubes-publicas', component:NubesPublicasComponent, data:{titulo:'Nubes Públicas'}},
-    {path:'sobre-nosotros', component:SobreNosotrosComponent, data:{titulo:'Sobre Nosotros'}},
+    {path:'nubes-publicas', component:NubesPublicasComponent, data:{titulo:'Nubes Públicas'}, canActivate:[AuthGuard]},
+    {path:'sobre-nosotros', component:SobreNosotrosComponent, data:{titulo:'Sobre Nosotros'}, canActivate:[AuthGuard]},
 
-    {path:'servicios', component:ProductosComponent, data:{titulo:'Servicios'}},
-    {path:'ayuda-servicios', component:AyudaServiciosComponent, data:{titulo:'Ayuda'}},
+    {path:'servicio', component:ProductosComponent, data:{titulo:'Servicios'}, canActivate:[AuthGuard]},
+    {path:'ayuda-servicios', component:AyudaServiciosComponent, data:{titulo:'Ayuda'}, canActivate:[AuthGuard]},
 
     {path:'chat', component:ChatComponent,data:{titulo:'Abre tu caso de contacto'}, canActivate:[AuthGuard]},
     {path:'comentarios', component:ComentariosComponent,data:{titulo:'Comentarios'}, canActivate:[AuthGuard]},
@@ -47,12 +48,13 @@ const routes:Routes=[
     {path:'seguridad', component:SeguridadComponent, data:{titulo:'Seguridad Cloud'}, canActivate:[AuthGuard]},
     {path:'como-navegar', component:ComoNavegarComponent, data:{titulo:'¿Cómo Navegar?'}, canActivate:[AuthGuard]},
     {path:'menu-cct', component:MenuCctComponent, data:{titulo:'Menu Interno CCT'}, canActivate:[AuthGuard]},
-    {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}},
-    {path:'reconocimiento-excelencia', component:ReconocimientoExcelenciaComponent, data:{titulo:'Reconozcamos nuestros esfuerzos'}},
-    {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}},
-    {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}},
-    {path:'dashboard', component:DashboardComponent, data:{titulo:'Dashboard'}},
-    {path:'servicio/:id', component:ServicioComponent, data:{titulo:'Servicio'}},
+    {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}, canActivate:[AuthGuard]},
+    {path:'reconocimiento-excelencia', component:ReconocimientoExcelenciaComponent, data:{titulo:'Reconozcamos nuestros esfuerzos'}, canActivate:[AuthGuard]},
+    {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}, canActivate:[AuthGuard]},
+    {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}, canActivate:[AuthGuard]},
+    {path:'dashboard', component:DashboardComponent, data:{titulo:'Dashboard'}, canActivate:[AuthGuard]},
+    {path:'servicio/:id', component:ServicioComponent, data:{titulo:'Servicio'}, canActivate:[AuthGuard]},
+    {path:'servicio/:id/docs', component:DocsComponent, data:{titulo:'Documentación'} , canActivate:[AuthGuard]},
     
 ]}];
 

@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
 
           if (user && user.user.emailVerified) {
 
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/home');
             
           }else if(user){
 

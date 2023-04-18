@@ -46,9 +46,9 @@
 
   <div class="row" >
     <div class="col-12" *ngFor="let producto of productos; let indice = index">
-      <div class="producto" style="background-color: #1c4f6b; height: 250px; border-radius: 30px; position: relative;">
-        <div class="imagen" style="background-color: #5095bb;">
-          <img src="{{producto.imgUrl}}" alt="{{producto.nombreProducto}}" style="width: 180px; height: 180px; border-radius: 20px;">
+      <div class="producto" style="background-color: #114561; height: 250px; border-radius: 30px; position: relative;">
+        <div class="imagen" style="background-color: #3c80a5;cursor:pointer" [routerLink]="['../servicio/',producto.id]">
+          <img src="{{producto.imgUrl}}" alt="{{producto.nombreProducto}}" style="width: 200px; height: 200px; border-radius: 20px;">
         </div>
         <div class="informacion" style="margin-top: 35px;">
           <h3 style="font-size: 30px; color:white;">{{producto.nombreProducto}}</h3>

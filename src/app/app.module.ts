@@ -22,6 +22,11 @@ import { ProductService } from './services/product.service';
 import { HttpClient } from '@angular/common/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
+
+
+
 
 
 @NgModule({
@@ -46,6 +51,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     provideStorage(() => getStorage()),
     NgbModule,
     FontAwesomeModule,
+    AngularFireStorageModule
 
    
   ],
