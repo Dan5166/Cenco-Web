@@ -42,7 +42,7 @@ export class ProductosService {
 
   getProducto(id:string): Observable<ProductoModel> {
     return this.db.collection('productos').doc(id).valueChanges() as Observable<ProductoModel>;
-}
+  }
 
 
   async cargarProductosFirebase(imagenes:FileItems[], productos:ProductoModel): Promise<any>{
@@ -94,7 +94,10 @@ export class ProductosService {
         console.log("IMG NULL")
         producto.imgUrl='../../../assets/noimage.png';
       }
-      return await this.db.collection('productos').add(producto);
+      
+      let idProductoPromise = await this.db.collection('productos').add(producto);
+      let idProducto = idProductoPromise.id;
+      return await this.guardarProductoArchivosVarios(idProducto);
 
     }catch(error){
       console.log("NO FUNCIONA");
@@ -106,6 +109,11 @@ export class ProductosService {
 
       console.log(error);
     }
+  }
+
+  async guardarProductoArchivosVarios(id:string){
+    let producto={};
+    this.db.collection('varios-servicio').doc(id).set({});
   }
 
   public eliminarProducto(id:string, productoNombre:string):Promise<any>{
@@ -153,9 +161,6 @@ export class ProductosService {
 
 
     }
-
-
-    this.editarProductoCampo(id, nombre, imgURL, info);
   }
 
   async editarProductoCampo(id:string, nombre:string, imgURL:string, info:string){

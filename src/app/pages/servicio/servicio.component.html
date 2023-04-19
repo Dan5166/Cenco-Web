@@ -49,7 +49,7 @@
 
 
       <div class="product-reviews">
-        <button class="btn" style="width: 100%; border-bottom: #1e6286 solid 3px; margin: 0; display: flex; align-items: center; justify-content: space-between;">
+        <button class="btn" style="width: 100%; border-bottom: #1e6286 solid 3px; margin: 0; display: flex; align-items: center; justify-content: space-between;" (click)="guardarproductoArchivosVarios()">
           <h3 style="color:#1e6286; text-align: left; margin: 0;">Peticiones y consultas</h3>
           <i class="right fas fa-angle-right" style="text-align: right; margin-left: auto;"></i>
         </button>
@@ -57,7 +57,7 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="inputState"></label>
-              <select id="inputState" class="form-control">
+              <select id="inputState" class="form-control" (change)="cambiarOpcion($event)" name="seleccion">
                 <option selected>Ingresa tu caso...</option>
                 <option>Tener una reunión</option>
                 <option>Abrir solicitud de servicio</option>
@@ -74,7 +74,7 @@
               
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Enviar consulta</button>
+          <button type="submit" class="btn btn-primary" [disabled]="botonDesactivado" (click)="guardarPeticion()">Enviar consulta</button>
         </form>
       </div>
 
@@ -90,11 +90,11 @@
         </ul>
         <form>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">Comenta tu experiencia con este servicio</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label>Comenta tu experiencia con este servicio</label>
+            <textarea class="form-control" id="FormControlTextarea1" name="textArea1" rows="3" [(ngModel)]="comentario"></textarea>
             
           </div>
-          <button type="submit" class="btn btn-primary">Enviar comentario</button>
+          <button type="submit" class="btn btn-primary" (click)="guardarComentario()" [disabled]="!comentario">Enviar comentario</button>
         </form>
       </div>
 

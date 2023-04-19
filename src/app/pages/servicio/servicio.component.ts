@@ -4,6 +4,8 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 import { ActivatedRoute } from '@angular/router';
 import { ProductosService } from 'src/app/services/productos.service';
+import { ServicioEspService } from 'src/app/services/servicio-esp.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-servicio',
@@ -19,8 +21,14 @@ export class ServicioComponent implements OnInit {
   imgUrl:string="../../assets/img/imagenEjemplo.jpg";
   info:string="Cargando...";
   servicio: any;
+  usuario:any;
 
-  constructor(private videoService:VideoServiceService, private route:ActivatedRoute, private productoSVC:ProductosService) { 
+  opcionSeleccionada: string = 'Ingresa tu caso...';
+  botonDesactivado: boolean = true;
+
+  comentario:string="";
+
+  constructor(private videoService:VideoServiceService, private route:ActivatedRoute, private productoSVC:ProductosService, private servicioEspSvc:ServicioEspService, private authSvc:AuthService){ 
     
     this.indice=this.route.snapshot.params['id'];
     console.log("INDICE ACTUAL: "+this.indice);
@@ -34,6 +42,7 @@ export class ServicioComponent implements OnInit {
       this.imgUrl=data.imgUrl;
       this.servicio=data;
     });
+
     
   }
   
@@ -42,6 +51,52 @@ export class ServicioComponent implements OnInit {
   ngOnInit(): void {
     
   }
+
+  cambiarOpcion(event: any) {
+    this.opcionSeleccionada = event.target.value;
+    if (this.opcionSeleccionada === 'Ingresa tu caso...') {
+      this.botonDesactivado = true;
+    } else {
+      this.botonDesactivado = false;
+    }
+  }
+
+  obtenerSeleccion() {
+    const selectElement = document.querySelector('#inputState') as HTMLSelectElement;
+    const seleccion = selectElement.value;
+    return seleccion;
+  }
+
+  async guardarPeticion(){
+    const seleccion = this.obtenerSeleccion();
+    await this.authSvc.getCurrentUser().then(data => {
+      this.usuario=data;
+      console.log("USUARIO: "+this.usuario);
+      this.servicioEspSvc.guardarPeticion(this.usuario.email, seleccion, this.indice);
+    });
+  }
+
+  vaciarComentario(){
+    this.comentario="";
+  }
+
+  async guardarComentario(){
+    console.log("COMENTARIO: "+this.comentario);
+    const comentario = this.comentario;
+    this.vaciarComentario();
+    await this.authSvc.getCurrentUser().then(data => {
+      this.usuario=data;
+      console.log("USUARIO: "+this.usuario);
+      this.servicioEspSvc.guardarComentario(this.usuario.email, comentario, this.indice);
+    });
+  }
+
+  guardarproductoArchivosVarios(){
+    this.productoSVC.guardarProductoArchivosVarios(this.indice);
+  }
+  
+
+
 
 
 
