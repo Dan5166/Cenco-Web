@@ -20,6 +20,7 @@ export class SidebarComponent implements OnInit {
   menuItems?:any[];
   usuario:any;
   user:any;
+  userId:any;
   userImgGoogle:any;
   faSignOutAlt=faSignOutAlt;
   faCircleInfo=faCircleInfo;
@@ -50,7 +51,7 @@ export class SidebarComponent implements OnInit {
         this.userImgGoogle= "../noimage.png";  
       }
       this.user=this.usuario.email;
-                 
+      this.userId=this.usuario.uid;
             
     }
 

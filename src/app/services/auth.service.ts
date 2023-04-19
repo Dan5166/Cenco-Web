@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, of, switchMap } from 'rxjs';
 import { GoogleAuthProvider } from "firebase/auth";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -36,7 +36,46 @@ export class AuthService {
  async loginGoogle():Promise<any>{
    try {
    
-    return this.authUser.signInWithPopup(new GoogleAuthProvider());
+    return this.authUser.signInWithPopup(new GoogleAuthProvider()).finally(() => {
+      this.authUser.authState.pipe(
+        switchMap(user => {
+          if (user) {
+            const uid = user.uid;
+            const email = user.email;
+            const roles = {
+              // Aquí puedes agregar cualquier rol que quieras asignar al usuario
+              admin: false,
+              editor: false,
+              responsable: false,
+              cct: false,
+              user: true
+            };
+    
+            // Verificar si el documento ya existe en la colección "users"
+            return this.firestore.collection('users').doc(uid).get().pipe(
+              switchMap(doc => {
+                if (doc.exists) {
+                  // Si el documento ya existe, no se hace nada
+                  return of(uid);
+                } else {
+                  // Si el documento no existe, se agrega a la colección "users"
+                  return this.firestore.collection('users').doc(uid).set({
+                    email: email,
+                    roles: roles
+                  }, { merge: true }).then(() => uid);
+                }
+              })
+            );
+          } else {
+            return of(null);
+          }
+        })
+      ).subscribe(uid => {
+        console.log(uid);
+      });
+    });
+    
+    
 
    } catch (error) {
      console.log(error);
