@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { firstValueFrom, of, switchMap } from 'rxjs';
+import { Observable, firstValueFrom, map, of, switchMap } from 'rxjs';
 import { GoogleAuthProvider } from "firebase/auth";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { UserModel } from '../models/user-model';
 
 
 
@@ -44,11 +45,11 @@ export class AuthService {
             const email = user.email;
             const roles = {
               // Aquí puedes agregar cualquier rol que quieras asignar al usuario
-              admin: false,
-              editor: false,
-              responsable: false,
-              cct: false,
-              user: true
+              admin:false,
+              editor:false,
+              responsable:false,
+              cct:false,
+              user:true
             };
     
             // Verificar si el documento ya existe en la colección "users"
@@ -110,11 +111,11 @@ export class AuthService {
       // Asignar un rol o privilegio al usuario
       const roles = {
         // Aquí puedes agregar cualquier rol que quieras asignar al usuario
-        admin: false,
-        editor: false,
-        responsable: false,
-        cct: false,
-        user: true
+        admin:false,
+        editor:false,
+        responsable:false,
+        cct:false,
+        user:true
       };
   
       // Crear un objeto con los datos del usuario a guardar en Firestore
@@ -154,14 +155,14 @@ export class AuthService {
 
   async getCurrentUser() {
 
-    return await firstValueFrom(this.authUser.authState);
+    
+    return await firstValueFrom(this.authUser.authState); 
+    
 
   }
 
- /*  getCurrentUser(){
-
-    this.authUser.authState.pipe(first()).toPromise()
-
-  } */
+  getUserDetails(id:string): Observable<UserModel> {
+    return this.firestore.collection("users").doc(id).valueChanges() as Observable<UserModel>;
+  }
 
 }

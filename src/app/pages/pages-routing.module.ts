@@ -25,6 +25,7 @@ import { NominaAAlguienComponent } from './nomina-a-alguien/nomina-a-alguien.com
 import { AgradecimientoReconocimientoComponent } from './agradecimiento-reconocimiento/agradecimiento-reconocimiento.component';
 import { ServicioComponent } from './servicio/servicio.component';
 import { DocsComponent } from './docs/docs.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 const routes:Routes=[
@@ -49,10 +50,10 @@ const routes:Routes=[
     {path:'como-navegar', component:ComoNavegarComponent, data:{titulo:'¿Cómo Navegar?'}, canActivate:[AuthGuard]},
     {path:'menu-cct', component:MenuCctComponent, data:{titulo:'Menu Interno CCT'}, canActivate:[AuthGuard]},
     {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}, canActivate:[AuthGuard]},
-    {path:'reconocimiento-excelencia', component:ReconocimientoExcelenciaComponent, data:{titulo:'Reconozcamos nuestros esfuerzos'}, canActivate:[AuthGuard]},
-    {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}, canActivate:[AuthGuard]},
-    {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}, canActivate:[AuthGuard]},
-    {path:'dashboard', component:DashboardComponent, data:{titulo:'Dashboard'}, canActivate:[AuthGuard]},
+    {path:'reconocimiento-excelencia', component:ReconocimientoExcelenciaComponent, data:{titulo:'Reconozcamos nuestros esfuerzos'}, canActivate:[AdminGuard]},
+    {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}, canActivate:[AdminGuard]},
+    {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}, canActivate:[AdminGuard]},
+    {path:'dashboard', component:DashboardComponent, data:{titulo:'Dashboard'}, canActivate:[AdminGuard]},
     {path:'servicio/:id', component:ServicioComponent, data:{titulo:'Servicio'}, canActivate:[AuthGuard]},
     {path:'servicio/:id/docs', component:DocsComponent, data:{titulo:'Documentación'} , canActivate:[AuthGuard]},
     
@@ -65,6 +66,7 @@ const routes:Routes=[
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  exports:[RouterModule]
+  exports:[RouterModule],
+  providers:[AuthGuard]
 })
 export class PagesRoutingModule { }

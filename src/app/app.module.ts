@@ -23,6 +23,8 @@ import { HttpClient } from '@angular/common/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 
 
@@ -55,7 +57,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
    
   ],
-  providers: [PhotoService, ProductService],
+  providers: [PhotoService, ProductService, AuthGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

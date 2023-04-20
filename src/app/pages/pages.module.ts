@@ -49,6 +49,8 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { BrowserModule } from '@angular/platform-browser';
 import { ServicioEspService } from '../services/servicio-esp.service';
+import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 
@@ -114,7 +116,7 @@ import { ServicioEspService } from '../services/servicio-esp.service';
     
   ],
   providers:[
-    PhotoService, ProductService, ContactoRapidoService, ServicioEspService
+    PhotoService, ProductService, ContactoRapidoService, ServicioEspService, AuthGuard, AdminGuard
   ]
 })
 export class PagesModule { }
