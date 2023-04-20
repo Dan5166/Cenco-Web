@@ -108,7 +108,14 @@ export class AuthService {
       const uid = result.user?.uid;
   
       // Asignar un rol o privilegio al usuario
-      const roles = ['user', 'admin']; // Agregar los roles que desees
+      const roles = {
+        // Aquí puedes agregar cualquier rol que quieras asignar al usuario
+        admin: false,
+        editor: false,
+        responsable: false,
+        cct: false,
+        user: true
+      };
   
       // Crear un objeto con los datos del usuario a guardar en Firestore
       const userData = {
