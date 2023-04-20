@@ -25,6 +25,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { ShowForRolesDirective } from './directivas/show-for-roles.directive';
+
 
 
 
@@ -34,7 +36,8 @@ import { AdminGuard } from './guards/admin.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    NopageFoundComponent
+    NopageFoundComponent,
+    ShowForRolesDirective
 
    
   ],
@@ -58,6 +61,10 @@ import { AdminGuard } from './guards/admin.guard';
    
   ],
   providers: [PhotoService, ProductService, AuthGuard, AdminGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+  
+    ShowForRolesDirective
+  ]
 })
 export class AppModule { }

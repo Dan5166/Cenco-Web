@@ -51,6 +51,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ServicioEspService } from '../services/servicio-esp.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
+import { ShowForRolesDirective } from '../directivas/show-for-roles.directive';
 
 
 
@@ -82,7 +83,8 @@ import { AdminGuard } from '../guards/admin.guard';
     AgradecimientoReconocimientoComponent,
     NominaAAlguienComponent,
     ServicioComponent,
-    DocsComponent
+    DocsComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -116,7 +118,7 @@ import { AdminGuard } from '../guards/admin.guard';
     
   ],
   providers:[
-    PhotoService, ProductService, ContactoRapidoService, ServicioEspService, AuthGuard, AdminGuard
+    PhotoService, ProductService, ContactoRapidoService, ServicioEspService, AuthGuard, AdminGuard, ShowForRolesDirective
   ]
 })
 export class PagesModule { }

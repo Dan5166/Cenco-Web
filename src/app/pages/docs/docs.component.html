@@ -13,7 +13,7 @@
           <section id="video" class="bloque-documentacion">
             <div class="header-bloque">
               <h2>Video documentación</h2>
-              <p style="align-self: center;"><button class="btn btn-primary mb-3" data-toggle="modal" data-target="#videoModal" style="margin-left: 100px;"> <i
+              <p style="align-self: center;"><button class="btn btn-primary mb-3" data-toggle="modal" data-target="#videoModal" style="margin-left: 100px;" *ngIf="hasRoleAdmin"> <i
                 class="fa fa-plus" ></i> Agregar</button></p>
             </div>
             
@@ -23,7 +23,7 @@
                 <source [src]="videoR" type="video/mp4">
                 Tu navegador no soporta el elemento de video.
               </video>
-              <a (click)="eliminarDoc(videoR, 1)" target="_blank" class="btn-delete">Eliminar Video</a>
+              <a (click)="eliminarDoc(videoR, 1)" target="_blank" class="btn-delete" *ngIf="hasRoleAdmin">Eliminar Video</a>
             </div>
             
             
@@ -33,7 +33,7 @@
           <div class="bloque-documentacion">
             <div class="header-bloque">
               <h2>PDF Documentación</h2>
-              <p style="align-self: center;"><button class="btn btn-primary mb-3" data-toggle="modal" data-target="#docsModal" style="margin-left: 100px;"> <i
+              <p style="align-self: center;"><button class="btn btn-primary mb-3" data-toggle="modal" data-target="#docsModal" style="margin-left: 100px;" *ngIf="hasRoleAdmin"> <i
                 class="fa fa-plus" ></i> Agregar</button></p>
             </div>
             
@@ -41,8 +41,8 @@
             <div *ngFor="let pdf of docs; let indice = index" class="array-group">
               <h3>PDF {{indice+1}}</h3>
               <p>Nombre del PDF: {{pdf}}</p>
-              <a href={{pdf}} target="_blank" class="btn-visualizar">Visualizar PDF</a>
-              <a (click)="eliminarDoc(pdf, 0)" target="_blank" class="btn-delete">Eliminar PDF</a>
+              <a href={{pdf}} target="_blank" class="btn-visualizar" *ngIf="hasRoleAdmin">Visualizar PDF</a>
+              <a (click)="eliminarDoc(pdf, 0)" target="_blank" class="btn-delete" *ngIf="hasRoleAdmin">Eliminar PDF</a>
             </div>
           </div>
         </section>

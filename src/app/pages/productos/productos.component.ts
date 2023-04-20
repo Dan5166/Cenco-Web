@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 import { FileItems } from 'src/app/models/file-items';
 import { ProductoModel } from 'src/app/models/productos-model';
+import { AuthService } from 'src/app/services/auth.service';
 import { NotificacionesService } from 'src/app/services/notificaciones.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import Swal from 'sweetalert2';
@@ -14,6 +16,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
+  hasRoleAdmin = false;
   productos: ProductoModel[]=[];
   imagenes:FileItems[]=[];
   servicioSeleccionado:string="";
@@ -34,9 +37,9 @@ export class ProductosComponent implements OnInit {
   nombreEditando:any;
   infoEditando:any;
 
-  constructor(private router:Router, private fb:UntypedFormBuilder, private productoSvc:ProductosService, private notificacionesSvc:NotificacionesService) { }
+  constructor(private router:Router, private fb:UntypedFormBuilder, private productoSvc:ProductosService, private notificacionesSvc:NotificacionesService, private authSvc: AuthService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.productoSvc.getProductos().subscribe(res=>{
       this.productos=[];
       res.forEach((element:ProductoModel)=>{
@@ -47,6 +50,7 @@ export class ProductosComponent implements OnInit {
       console.log("Productos Inicales:  ");
       console.log(this.productos)
     });
+    this.hasRoleAdmin = await this.userRoleIn();
   }
 
 
@@ -188,5 +192,32 @@ export class ProductosComponent implements OnInit {
     }
     */
   }
+
+  async userRoleIn(){
+    const res = await this.authSvc.getCurrentUser();
+    if(res){
+      let hasRole = false;
+      const user = await new Promise<any>((resolve, reject) => {
+        this.authSvc.getUserDetails(res.uid).pipe(take(1)).subscribe(
+            (data) => {
+                console.log("OBTENEMOS USUARIO: ");
+                if(data.roles['admin']){
+                  //Si es admin
+                  hasRole = true;
+                }
+                resolve(data);
+            },
+            (error) => {
+                console.error(error);
+                reject(error);
+            }
+        );
+      });
+      console.log("HAS ROLE: "+hasRole);
+      return hasRole;
+    }
+    else{return false;}
+  }
+
 
 }

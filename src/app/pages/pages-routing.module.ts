@@ -49,7 +49,7 @@ const routes:Routes=[
     {path:'seguridad', component:SeguridadComponent, data:{titulo:'Seguridad Cloud'}, canActivate:[AuthGuard]},
     {path:'como-navegar', component:ComoNavegarComponent, data:{titulo:'¿Cómo Navegar?'}, canActivate:[AuthGuard]},
     {path:'menu-cct', component:MenuCctComponent, data:{titulo:'Menu Interno CCT'}, canActivate:[AuthGuard]},
-    {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}, canActivate:[AuthGuard]},
+    {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}, canActivate:[AdminGuard]},
     {path:'reconocimiento-excelencia', component:ReconocimientoExcelenciaComponent, data:{titulo:'Reconozcamos nuestros esfuerzos'}, canActivate:[AdminGuard]},
     {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}, canActivate:[AdminGuard]},
     {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}, canActivate:[AdminGuard]},

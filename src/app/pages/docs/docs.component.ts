@@ -6,6 +6,8 @@ import { DocsService } from 'src/app/services/docs.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { ProductoModel } from 'src/app/models/productos-model';
 import * as $ from 'jquery';
+import { AuthService } from 'src/app/services/auth.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-docs',
@@ -13,6 +15,8 @@ import * as $ from 'jquery';
   styleUrls: ['./docs.component.css']
 })
 export class DocsComponent implements OnInit{
+  hasRoleAdmin = false;
+
   indice:string;
   
   imagenes:FileItems[]=[];
@@ -38,7 +42,7 @@ export class DocsComponent implements OnInit{
   });
 
   linkPDF:string="ola";
-  constructor(private docsSvc:DocsService,private route:ActivatedRoute, private fb:UntypedFormBuilder, private productoSVC:ProductosService) { 
+  constructor(private docsSvc:DocsService,private route:ActivatedRoute, private fb:UntypedFormBuilder, private productoSVC:ProductosService, private authSvc: AuthService) { 
     this.indice=this.route.snapshot.params['id'];
 
 
@@ -67,8 +71,9 @@ export class DocsComponent implements OnInit{
 
 
 
-  ngOnInit(): void {
+  async ngOnInit(){
     console.log("ID: "+this.indice);
+    this.hasRoleAdmin = await this.userRoleIn();
   }
 
   selectChange($event:any){
@@ -137,7 +142,31 @@ export class DocsComponent implements OnInit{
     this.docsSvc.eliminarDoc(this.indice, pdf, tipo);
   }
  
-    
+  async userRoleIn(){
+    const res = await this.authSvc.getCurrentUser();
+    if(res){
+      let hasRole = false;
+      const user = await new Promise<any>((resolve, reject) => {
+        this.authSvc.getUserDetails(res.uid).pipe(take(1)).subscribe(
+            (data) => {
+                console.log("OBTENEMOS USUARIO: ");
+                if(data.roles['admin']){
+                  //Si es admin
+                  hasRole = true;
+                }
+                resolve(data);
+            },
+            (error) => {
+                console.error(error);
+                reject(error);
+            }
+        );
+      });
+      console.log("HAS ROLE: "+hasRole);
+      return hasRole;
+    }
+    else{return false;}
+  }
 
 
 }

@@ -42,8 +42,7 @@ if (res) {
         return true;
     } else {
         // Si no es un administrador, redirigir al inicio de sesión
-        console.log("NO ERES ADMINISTRADOR");
-        this.router.navigateByUrl('/login');
+        alert("Acceso denegado")
         return false;
     }
 }
