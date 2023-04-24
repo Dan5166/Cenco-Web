@@ -1,0 +1,140 @@
+<body>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+    
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url(../../../assets/dist/img/carrusel-primera.png);">
+          <div class="carousel-caption">
+            
+            <button type="button" class="btn btn-secondary">Catálogo de servicios</button>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: url(../../../assets/dist/img/carrusel-segunda3.png);">
+          <div class="carousel-caption">
+            
+            <button type="button" class="btn btn-primary">Conoce nuestro equipo CCT</button>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/5256816/pexels-photo-5256816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+          <div class="carousel-caption">
+            <h5>¿Qué me ofrece Cenco Web?</h5>
+            <p>En esta página podrás ver, consultar y aprender a manejar los diferentes servicios entregados por el CCT.</p>
+            <button type="button" class="btn btn-secondary">Presiona para más información</button>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+          <div class="carousel-caption">
+            <h5>Tecnologías interesantes</h5>
+            <p>Conoce tecnologías interesantes recomendadas por el equipo de CCT, que te ayudarán a obtener ideas y facilitar tu trabajo.</p>
+            <button type="button" class="btn btn-secondary">Presiona para más información</button>
+          </div>
+        </div>
+      </div>
+    
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    
+    
+    
+    <!-- Contenedor principal -->
+    <div class="container" style="margin-top: 100px;">
+    
+      <!-- Título de la página -->
+      <h2>Novedades y Recordatorios</h2>
+    
+      <!-- Lista de novedades -->
+      <ul class="list-group">
+    
+        <!-- Primera novedad -->
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-3">
+              <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid">
+            </div>
+            <div class="col-md-9">
+              <h4>Practicantes se encuentran en prototipado de Cenco Web</h4>
+              <p>El prototipo del portal <strong>Cenco Web</strong> , del equipo <strong>Cloud Core Team</strong>, se encuentra en desarrollo por el equipo de practicantes DevOps.</p>
+              <p>Esperando la aprobación de Diego Reos y de algunos .</p>
+            </div>
+          </div>
+        </li>
+    
+        <!-- Segunda novedad -->
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-3">
+              <img src="https://images.pexels.com/photos/357514/pexels-photo-357514.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid">
+            </div>
+            <div class="col-md-9">
+              <h4>Intrucciones para subir documentación en los servicios</h4>
+              <p>En este artículo aprenderás como <strong>adjuntar distintos archivos</strong>, ya sean PDF, Videos y documentación en la página de servicios.</p>
+            </div>
+          </div>
+        </li>
+    
+        <!-- Tercera novedad -->
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-3">
+              <img src="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid">
+            </div>
+            <div class="col-md-9">
+              <h4>Instrucciones para crear un artículo en el Catálogo de servicios CCT</h4>
+              <p>En este blog aprenderás a crear artículos en el <strong>Catálogo de servicios</strong>, es necesario que sigas las <strong>buenas prácticas definidas por el CCT</strong> para crear los artículos y subir documentación.</p>
+            </div>
+          </div>
+        </li>
+    
+      </ul>
+    
+    </div>
+    
+    
+    
+    
+    <!-- Contenedor principal -->
+    <div class="container border-dark mb-3" style="margin-top: 100px;background-color: white;border: 2px;margin-bottom: 100px;">
+    
+      <!-- Título del formulario -->
+      <h2>Contacta rápidamente con nuestro equipo</h2>
+    
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Asunto</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="asuntoContacto">
+          <option selected>Selecciona el asunto...</option>
+          <option value="1">Consulta de servicio</option>
+          <option value="2">Petición de reunión</option>
+          <option value="3">Informar problema en la página</option>
+        </select>
+      </div>
+  
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Cuerpo</span>
+        </div>
+        <textarea class="form-control" aria-label="" placeholder="¿Qué necesitas?"  [(ngModel)]="infoContacto"></textarea>
+      </div>
+  
+      <button type="button" class="btn btn-secondary" style="margin-top: 20px;" (click)="enviarConsultaRapida()">Enviar consulta</button>
+  
+    </div>
+    
+  
+  </body>
+  
+  

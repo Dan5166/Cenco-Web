@@ -1,0 +1,23 @@
+
+<div class="container text-center">
+    <div class="card bg-dark" style="margin-top:150px;" *ngIf="user$ |async as user; else loading">
+        <div class="card-title mt-3"><strong>Debes confirmar la verificacion del email</strong></div>
+        <div class="card-body">
+            <div class="form-group">
+                <p class="text-center">
+                    Te enviamos un email de confirmación a <strong>{{user?.email}}</strong>
+                </p>
+                <p class="center">Por favor revisa tu email y haz click en la verificación</p>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="onSendEmail()">Reenviar verificación</button>
+            </div>
+            <div class="form-group">
+                <a routerLink="/login" style="cursor: pointer; text-decoration: none;">Volver a Login..</a>
+            </div>
+        </div>
+    </div>
+    <ng-template #loading>
+        Loading...
+    </ng-template>
+</div>

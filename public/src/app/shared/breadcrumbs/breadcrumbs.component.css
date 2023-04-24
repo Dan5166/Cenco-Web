@@ -1,0 +1,33 @@
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #204457;
+    font-weight: bold;
+    margin-top: 10px;
+    border-radius: 5%;
+    padding: 8px 10px;
+    border: 2px solid #2e6481;
+  }
+
+  .back-button:hover{
+    box-shadow: #204457 0px 0px 5px 0px;
+    
+  }
+
+  
+  .arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 5px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #204457;
+  }
+  
+  .text {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  

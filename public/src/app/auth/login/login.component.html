@@ -1,0 +1,75 @@
+<div class="hold-transition login-page">
+  <div class="login-box animate__animated animate__backInLeft">
+      <div class="login-logo">
+          <a href="../../index2.html"><b>Cenco</b>Web</a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="card">
+          <div class="card-body login-card-body">
+              <p class="login-box-msg">Ingresa tus credenciales</p>
+
+              <form (ngSubmit)="login()" [formGroup]="loginForm" >
+                  <div class="input-group mb-3">
+                      <input type="email" class="form-control" formControlName="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required >
+                      <div class="input-group-append">
+                          <div class="input-group-text">
+                              <span class="fas fa-envelope" style="color: rgb(48, 37, 37);"></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="input-group mb-3">
+                      <input type="password" class="form-control" formControlName="password" #password placeholder="Password" required >
+                      <div class="input-group-append">
+                          <div class="input-group-text">
+                              <a (click)="hideShowPass()" style="color: rgb(48, 37, 37); cursor: pointer"><i class="fa fa-eye-slash" #togglePassword></i></a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-8">
+                          <div class="icheck-primary">
+                              <input type="checkbox" id="remember" (change)="onCheckboxChhange($event)" formControlName="remember">
+                              <label for="remember" class="ml-2">
+                Recordarme
+              </label>
+                          </div>
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-4">
+                          <button type="submit" class="btn btn-outline-light btn-block" style="color:white" [disabled]="loginForm.invalid">Sign In</button>
+                      </div>
+                      <!-- /.col -->
+                  </div>
+              </form>
+
+              <div class="social-auth-links text-center mb-3 " id="my-signin2">
+
+              </div>
+              <div class="social-auth-links text-center">
+                  <hr>
+                  <!--
+                    <a class="btn btn-block btn-outline-secondary" (click)="onGoogleLogin()" style="cursor: pointer; background-color: green;">
+                        <i class="fab fa-google mr-2" style="color:white;font-size: 20px;">    Sign in using Google</i> 
+                    </a>
+
+                  -->
+                  
+                  <a class="btn btn-outline-light" (click)="onGoogleLogin()" style="text-transform:none;background-color: white;">
+                    <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Entrar con Google
+                  </a>
+              
+                </div>
+
+              <p class="mb-1">
+                  <a routerLink="/forgot-password" style="cursor: pointer" class="link-pass"> Olvidé mi contraseña</a>
+              </p>
+              <p class="mb-0">
+                  <a routerLink="/register" class="text-center link-reg cursor">Registrarme</a>
+              </p>
+          </div>
+          <!-- /.login-card-body -->
+      </div>
+  </div>
+  <!-- /.login-box -->
+</div>

@@ -1,0 +1,139 @@
+
+
+
+
+<body>
+
+<!--
+
+<div></div>   
+  <div style="height: 100%;">
+    
+    <div class="contenedor">
+      <h1 style="margin-left: 100px;"></h1>
+      
+      <div class="row row-cols-1 row-cols-md-5 g-4" style="margin-left: 50px; margin-top: 50px;">
+        
+        <div *ngFor="let producto of productos; let indice=index">
+          <div class="col" style="padding-bottom: 30px;" >
+            <div class="card border-secondary mb-3" style="height: 420px; width: 286px; overflow-y: hidden;border-radius: 10px;box-shadow: inset;" >
+    
+              <img [src]="producto.imgUrl" class="card-img-top" alt="" style="width: 280px; height: 180px; object-fit: cover; align-self: center;">
+              
+              <div class="card-body" style="background-color: white;">
+                
+                <h5 class="card-title" style="font-size: 20px;"><img src="../../../assets/dist/img/amazon-icono.png" alt="" style="width: 20px; height: 20px; object-fit: cover; align-self: center;"> {{producto.nombreProducto}}</h5>
+                <br><br><p style="color:#546e7a;font-style:italic;font-size: 14px;">Responsable: Lucas</p>
+                <p class="card-text" style="font-size: 14px;">{{producto.info}}</p>
+              </div>
+              <div class="card-footer" style="background-color: white;">
+                <button class="btn btn-danger btn-sm" style="border-radius:5px" (click)="eliminar(producto.id, producto.nombreProducto, indice)"><i class="fa fa-trash">  </i>Eliminar</button>
+                
+
+                
+                <button class="btn btn-info btn-sm" style="border-radius:5px" data-toggle="modal" data-target="#productosEditarModal" style="margin-left: 70px;"><i class="fa fa-pen"> Editar</i></button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        
+      -->
+
+
+
+  <div class="row" >
+    <div class="col-12" *ngFor="let producto of productos; let indice = index">
+      <div class="producto" style="background-color: #114561; height: 250px; border-radius: 30px; position: relative;">
+        <div class="imagen" style="background-color: #3c80a5;cursor:pointer" [routerLink]="['../servicio/',producto.id]">
+          <img src="{{producto.imgUrl}}" alt="{{producto.nombreProducto}}" style="width: 200px; height: 200px; border-radius: 20px;">
+        </div>
+        <div class="informacion" style="margin-top: 35px;">
+          <h3 style="font-size: 30px; color:white;">{{producto.nombreProducto}}</h3>
+          <p style="color:white; font-size: 20px;">{{producto.info}}</p>
+          <div style="position: absolute; bottom: 20px;">
+            <button class="btn btn-primary" style="margin-right: 20px;" data-toggle="modal" data-target="#productosEditarModal" (click)="setServicioSeleccionado(producto.id)" *ngIf="hasRoleAdmin">Editar</button>
+            <button class="btn btn-danger" (click)="eliminar(producto.id, producto.nombreProducto, indice)" *ngIf="hasRoleAdmin">Eliminar</button>
+          </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="align-self: center;"><button (click)="limpiarForm()" class="btn btn-primary mb-3" data-toggle="modal" data-target="#productosModal" style="margin-left: 100px;" *ngIf="hasRoleAdmin"> <i
+    class="fa fa-plus" ></i> Agregar</button></p>
+
+
+
+
+  <div class="modal fade" id="productosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title"><i class="fa fa-cubes"></i> Agregar Productos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="registrarProducto()" [formGroup]="productosForm">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="nombre" placeholder="Producto" required>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="info" required>
+            </div>
+            <div class="form-group">
+              <input type="file" class="form-control-file" accept="image/*" (change)="selectChange($event)"><br>
+              <img [src]="imgURL" with="100" height="100">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiarForm()">Cerrar</button>
+              <button type="submit" class="btn btn-primary" [disabled]="productosForm.invalid">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+      
+  <div class="modal fade" id="productosEditarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title"><i class="fa fa-cubes"></i> Editar Producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="editarProducto()" [formGroup]="productosForm2">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="nombre" placeholder="{{nombreEditando}}">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="info" placeholder="{{infoEditando}}">
+            </div>
+            <div class="form-group">
+              <input type="file" class="form-control-file" accept="image/*" (change)="selectChange($event)"><br>
+              <img src="{{imgUrlEditando}}" with="100" height="100">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiarForm()">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</body>
+
+
+
