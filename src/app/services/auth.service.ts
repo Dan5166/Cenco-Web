@@ -26,7 +26,6 @@ export class AuthService {
         return await this.authUser.sendPasswordResetEmail(email)
 
       } catch (error) {
-        console.error(error)
       }
   }
 
@@ -72,14 +71,12 @@ export class AuthService {
           }
         })
       ).subscribe(uid => {
-        console.log(uid);
       });
     });
     
     
 
    } catch (error) {
-     console.log(error);
    }
  }
   async login(email: string, password: string):Promise<any> {
@@ -89,7 +86,6 @@ export class AuthService {
       return result;
 
     } catch (error) {
-      console.log(error);
     }
 
   }
@@ -132,7 +128,6 @@ export class AuthService {
   
       return result;
     } catch (error) {
-      console.log(error);
     }
   }
   
@@ -147,7 +142,6 @@ export class AuthService {
       location.reload();
 
     } catch (error) {
-      console.log(error);
     }
 
   }

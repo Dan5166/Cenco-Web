@@ -35,8 +35,6 @@ export class HeaderComponent implements OnInit {
           ...element
         })
       })
-      console.log("Notificaciones Inicales:  ");
-      console.log(this.notificaciones)
     });
   }
 
@@ -67,7 +65,6 @@ export class HeaderComponent implements OnInit {
         this.notificacionesSvc.eliminarNotificacion(id, productoNombre);
         
         this.notificaciones.splice(indice, 1);
-        console.log("nuevo arreglo: "+this.notificaciones);
       }
     });
   }

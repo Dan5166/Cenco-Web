@@ -18,15 +18,12 @@ import { AuthGuard } from './auth.guard';
             state: RouterStateSnapshot
         ): Promise<boolean | UrlTree> {
             const res = await this.usuaioSvc.getCurrentUser();
-console.log("ENTRAMOS A ADMINGUARD");
 
 if (res) {
-    console.log("OBTENEMOS RES");
 
     const user = await new Promise<any>((resolve, reject) => {
         this.usuaioSvc.getUserDetails(res.uid).subscribe(
             (data) => {
-                console.log("OBTENEMOS USUARIO: ");
                 resolve(data);
             },
             (error) => {
@@ -38,7 +35,6 @@ if (res) {
 
     if (user && user.roles && user.roles.admin) {
         // Si es un administrador, permitir el acceso
-        console.log("ERES ADMINISTRADOR");
         return true;
     } else {
         // Si no es un administrador, redirigir al inicio de sesión
