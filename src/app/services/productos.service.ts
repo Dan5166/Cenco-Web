@@ -22,7 +22,6 @@ export class ProductosService {
   constructor(private db:AngularFirestore) { 
 
     this.productosCollection=db.collection<ProductoModel>('productos');
-    console.log("Productos: "+this.productosCollection);
 
   }
 
@@ -33,7 +32,6 @@ export class ProductosService {
         const data=a.payload.doc.data() as ProductoModel;
         data.id=a.payload.doc.id;
         const id =a.payload.doc.id;
-        console.log("DATOS:       "+data);
         return {id, ...data}
       }))
     )
@@ -58,7 +56,6 @@ export class ProductosService {
       uploadTask.on('state_changed', (snapshot)=>{
         const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, (err)=>{
-        console.log("Error al subir el archivo");
       }, ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
           item.url=downloadUrl;
@@ -91,7 +88,7 @@ export class ProductosService {
 
       })
       if(producto.imgUrl == null){
-        console.log("IMG NULL")
+
         producto.imgUrl='../../../assets/noimage.png';
       }
       
@@ -100,7 +97,7 @@ export class ProductosService {
       return await this.guardarProductoArchivosVarios(idProducto);
 
     }catch(error){
-      console.log("NO FUNCIONA");
+
       
 
 
@@ -150,7 +147,6 @@ export class ProductosService {
       uploadTask.on('state_changed', (snapshot)=>{
         const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, (err)=>{
-        console.log("Error al subir el archivo");
       }, ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
           item.url=downloadUrl;
@@ -179,13 +175,11 @@ export class ProductosService {
 
       })
       if(imgURL!="../../../assets/noimage.png"){
-        console.log("Servicio actualizado: "+id+" "+nombre+" "+info+" "+imgURL);
         return await this.productosCollection.doc(id).update({nombreProducto:nombre, info:info, imgUrl:imgURL});
       }
       return await this.productosCollection.doc(id).update({nombreProducto:nombre, info:info});
 
     }catch(error){
-      console.log("NO SE PUDO ACTUALIZAR");
       
 
 

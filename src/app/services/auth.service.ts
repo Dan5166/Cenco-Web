@@ -155,8 +155,17 @@ export class AuthService {
 
   }
 
-  getUserDetails(id:string): Observable<UserModel> {
-    return this.firestore.collection("users").doc(id).valueChanges() as Observable<UserModel>;
+  async getUserDetails(id: string): Promise<UserModel> {
+    const docRef = this.firestore.collection("users").doc(id);
+    const doc = await firstValueFrom(docRef.get());
+  
+    if (doc) {
+      const userData = doc.data() as UserModel;
+      return userData;
+    } else {
+      throw new Error("El documento no existe");
+    }
   }
+  
 
 }

@@ -50,7 +50,6 @@ export class NotificacionesService {
       uploadTask.on('state_changed', (snapshot)=>{
         const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, (err)=>{
-        console.log("Error al subir el archivo");
       }, ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
           item.url=downloadUrl;
@@ -70,13 +69,11 @@ export class NotificacionesService {
 
 
       if(notificacion.imgUrl == null){
-        console.log("IMG NULL")
         notificacion.imgUrl='../../../assets/noimage.png';
       }
       return await this.db.collection('notificaciones').add(notificacion);
 
     }catch(error){
-      console.log("NO FUNCIONA------------------------------------");
       
 
 
@@ -103,13 +100,11 @@ export class NotificacionesService {
 
 
       if(notificacion.imgUrl == null){
-        console.log("IMG NULL")
         notificacion.imgUrl='../../../assets/noimage.png';
       }
       return await this.db.collection('notificaciones').add(notificacion);
 
     }catch(error){
-      console.log("NO FUNCIONA------------------------------------");
       
 
 

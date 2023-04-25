@@ -22,6 +22,7 @@ export class ProductosComponent implements OnInit {
   servicioSeleccionado:string="";
   imgURL= '../../../assets/noimage.png';
   file:any;
+  productSubscripcion:any;
 
   productosForm=this.fb.group({
     nombre:['', [Validators.required]],
@@ -40,17 +41,20 @@ export class ProductosComponent implements OnInit {
   constructor(private router:Router, private fb:UntypedFormBuilder, private productoSvc:ProductosService, private notificacionesSvc:NotificacionesService, private authSvc: AuthService) { }
 
   async ngOnInit() {
-    this.productoSvc.getProductos().subscribe(res=>{
+    this.productSubscripcion = this.productoSvc.getProductos().subscribe(res=>{
       this.productos=[];
       res.forEach((element:ProductoModel)=>{
         this.productos.push({
           ...element
         })
       })
-      console.log("Productos Inicales:  ");
-      console.log(this.productos)
+
     });
     this.hasRoleAdmin = await this.userRoleIn();
+  }
+
+  ngOnDestroy(){
+    this.productSubscripcion.unsubscribe();
   }
 
 
@@ -69,7 +73,6 @@ export class ProductosComponent implements OnInit {
         this.productoSvc.eliminarProducto(id, productoNombre);
         this.registrarNotificacion(1, "Servicio eliminado", productoNombre, "../../../assets/noimage.png", "Admin", "Hoy", "https://www.google.com", "fas fa-star", "float-right text-sm text-danger");
         this.productos.splice(indice, 1);
-        console.log("nuevo arreglo: "+this.productos);
       }
     });
   }
@@ -79,13 +82,11 @@ export class ProductosComponent implements OnInit {
   selectChange($event:any){
     if($event.target.files[0]){
       this.imagenes=[];
-      console.log("SIIIIII HAY IMAGEN CHAVAL");
       this.file=$event.target.files;
       let reader=new FileReader();
       reader.readAsDataURL($event.target.files[0]);
       reader.onload=($event:any)=>{
         this.imgURL=$event.target.result;
-        console.log("LA URL ES: "+this.imgURL);
         this.imagenes.push({
           archivo:this.file[0]
         });
@@ -95,7 +96,6 @@ export class ProductosComponent implements OnInit {
 
 
     else{
-      console.log("NO HAY IMAGEN CHAVAL");
       this.imgURL;
     }
   }
@@ -140,27 +140,18 @@ export class ProductosComponent implements OnInit {
 
   setServicioSeleccionado(nombre:any){
     this.servicioSeleccionado=nombre;
-    console.log("Servicio seleccionado: "+this.servicioSeleccionado);
     this.cargarServicioSeleccionado();
   }
 
   cargarServicioSeleccionado(){
-    console.log("Servicios: "+this.productos.find(producto=>producto.id==this.servicioSeleccionado));
     this.imgUrlEditando = this.productos.find(producto=>producto.id==this.servicioSeleccionado)?.imgUrl;
     this.nombreEditando = this.productos.find(producto=>producto.id==this.servicioSeleccionado)?.nombreProducto;
     this.infoEditando = this.productos.find(producto=>producto.id==this.servicioSeleccionado)?.info;
-
-    console.log("imgUrlEditando: "+this.imgUrlEditando);
-    console.log("nombreEditando: "+this.nombreEditando);
-    console.log("infoEditando: "+this.infoEditando);
   }
 
   editarProducto(){
-    console.log("Producto a editar: "+this.nombreEditando);
-    console.log("Indice: "+this.servicioSeleccionado);
     
     if(this.productosForm2.value.nombre || this.productosForm2.value.info || this.imgURL != '../../../assets/noimage.png'){
-      console.log("Si hay info cambiada en: "+this.servicioSeleccionado);
       if(this.productosForm2.value.nombre){this.nombreEditando=this.productosForm2.value.nombre;}
       if(this.productosForm2.value.info){this.infoEditando=this.productosForm2.value.info;}
       if(this.imgURL != '../../../assets/noimage.png'){
@@ -197,23 +188,10 @@ export class ProductosComponent implements OnInit {
     const res = await this.authSvc.getCurrentUser();
     if(res){
       let hasRole = false;
-      const user = await new Promise<any>((resolve, reject) => {
-        this.authSvc.getUserDetails(res.uid).pipe(take(1)).subscribe(
-            (data) => {
-                console.log("OBTENEMOS USUARIO: ");
-                if(data.roles['admin']){
-                  //Si es admin
-                  hasRole = true;
-                }
-                resolve(data);
-            },
-            (error) => {
-                console.error(error);
-                reject(error);
-            }
-        );
-      });
-      console.log("HAS ROLE: "+hasRole);
+      const user = await this.authSvc.getUserDetails(res.uid);
+      if(user.roles['admin']){
+        hasRole = true;
+      }
       return hasRole;
     }
     else{return false;}

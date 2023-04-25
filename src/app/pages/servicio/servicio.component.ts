@@ -31,14 +31,9 @@ export class ServicioComponent implements OnInit {
   constructor(private videoService:VideoServiceService, private route:ActivatedRoute, private productoSVC:ProductosService, private servicioEspSvc:ServicioEspService, private authSvc:AuthService){ 
     
     this.indice=this.route.snapshot.params['id'];
-    console.log("INDICE ACTUAL: "+this.indice);
     this.productoSVC.getProducto(this.indice).subscribe(data => {
-      console.log("DATOS: "+data);
-      console.log("DATA NOMBRE:  "+data.nombreProducto);
       this.nombreProducto=data.nombreProducto;
-      console.log("DATA INFO:  "+data.info);
       this.info=data.info;
-      console.log("DATA IMG:  "+data.imgUrl);
       this.imgUrl=data.imgUrl;
       this.servicio=data;
     });
@@ -71,7 +66,6 @@ export class ServicioComponent implements OnInit {
     const seleccion = this.obtenerSeleccion();
     await this.authSvc.getCurrentUser().then(data => {
       this.usuario=data;
-      console.log("USUARIO: "+this.usuario);
       this.servicioEspSvc.guardarPeticion(this.usuario.email, seleccion, this.indice);
     });
   }
@@ -81,12 +75,10 @@ export class ServicioComponent implements OnInit {
   }
 
   async guardarComentario(){
-    console.log("COMENTARIO: "+this.comentario);
     const comentario = this.comentario;
     this.vaciarComentario();
     await this.authSvc.getCurrentUser().then(data => {
       this.usuario=data;
-      console.log("USUARIO: "+this.usuario);
       this.servicioEspSvc.guardarComentario(this.usuario.email, comentario, this.indice);
     });
   }

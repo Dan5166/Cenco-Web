@@ -21,7 +21,6 @@ export class VideoServiceService {
     const storage=getStorage();
     const storageRef=ref(storage, `video/videoEjemplo.mp4`);
     getDownloadURL(storageRef).then((downloadUrl)=>{
-      console.log(downloadUrl);
       url = downloadUrl;}
     )
     return url;

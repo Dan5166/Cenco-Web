@@ -53,7 +53,6 @@ export class ReconocimientoExcelenciaComponent {
           asunto: this.cajaNombre,
           foto: '../../../assets/dist/img/IconoUsuarioNoFoto.png',
         });
-        console.log(this.comments);
         Swal.fire({
           icon:'success',
           title:'El comentario se subió correctamente',

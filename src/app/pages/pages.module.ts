@@ -51,7 +51,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ServicioEspService } from '../services/servicio-esp.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
-import { ShowForRolesDirective } from '../directivas/show-for-roles.directive';
 
 
 
@@ -118,7 +117,7 @@ import { ShowForRolesDirective } from '../directivas/show-for-roles.directive';
     
   ],
   providers:[
-    PhotoService, ProductService, ContactoRapidoService, ServicioEspService, AuthGuard, AdminGuard, ShowForRolesDirective
+    PhotoService, ProductService, ContactoRapidoService, ServicioEspService, AuthGuard, AdminGuard
   ]
 })
 export class PagesModule { }

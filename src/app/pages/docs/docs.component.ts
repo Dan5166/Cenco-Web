@@ -42,21 +42,19 @@ export class DocsComponent implements OnInit{
   });
 
   linkPDF:string="ola";
+
+  productoSubscripcion:any;
+
   constructor(private docsSvc:DocsService,private route:ActivatedRoute, private fb:UntypedFormBuilder, private productoSVC:ProductosService, private authSvc: AuthService) { 
     this.indice=this.route.snapshot.params['id'];
 
 
-    this.productoSVC.getProducto(this.indice).subscribe(data => {
-      console.log("DATOS: "+data);
-      console.log("DATA NOMBRE:  "+data.nombreProducto);
+    this.productoSubscripcion = this.productoSVC.getProducto(this.indice).subscribe(data => {
       this.nombreProducto=data.nombreProducto;
-      console.log("DATA INFO:  "+data.info);
       this.info=data.info;
-      console.log("DATA IMG:  "+data.imgUrl);
       this.imgUrl=data.imgUrl;
       this.servicio=data;
       this.docs = data.docsPdf;
-      console.log("DATA DOCS:  "+this.docs);
       this.videos = data.docsVideo;
     });
 
@@ -72,20 +70,21 @@ export class DocsComponent implements OnInit{
 
 
   async ngOnInit(){
-    console.log("ID: "+this.indice);
     this.hasRoleAdmin = await this.userRoleIn();
+  }
+
+  ngOnDestroy() {
+    this.productoSubscripcion.unsubscribe();
   }
 
   selectChange($event:any){
     if($event.target.files[0]){
       this.imagenes=[];
-      console.log("SIIIIII HAY IMAGEN CHAVAL");
       this.file=$event.target.files;
       let reader=new FileReader();
       reader.readAsDataURL($event.target.files[0]);
       reader.onload=($event:any)=>{
         this.documento=$event.target.result;
-        console.log("LA URL ES: "+this.documento);
         this.imagenes.push({
           archivo:this.file[0]
         });
@@ -95,7 +94,6 @@ export class DocsComponent implements OnInit{
 
 
     else{
-      console.log("NO HAY IMAGEN CHAVAL");
       this.documento;
     }
   }
@@ -112,7 +110,6 @@ export class DocsComponent implements OnInit{
 
     this.docsSvc.cargarProductosFirebase(this.imagenes, cargaDocs, this.indice, tipo);
     this.porcentaje=this.docsSvc.uploadPercent;
-    console.log("PORCENTAJE: "+this.porcentaje);
     this.limpiarForm();
     this.actualizarServicio();
   }
@@ -134,7 +131,6 @@ export class DocsComponent implements OnInit{
 
 
     this.productoSVC.editarProducto(this.indice,cargaProducto);
-    console.log("ACTUALIZADO")
     this.imagenes=[];
   }
 
@@ -146,23 +142,10 @@ export class DocsComponent implements OnInit{
     const res = await this.authSvc.getCurrentUser();
     if(res){
       let hasRole = false;
-      const user = await new Promise<any>((resolve, reject) => {
-        this.authSvc.getUserDetails(res.uid).pipe(take(1)).subscribe(
-            (data) => {
-                console.log("OBTENEMOS USUARIO: ");
-                if(data.roles['admin']){
-                  //Si es admin
-                  hasRole = true;
-                }
-                resolve(data);
-            },
-            (error) => {
-                console.error(error);
-                reject(error);
-            }
-        );
-      });
-      console.log("HAS ROLE: "+hasRole);
+      const user = await this.authSvc.getUserDetails(res.uid);
+      if(user.roles['admin']){
+        hasRole = true;
+      }
       return hasRole;
     }
     else{return false;}

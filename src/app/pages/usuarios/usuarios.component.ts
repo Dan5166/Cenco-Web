@@ -77,7 +77,6 @@ export class UsuariosComponent implements OnInit {
 
     sendMessage(): void {
         
-        console.log(this.timestamp);
         let timeStampStr = this.timestamp.toString();
         if(timeStampStr[0]=='0'){
           timeStampStr = timeStampStr.slice(1);
@@ -90,7 +89,6 @@ export class UsuariosComponent implements OnInit {
         else{
           timeStampStr = timeStampStr.replace('a.m.', ' AM');
         }
-        console.log(timeStampStr);
         this.timestamp=timeStampStr;
         
 
@@ -106,7 +104,6 @@ export class UsuariosComponent implements OnInit {
           };
           this.messages.push(newMessage);
           this.message = ''; // limpiar el campo de mensaje
-          console.log(this.messages);
 
           setTimeout(() => {
               this.scrollToBottom();

@@ -39,7 +39,6 @@ export class ServicioEspService {
       return this.db.collection('varios-servicio').doc(id).update({peticiones: firebase.firestore.FieldValue.arrayUnion(myObject)});
 
     }catch(error){
-      console.log("NO FUNCIONA");
       console.log(error);
       return null;
     }
@@ -71,7 +70,6 @@ export class ServicioEspService {
       return this.db.collection('varios-servicio').doc(id).update({comentarios: firebase.firestore.FieldValue.arrayUnion(myObject)});
 
     }catch(error){
-      console.log("NO FUNCIONA");
       console.log(error);
       return null;
     }

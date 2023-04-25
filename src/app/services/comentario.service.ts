@@ -22,7 +22,6 @@ export class ComentarioService {
         return await this.db.collection('comentarios').add(comentario);
   
       }catch(error){
-        console.log("NO FUNCIONA------------------------------------");
   
         console.log(error);
       }

@@ -20,7 +20,6 @@ export class NominaAAlguienService {
       return await this.db.collection('nominaciones').add(nominacion);
 
     }catch(error){
-      console.log("NO FUNCIONA------------------------------------");
       
 
 

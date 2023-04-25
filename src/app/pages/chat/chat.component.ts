@@ -74,8 +74,6 @@ export class ChatComponent {
 
 
     sendMessage(): void {
-        
-        console.log(this.timestamp);
         let timeStampStr = this.timestamp.toString();
         if(timeStampStr[0]=='0'){
           timeStampStr = timeStampStr.slice(1);
@@ -88,7 +86,6 @@ export class ChatComponent {
         else{
           timeStampStr = timeStampStr.replace('a.m.', ' AM');
         }
-        console.log(timeStampStr);
         this.timestamp=timeStampStr;
         
 
@@ -104,7 +101,6 @@ export class ChatComponent {
           };
           this.messages.push(newMessage);
           this.message = ''; // limpiar el campo de mensaje
-          console.log(this.messages);
 
           setTimeout(() => {
               this.scrollToBottom();
@@ -113,7 +109,6 @@ export class ChatComponent {
 
       }
       else{
-          console.log("No se puede enviar un mensaje vacio");
       }
 
     }

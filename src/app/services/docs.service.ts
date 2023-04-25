@@ -24,7 +24,6 @@ export class DocsService {
   constructor(private db:AngularFirestore, private productoSVC:ProductosService, private storage:AngularFireStorage) { 
 
     this.productosCollection=db.collection<DocsModel>('productos');
-    console.log("Productos: "+this.productosCollection);
 
   }
 
@@ -35,7 +34,6 @@ export class DocsService {
         const data=a.payload.doc.data() as DocsModel;
         data.id=a.payload.doc.id;
         const id =a.payload.doc.id;
-        console.log("DATOS:       "+data);
         return {id, ...data}
       }))
     )
@@ -72,7 +70,6 @@ export class DocsService {
       uploadTask.on('state_changed', (snapshot)=>{
         const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, (err)=>{
-        console.log("Error al subir el archivo");
       }, ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
           item.url=downloadUrl;
@@ -98,7 +95,6 @@ export class DocsService {
             })
       
           }catch(error){
-            console.log("NO FUNCIONA");
             console.log(error);
           }
 
@@ -138,7 +134,6 @@ export class DocsService {
       return ((await this.db.collection('docs').doc(indice).set({})));
 
     }catch(error){
-      console.log("NO FUNCIONA");
       console.log(error);
     }
 
@@ -181,10 +176,8 @@ export class DocsService {
       })
     ).subscribe({
         next: () => {
-            console.log('Documento eliminado con éxito');
         },
         error: (error) => {
-            console.log('Error al eliminar documento:', error);
         }
     });
   }
@@ -216,10 +209,8 @@ export class DocsService {
       })
     ).subscribe({
         next: () => {
-            console.log('Documento actualizado con éxito');
         },
         error: (error) => {
-            console.log('Error al actualizar documento:', error);
         }
     });
 
@@ -249,12 +240,10 @@ export class DocsService {
         let videos = data?.docsVideo || [];
         
         if(tipo==1){
-          console.log("----------------------NUEVO VIDEO CHAVALES------------------"+pdfs);
           videos.push(itemurl);
           return productoRef.update({docsVideo: videos});
         }
         else{
-          console.log("----------------------NUEVO PDF CHAVALES------------------"+itemurl);
           pdfs.push(itemurl);
           return productoRef.update({docsPdf: pdfs});
         }
@@ -262,10 +251,8 @@ export class DocsService {
       })
     ).subscribe({
         next: () => {
-            console.log('Documento actualizado con éxito');
         },
         error: (error) => {
-            console.log('Error al actualizar documento:', error);
         }
     });
 

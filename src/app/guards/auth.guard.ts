@@ -22,10 +22,7 @@ export class AuthGuard implements CanActivate {
   const res = await this.usuaioSvc.getCurrentUser();
   if (res) {
     let isAdmin = false;
-    const user = await this.usuaioSvc.getUserDetails(res.uid).subscribe(data => {
-      //imprime los roles del usuario
-      
-    });
+    
     const isLogged = res ? true : false;
     if (!isLogged) {
       this.router.navigateByUrl('/login');

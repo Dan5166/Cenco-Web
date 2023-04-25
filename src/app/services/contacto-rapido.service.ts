@@ -49,7 +49,6 @@ export class ContactoRapidoService {
       return this.db.collection('contacto-rapido').add(contactoRapido);
 
     }catch(error){
-      console.log("NO FUNCIONA------------------------------------");
       
 
 
