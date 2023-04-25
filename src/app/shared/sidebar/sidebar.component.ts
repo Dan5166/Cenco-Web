@@ -29,12 +29,12 @@ export class SidebarComponent implements OnInit {
 
 
   constructor(private sideBarServices: SidebarService, private router:Router, private authSvc:AuthService) {
-    this.menuItems= this.sideBarServices.menu;
   
    } 
   
-  ngOnInit() {
- 
+  async ngOnInit() {
+    await this.sideBarServices.actualizaMenu();
+    this.menuItems= this.sideBarServices.menu;
     this.obtenerUsuario();
     $('[data-widget="treeview"]').Treeview('init');
    
@@ -48,7 +48,7 @@ export class SidebarComponent implements OnInit {
         this.userImgGoogle= this.usuario.photoURL;  
       }
       else{
-        this.userImgGoogle= "../noimage.png";  
+        this.userImgGoogle= "assets/dist/img/amazon-icono.png"; 
       }
       this.user=this.usuario.email;
       this.userId=this.usuario.uid;

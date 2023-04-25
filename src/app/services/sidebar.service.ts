@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SidebarService {
-
+export class SidebarService{
+  userRoles = [];
   menu:any[]=[
     {
       titulo:'CCT',
@@ -57,6 +58,57 @@ export class SidebarService {
         {titulo:'Dashboards', url:'dashboard', icono:'fa-solid fa-chart-line'},
       ]
     },
+    {
+      titulo:'Panel de Responsable',
+      icono:'fa-solid fa-clipboard-list',
+      submenu:[
+        {titulo:'Lista de solicitudes', url:'learning-path', icono:'fa-solid fa-graduation-cap'}
+      ]
+    },
+    {
+      titulo:'Panel de Admin',
+      icono:'fa-solid fa-screwdriver-wrench',
+      submenu:[
+        {titulo:'CMS', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
+        {titulo:'Manejo de roles', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
+        {titulo:'Base de solicitudes', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
+        {titulo:'Web Analytics', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
+      ]
+    },
   ]
+
+  constructor(private authSvc:AuthService) { }
+
+  async actualizaMenu(){
+    const res = await this.authSvc.getCurrentUser();
+
+    if (res) {
+        const user = await this.authSvc.getUserDetails(res.uid);
+        if(!user.roles["admin"]){
+          //Obtengo el indice del menu que quiero eliminar
+          let index = this.menu.findIndex(x => x.titulo === "Panel de Admin");
+          //Elimino el menu
+          this.menu.splice(index, 1);
+          if(!user.roles["responsable"]){
+            //Obtengo el indice del menu que quiero eliminar
+            let index = this.menu.findIndex(x => x.titulo === "Panel de Responsable");
+            //Elimino el menu
+            this.menu.splice(index, 1);
+            if(!user.roles["cct"]){
+              //Obtengo el indice del menu que quiero eliminar
+              let index = this.menu.findIndex(x => x.titulo === "Menú Interno CCT");
+              //Elimino el menu
+              this.menu.splice(index, 1);
+              
+            }
+          }
+        }
+        
+    }
+  
+  
+  }
+
+  
 
 }
