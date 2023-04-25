@@ -1,9 +1,10 @@
 {
   "hosting": {
-    "public": "dist/despl-cctweb",
+    "public": "dist/despliegue-prueba-migracion",
     "ignore": [
       "firebase.json",
-      "**/.*"
+      "**/.*",
+      "**/node_modules/**"
     ],
     "rewrites": [
       {

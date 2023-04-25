@@ -117,8 +117,8 @@
             "prerender": false,
             "ssr": false,
             "browserTarget": "proy-adminlte3:build:production",
-            "firebaseProject": "cenco-web-prot",
-            "firebaseHostingSite": "cencoweb-app-protu"
+            "firebaseProject": "migracion-de-prueba",
+            "firebaseHostingSite": "migracion-de-prueba.firebaseapp.com"
           }
         }
       }
