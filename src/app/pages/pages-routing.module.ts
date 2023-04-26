@@ -26,6 +26,7 @@ import { AgradecimientoReconocimientoComponent } from './agradecimiento-reconoci
 import { ServicioComponent } from './servicio/servicio.component';
 import { DocsComponent } from './docs/docs.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.component';
 
 
 const routes:Routes=[
@@ -56,6 +57,7 @@ const routes:Routes=[
     {path:'dashboard', component:DashboardComponent, data:{titulo:'Dashboard'}, canActivate:[AdminGuard]},
     {path:'servicio/:id', component:ServicioComponent, data:{titulo:'Servicio'}, canActivate:[AuthGuard]},
     {path:'servicio/:id/docs', component:DocsComponent, data:{titulo:'Documentación'} , canActivate:[AuthGuard]},
+    {path:'manejo-de-roles', component:ManejoDeRolesComponent, data:{titulo:'Manejo de Roles'}, canActivate:[AdminGuard]},
     
 ]}];
 

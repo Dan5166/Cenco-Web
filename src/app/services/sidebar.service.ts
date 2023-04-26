@@ -70,7 +70,7 @@ export class SidebarService{
       icono:'fa-solid fa-screwdriver-wrench',
       submenu:[
         {titulo:'CMS', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
-        {titulo:'Manejo de roles', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
+        {titulo:'Manejo de roles', url:'manejo-de-roles', icono:'fa-solid fa-key'},
         {titulo:'Base de solicitudes', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
         {titulo:'Web Analytics', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
       ]
@@ -84,10 +84,22 @@ export class SidebarService{
 
     if (res) {
         const user = await this.authSvc.getUserDetails(res.uid);
+
+
+        
+
+
         if(!user.roles["admin"]){
           //Obtengo el indice del menu que quiero eliminar
           let index = this.menu.findIndex(x => x.titulo === "Panel de Admin");
           //Elimino el menu
+
+          //------------------------------------------------------Exclusiones de menu
+          //Obtengo el indice del menu que quiero eliminar
+          index = this.menu.findIndex(x => x.titulo === "Información Específica");
+          //Elimino el menu
+          this.menu.splice(index, 1);
+          //-------------------------------------------------------Fin exclusiones de menu
           this.menu.splice(index, 1);
           if(!user.roles["responsable"]){
             //Obtengo el indice del menu que quiero eliminar

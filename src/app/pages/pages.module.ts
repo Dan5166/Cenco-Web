@@ -51,6 +51,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ServicioEspService } from '../services/servicio-esp.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
+import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.component';
 
 
 
@@ -83,6 +84,7 @@ import { AdminGuard } from '../guards/admin.guard';
     NominaAAlguienComponent,
     ServicioComponent,
     DocsComponent,
+    ManejoDeRolesComponent,
     
   ],
   imports: [

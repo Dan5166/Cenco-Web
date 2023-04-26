@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit {
   
   async ngOnInit() {
     await this.sideBarServices.actualizaMenu();
+    console.log("this.sideBarServices.menu");
     this.menuItems= this.sideBarServices.menu;
     this.obtenerUsuario();
     $('[data-widget="treeview"]').Treeview('init');
