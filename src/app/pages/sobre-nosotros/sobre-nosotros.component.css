@@ -1,0 +1,23 @@
+.texto{
+    font-size: 20px;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+.texto_derecha_izquierda{
+    font-size: 20px; 
+    margin-left: 25px; 
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+.format_img{
+    opacity: 85%;
+}
+
+.container_style{
+    margin-top: 80px;
+}
+
+h2{
+    margin-top: 100px;
+}

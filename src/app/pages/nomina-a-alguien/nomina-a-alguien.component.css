@@ -1,0 +1,32 @@
+.style_container{
+    margin-top: 100px;
+}
+
+.li_background{
+    background-color: #133344;
+}
+
+.img_style{
+    opacity: 85%;
+    height: 380px; 
+    width: 900px;
+}
+
+.p1_style{
+    font-size: 20px; 
+    margin-left: 25px;
+    margin-top: 10px; 
+    color:white
+}
+.p2_style{
+    font-size: 20px;
+    margin-left: 25px;
+    margin-top: 25px; 
+    color:white
+}
+
+.b1_style{
+    margin-left: 25px;
+    margin-top: 25px; 
+    color:white
+}

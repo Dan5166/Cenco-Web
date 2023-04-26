@@ -34,3 +34,30 @@ a {
 .cursor{
 cursor: pointer;
 }
+
+.background_colour{
+    color: rgb(48, 37, 37);
+}
+
+.clickeable_element{
+    color: rgb(48, 37, 37);
+    cursor: pointer;
+}
+.col_colour{
+    color: white;
+}
+
+.white_button{
+    text-transform:none;
+    background-color: white;
+}
+
+.img_format{
+    margin-bottom:3px; 
+    margin-right:5px
+}
+
+.amb1{
+    cursor: pointer
+}
+

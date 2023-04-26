@@ -25,3 +25,11 @@ a {
 .link-reg {
     color: white;
 }
+
+.input_text_colour{
+    color: rgb(48, 37, 37);
+}
+
+.button_background_colour{
+    color:white
+}

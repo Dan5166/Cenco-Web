@@ -1,0 +1,17 @@
+.side_bar_container {
+    position: fixed; 
+    background-color: #1e485f;
+    max-width: 6000px;
+}
+
+.cencosud_logo {
+    opacity: .8
+}
+
+.sidebar_width {
+    width: 100%;
+}
+
+.def_cursor{
+    cursor: pointer;
+}

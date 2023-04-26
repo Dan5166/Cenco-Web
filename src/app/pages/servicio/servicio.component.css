@@ -35,4 +35,32 @@
 }
 .container {
     margin-bottom: 80px;
-  }
+}
+
+.first_div {
+    margin-top: 80px;
+}
+
+.div_producto{
+    background-color: #eceef0;
+}
+
+.product_info_button{
+    width: 100%; 
+    border-bottom: #1e6286 solid 3px; 
+    margin: 0; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+}
+
+h3{
+    color:#1e6286; 
+    text-align: left; 
+    margin: 0;
+}
+
+.ubicacion_textos{
+    text-align: right; 
+    margin-left: auto;
+}

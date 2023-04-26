@@ -36,6 +36,18 @@ section {
   justify-content: space-between;
   align-items: center;
 }
+.header-bloque p{
+  align-self: center;
+}
+
+.header-bloque button{
+  margin-left: 100px;
+}
+
+.video_style{
+  height: 720px; 
+  width: 1244px;
+}
 
 .array-group{
   background-color: #33657e;
