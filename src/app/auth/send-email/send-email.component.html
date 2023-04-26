@@ -1,6 +1,6 @@
 
 <div class="container text-center">
-    <div class="card bg-dark" style="margin-top:150px;" *ngIf="user$ |async as user; else loading">
+    <div class="card bg-dark card_bg_dark_style" *ngIf="user$ |async as user; else loading">
         <div class="card-title mt-3"><strong>Debes confirmar la verificacion del email</strong></div>
         <div class="card-body">
             <div class="form-group">
@@ -13,7 +13,7 @@
                 <button class="btn btn-primary" (click)="onSendEmail()">Reenviar verificación</button>
             </div>
             <div class="form-group">
-                <a routerLink="/login" style="cursor: pointer; text-decoration: none;">Volver a Login..</a>
+                <a routerLink="/login" class="pointer_login">Volver a Login..</a>
             </div>
         </div>
     </div>

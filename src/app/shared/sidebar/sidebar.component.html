@@ -1,13 +1,13 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed; background-color: #1e485f;max-width: 6000px;">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 side_bar_container">
   <!-- Brand Logo -->
   <a href="../../index3.html" class="brand-link">
-    <img src="./assets/dist/img/cencosudWEBLogo.png" alt="Cencosud Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <img src="./assets/dist/img/cencosudWEBLogo.png" alt="Cencosud Logo" class="brand-image img-circle elevation-3 cencosud_logo">
     <span class="brand-text font-weight-light">CCT Web</span>
   </a>
 
   <!-- Sidebar -->
-  <div class="sidebar" style="width: 100%;">
+  <div class="sidebar sidebar_width">
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
@@ -36,7 +36,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item" *ngFor="let subMenu of item.submenu" >
-              <a [routerLink]="subMenu.url" class="nav-link" style="cursor: pointer;">
+              <a [routerLink]="subMenu.url" class="nav-link def_cursor">
                 <i class="{{subMenu.icono}}"></i>
                 <p class="ml-2">{{subMenu.titulo}}</p>
               </a>
@@ -44,7 +44,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  style="cursor: pointer;" (click)="logout()">
+          <a class="nav-link def_cursor" (click)="logout()">
             <fa-icon [icon]="faSignOutAlt" class="icon"></fa-icon>
             <p class="ml-2">
               Logout
