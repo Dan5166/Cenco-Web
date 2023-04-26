@@ -1,15 +1,16 @@
 <body>
-    <div class="row" style="align-self: center;margin-left: 300px;">
-        <div class="col-8" *ngFor="let curso of cursos; let indice = index">
-          <div class="producto" [style]=curso.background1>
-            <div class="imagen" [style]=curso.background2>
-              <img [src]=curso.imagen alt="{{curso.nombre}}" style="width: 180px; height: 180px; border-radius: 100%;">
+      <div class="row" >
+        <div class="col-12" *ngFor="let curso of cursos; let indice = index">
+          <div class="producto">
+            <div class="imagen" style="background-color: #dbe1e4;cursor:pointer" [routerLink]="">
+              <img src="{{curso.imagen}}" alt="{{curso.nombre}}" style="width: 200px; height: 200px; border-radius: 20px;">
             </div>
             <div class="informacion" style="margin-top: 35px;">
               <h3 style="font-size: 30px; color:white;">{{curso.nombre}}</h3>
-              <p style="color:white; font-size: 20px;">{{curso.descripcion}}</p>
-              <div style="position: absolute; bottom: 20px;">
-                <button class="btn btn-success" style="margin-right: 20px;" data-toggle="modal" data-target="#productosEditarModal">Ir al Curso</button>
+              <p class="info-producto">{{curso.descripcion}}</p>
+              <div class="botones-editar-eliminar">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#productosEditarModal">Editar</button>
+                <button class="btn btn-danger" >Eliminar</button>
               </div>
                 
             </div>

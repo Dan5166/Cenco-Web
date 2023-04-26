@@ -14,30 +14,33 @@
     <p>La tabla ubicada en la parte inferior le permite cambiar los roles de los usuarios de CCT Web.</p>
 
     <h2>Usuarios</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Admin</th>
-          <th>Responsable</th>
-          <th>CCT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let usuario of usuarios; let indice = index">
-          <td>{{ usuario.id }}</td>
-            <td>Default Name</td>
-          <td>{{ usuario.email }}</td>
-          <td *ngIf="usuario.roles['admin']" (click)="cambiarRol('admin',usuario.id)"  class="role">✔️</td>
-          <td *ngIf="!usuario.roles['admin']" (click)="cambiarRol('admin',usuario.id)"  class="role">❌</td>
-          <td *ngIf="usuario.roles['responsable']" (click)="cambiarRol('responsable',usuario.id)" class="role">✔️</td>
-          <td *ngIf="!usuario.roles['responsable']" (click)="cambiarRol('responsable',usuario.id)" class="role">❌</td>
-          <td *ngIf="usuario.roles['cct']" (click)="cambiarRol('cct',usuario.id)" class="role">✔️</td>
-          <td *ngIf="!usuario.roles['cct']" (click)="cambiarRol('cct',usuario.id)" class="role">❌</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Responsable</th>
+            <th>CCT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios; let indice = index">
+            <td>{{ usuario.id }}</td>
+              <td>Default Name</td>
+            <td>{{ usuario.email }}</td>
+            <td *ngIf="usuario.roles['admin']" (click)="cambiarRol('admin',usuario.id)"  class="role">✔️</td>
+            <td *ngIf="!usuario.roles['admin']" (click)="cambiarRol('admin',usuario.id)"  class="role">❌</td>
+            <td *ngIf="usuario.roles['responsable']" (click)="cambiarRol('responsable',usuario.id)" class="role">✔️</td>
+            <td *ngIf="!usuario.roles['responsable']" (click)="cambiarRol('responsable',usuario.id)" class="role">❌</td>
+            <td *ngIf="usuario.roles['cct']" (click)="cambiarRol('cct',usuario.id)" class="role">✔️</td>
+            <td *ngIf="!usuario.roles['cct']" (click)="cambiarRol('cct',usuario.id)" class="role">❌</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
   </main>
 </body>

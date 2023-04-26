@@ -78,9 +78,11 @@ body {
 }
 
 .producto {
-display: flex;
-flex-wrap: wrap;
-margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  background-color: #114561; height: 250px; border-radius: 30px; position: relative;
+  overflow: hidden;
 }
 
 .producto .imagen {
@@ -141,4 +143,51 @@ margin-top: 35px;
 .informacion_h3{
 font-size: 30px; 
 color:white;
+}
+
+.botones-editar-eliminar{
+  position: absolute;
+  bottom: 20px;
+}
+
+.info-producto{
+  color:white;
+  font-size: 20px;
+}
+
+
+
+/* Estilos para versión móvil */
+@media screen and (max-width: 768px) {
+  .producto{display: flex;
+    flex-direction: row;
+    justify-content: space-between;}
+  .producto .imagen {flex-basis: 48%;}
+  .producto .informacion {flex-basis: 48%;}
+  
+  .titulo {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .info-producto {
+    font-size: 1em;
+    max-width: 20em; /* usa una unidad lógica */
+    max-height: 4em;
+    line-height: 1;
+    overflow: hidden;
+  }
+  
+  .botones {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  .btn {
+    margin-left: 10px;
+    font-size: 0.8em;
+    padding: 5px 10px;
+  }
+  
 }

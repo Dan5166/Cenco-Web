@@ -25,12 +25,6 @@ body {
   background-size: cover;
 }
 
-.format_img{
-width: 180px; 
-height: 180px; 
-border-radius: 100%;
-}
-
 .container{
   position:absolute;
   top:0;
@@ -84,9 +78,11 @@ border-radius: 100%;
 }
 
 .producto {
-display: flex;
-flex-wrap: wrap;
-margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  background-color: #6b98cc; height: 250px; border-radius: 30px; position: relative;
+  overflow: hidden;
 }
 
 .producto .imagen {
@@ -122,30 +118,78 @@ font-weight: bold;
 margin-bottom: 20px;
 }
 
-.row_style{
-align-self: center;
-margin-left: 300px;
+.producto_background_style{
+background-color: #114561; 
+height: 250px; 
+border-radius: 30px; 
+position: relative;
 }
 
-.h3_style{
+.imagen_background_style{
+background-color: #3c80a5;
+cursor:pointer
+}
+
+.img_url{
+width: 200px; 
+height: 200px; 
+border-radius: 20px;
+}
+
+.informacion_format{
+margin-top: 35px;
+}
+
+.informacion_h3{
 font-size: 30px; 
 color:white;
 }
 
-.p_style{
-color:white;
-font-size: 20px;
+.botones-editar-eliminar{
+  position: absolute;
+  bottom: 20px;
 }
 
-.div_info_style{
-position: absolute; 
-bottom: 20px;
+.info-producto{
+  color:white;
+  font-size: 20px;
 }
 
-.button_style{
-margin-right: 20px;
-}
 
-.information_style{
-margin-top: 35px;
+
+/* Estilos para versión móvil */
+@media screen and (max-width: 768px) {
+  .producto{display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #6b98cc;
+    position: relative;}
+  .producto .imagen {flex-basis: 48%;background-color: #ffffff;
+    position: relative;}
+  .producto .informacion {flex-basis: 48%;}
+  
+  .titulo {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .info-producto {
+    font-size: 1em;
+    max-width: 20em; /* usa una unidad lógica */
+    max-height: 4em;
+    line-height: 1;
+    overflow: hidden;
+  }
+  
+  .botones {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  .btn {
+    margin-left: 10px;
+    font-size: 0.8em;
+    padding: 5px 10px;
+  }
 }
