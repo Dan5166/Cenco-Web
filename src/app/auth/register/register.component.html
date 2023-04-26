@@ -14,7 +14,7 @@
                         <input type="email" class="form-control" placeholder="Email" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope" style="color: rgb(48, 37, 37);"></span>
+                                <span class="fas fa-envelope input_text_colour"></span>
                             </div>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                         <input type="password" class="form-control" formControlName="password" placeholder="Password" required >
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock" style="color: rgb(48, 37, 37);;"></span>
+                                <span class="fas fa-lock input_text_colour"></span>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-outline-light btn-block" style="color:white" [disabled]="registerForm.invalid">Registrar</button>
+                            <button type="submit" class="btn btn-outline-light btn-block button_background_colour" [disabled]="registerForm.invalid">Registrar</button>
                         </div>
                         <!-- /.col -->
                     </div>

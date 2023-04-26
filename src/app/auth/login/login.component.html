@@ -13,7 +13,7 @@
                       <input type="email" class="form-control" formControlName="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required >
                       <div class="input-group-append">
                           <div class="input-group-text">
-                              <span class="fas fa-envelope" style="color: rgb(48, 37, 37);"></span>
+                              <span class="fas fa-envelope background_colour"></span>
                           </div>
                       </div>
                   </div>
@@ -21,7 +21,7 @@
                       <input type="password" class="form-control" formControlName="password" #password placeholder="Password" required >
                       <div class="input-group-append">
                           <div class="input-group-text">
-                              <a (click)="hideShowPass()" style="color: rgb(48, 37, 37); cursor: pointer"><i class="fa fa-eye-slash" #togglePassword></i></a>
+                              <a (click)="hideShowPass()" class="clickeable_element"><i class="fa fa-eye-slash" #togglePassword></i></a>
                           </div>
                       </div>
                   </div>
@@ -36,7 +36,7 @@
                       </div>
                       <!-- /.col -->
                       <div class="col-4">
-                          <button type="submit" class="btn btn-outline-light btn-block" style="color:white" [disabled]="loginForm.invalid">Sign In</button>
+                          <button type="submit" class="btn btn-outline-light btn-block col_colour" [disabled]="loginForm.invalid">Sign In</button>
                       </div>
                       <!-- /.col -->
                   </div>
@@ -59,7 +59,7 @@
                 </div>
 
               <p class="mb-1">
-                  <a routerLink="/forgot-password" style="cursor: pointer" class="link-pass"> Olvidé mi contraseña</a>
+                  <a routerLink="/forgot-password" class="link-pass amb1"> Olvidé mi contraseña</a>
               </p>
               <p class="mb-0">
                   <a routerLink="/register" class="text-center link-reg cursor">Registrarme</a>
