@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/despliegue-prueba-migracion",
+    "public": "dist/despliegue-prueba-movil",
     "ignore": [
       "firebase.json",
       "**/.*",

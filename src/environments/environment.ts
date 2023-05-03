@@ -4,15 +4,16 @@
 
 export const environment = {
   firebase: {
-    projectId: 'migracion-de-prueba',
-    appId: '1:617221388472:web:5044b032c5556549139c4d',
-    storageBucket: 'migracion-de-prueba.appspot.com',
-    apiKey: 'AIzaSyDvf12dCmoFjKmVSxF6uDMmtQCX0nTeI-k',
-    authDomain: 'migracion-de-prueba.firebaseapp.com',
-    messagingSenderId: '617221388472',
-    measurementId: 'G-398TW3ZZK4',
+    apiKey: "AIzaSyBoh8K1c25jemJzPt_RG6xf7CzQOjJQFTM",
+  authDomain: "cenco-web-prot.firebaseapp.com",
+  databaseURL: "https://cenco-web-prot-default-rtdb.firebaseio.com",
+  projectId: "cenco-web-prot",
+  storageBucket: "cenco-web-prot.appspot.com",
+  messagingSenderId: "746930550295",
+  appId: "1:746930550295:web:00dc5e0088dcd435808e52",
+  measurementId: "G-XP74D6ZWSJ"
   },
-  production: false
+  production: false,
 };
 
 /*

@@ -54,7 +54,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "10kb"
                 }
               ],
               "fileReplacements": [
@@ -117,8 +117,8 @@
             "prerender": false,
             "ssr": false,
             "browserTarget": "proy-adminlte3:build:production",
-            "firebaseProject": "migracion-de-prueba",
-            "firebaseHostingSite": "migracion-de-prueba.firebaseapp.com"
+            "firebaseProject": "cenco-web-prot",
+            "firebaseHostingSite": "cenco-web-prot.firebaseapp.com"
           }
         }
       }

@@ -52,6 +52,7 @@ import { ServicioEspService } from '../services/servicio-esp.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
 import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.component';
+import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina-en-mantenimiento.component';
 
 
 
@@ -85,6 +86,7 @@ import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.compon
     ServicioComponent,
     DocsComponent,
     ManejoDeRolesComponent,
+    PaginaEnMantenimientoComponent,
     
   ],
   imports: [

@@ -31,7 +31,7 @@ export class SidebarService{
       titulo:'Utilidades',
       icono:'fa-solid fa-toolbox',
       submenu:[
-        {titulo:'Contáctanos', url:'chat', icono:'fa-solid fa-address-book'},
+        {titulo:'Contáctanos', url:'mantenimiento', icono:'fa-solid fa-address-book'},
         {titulo:'Comenta tu Experiencia', url:'comentarios', icono:'fa-solid fa-comment-dots'},
       
       ]
@@ -55,24 +55,24 @@ export class SidebarService{
         {titulo:'Learning Path', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
         {titulo:'Reconocimiento a la excelencia', url:'reconocimiento-excelencia', icono:'fa-solid fa-medal'},
         {titulo:'Nomina a un Compañero', url:'nomina-a-alguien', icono:'fa-solid fa-trophy'},
-        {titulo:'Dashboards', url:'dashboard', icono:'fa-solid fa-chart-line'},
+        {titulo:'Dashboards', url:'mantenimiento', icono:'fa-solid fa-chart-line'},
       ]
     },
     {
       titulo:'Panel de Responsable',
       icono:'fa-solid fa-clipboard-list',
       submenu:[
-        {titulo:'Lista de solicitudes', url:'learning-path', icono:'fa-solid fa-graduation-cap'}
+        {titulo:'Lista de solicitudes', url:'mantenimiento', icono:'fa-solid fa-comment-dots'}
       ]
     },
     {
       titulo:'Panel de Admin',
       icono:'fa-solid fa-screwdriver-wrench',
       submenu:[
-        {titulo:'CMS', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
+        {titulo:'CMS', url:'mantenimiento', icono:'fa-solid fa-bars-progress'},
         {titulo:'Manejo de roles', url:'manejo-de-roles', icono:'fa-solid fa-key'},
-        {titulo:'Base de solicitudes', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
-        {titulo:'Web Analytics', url:'learning-path', icono:'fa-solid fa-graduation-cap'},
+        {titulo:'Base de solicitudes', url:'mantenimiento', icono:'fa-solid fa-folder-open'},
+        {titulo:'Web Analytics', url:'mantenimiento', icono:'fa-solid fa-chart-pie'},
       ]
     },
   ]

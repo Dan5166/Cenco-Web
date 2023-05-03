@@ -49,62 +49,82 @@ export class DocsService {
     const storage=getStorage();
     let arregloUrls:string[]=[];
     let itemurl:string;
-    for(const item of pdf){
-      let docsTrim=docs.nombre;
-      let storageRef=ref(storage, `${this.CARPETA_DOCS}/${llaveServicio}/pdf/${docsTrim.replace(/ /g, "-")}`);
 
-      //Extrae la referencia de storage no incluyendo en el nombre espacios.
-      if(tipo==0){
-        storageRef=ref(storage, `${this.CARPETA_DOCS}/${llaveServicio}/pdf/${docsTrim.replace(/ /g, "-")}`);
-      }
-      else if(tipo==1){
-        storageRef=ref(storage, `${this.CARPETA_DOCS}/${llaveServicio}/video/${docsTrim.replace(/ /g, "-")}`);
-      }
-      else{
-        storageRef=ref(storage, `${this.CARPETA_DOCS}/${llaveServicio}/pdf/${docsTrim.replace(/ /g, "-")}`);
-      }
-
-      const uploadTask=uploadBytesResumable(storageRef,item.archivo);
-
-      
-      uploadTask.on('state_changed', (snapshot)=>{
-        const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-      }, (err)=>{
-      }, ()=>{
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
-          item.url=downloadUrl;
-          arregloUrls.push(item.url);
-          itemurl=item.url;
-          //this.guardarDocs({arregloUrls, info:docs.info, linkVideo:docs.linkVideo}, llaveServicio);
-          this.agregarUrlDocumentacionColeccion(llaveServicio, itemurl, tipo);
-
-          try{
-
-            Swal.fire({
-              icon:'success',
-              title:'El archivo se subió correctamente',
-              confirmButtonText:'Aceptar',
-              allowOutsideClick:false,
-            }).then((result)=>{
-      
-              if(result.value){
-                $('#docsModal').modal('hide');
-                $('#videoModal').modal('hide');
-              }
-      
-            })
-      
-          }catch(error){
-            console.log(error);
-          }
-
-
-
+    try {
+      Swal.fire({
+        title: 'Subiendo archivo!',
+        html: 'Cargando la vaina.',
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+      });
+      for(const item of pdf){
+        let docsTrim=docs.nombre;
+        let storageRef=ref(storage, `${this.CARPETA_DOCS}/${llaveServicio}/pdf/${docsTrim.replace(/ /g, "-")}`);
+  
+        //Extrae la referencia de storage no incluyendo en el nombre espacios.
+        if(tipo==0){
+          storageRef=ref(storage, `${this.CARPETA_DOCS}/${llaveServicio}/pdf/${docsTrim.replace(/ /g, "-")}`);
+        }
+        else if(tipo==1){
+          storageRef=ref(storage, `${this.CARPETA_DOCS}/${llaveServicio}/video/${docsTrim.replace(/ /g, "-")}`);
+        }
+        else{
+          storageRef=ref(storage, `${this.CARPETA_DOCS}/${llaveServicio}/pdf/${docsTrim.replace(/ /g, "-")}`);
+        }
+  
+        const uploadTask=uploadBytesResumable(storageRef,item.archivo);
+  
+        
+        uploadTask.on('state_changed', (snapshot)=>{
+          const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+        }, (err)=>{
+        }, ()=>{
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
+            item.url=downloadUrl;
+            arregloUrls.push(item.url);
+            itemurl=item.url;
+            //this.guardarDocs({arregloUrls, info:docs.info, linkVideo:docs.linkVideo}, llaveServicio);
+            this.agregarUrlDocumentacionColeccion(llaveServicio, itemurl, tipo);
+  
+            try{
+  
+              Swal.fire({
+                icon:'success',
+                title:'El archivo se subió correctamente',
+                confirmButtonText:'Aceptar',
+                allowOutsideClick:false,
+              }).then((result)=>{
+        
+                if(result.value){
+                  $('#docsModal').modal('hide');
+                  $('#videoModal').modal('hide');
+                }
+        
+              })
+        
+            }catch(error){
+              console.log(error);
+            }
+  
+  
+  
+          })
         })
-      })
+  
+  
+      }
 
-
+      
+    } catch (error) {
+      console.log(error);
     }
+
+
+    
     
   }
 
