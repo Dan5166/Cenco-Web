@@ -53,6 +53,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
 import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.component';
 import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina-en-mantenimiento.component';
+import { CmsCompComponent } from './cms-comp/cms-comp.component';
 
 
 
@@ -87,6 +88,7 @@ import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina
     DocsComponent,
     ManejoDeRolesComponent,
     PaginaEnMantenimientoComponent,
+    CmsCompComponent,
     
   ],
   imports: [

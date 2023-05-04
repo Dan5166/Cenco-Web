@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-cms',
-  templateUrl: './cms.component.html',
+  template: '<h1>Contenido de CMS</h1>',
   styleUrls: ['./cms.component.css']
 })
 export class CmsComponent {
+  asuntoContacto = '';
+  infoContacto = '';
 
+  constructor() { }
 }

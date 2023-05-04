@@ -37,7 +37,7 @@ export class SidebarService{
       ]
     },
     {
-      titulo:'Información Específica',
+      titulo:'Gestión de conocimiento',
       icono:'fa-solid fa-newspaper',
       submenu:[
         {titulo:'Estrategia Tecnología Cloud', url:'estrategia-tecnologia-cloud', icono:'fa-solid fa-chess-knight'},
@@ -69,7 +69,7 @@ export class SidebarService{
       titulo:'Panel de Admin',
       icono:'fa-solid fa-screwdriver-wrench',
       submenu:[
-        {titulo:'CMS', url:'mantenimiento', icono:'fa-solid fa-bars-progress'},
+        {titulo:'CMS', url:'cms-component', icono:'fa-solid fa-bars-progress'},
         {titulo:'Manejo de roles', url:'manejo-de-roles', icono:'fa-solid fa-key'},
         {titulo:'Base de solicitudes', url:'mantenimiento', icono:'fa-solid fa-folder-open'},
         {titulo:'Web Analytics', url:'mantenimiento', icono:'fa-solid fa-chart-pie'},

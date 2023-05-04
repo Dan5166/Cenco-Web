@@ -1,0 +1,170 @@
+import { Injectable } from '@angular/core';
+import { NoticiaModel } from '../models/noticia-model';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable, map } from 'rxjs';
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import Swal from 'sweetalert2';
+import { FileItems } from '../models/file-items';
+import { SlideModel } from '../models/slide-model';
+
+declare var $:any;
+
+@Injectable({
+  providedIn: 'root'
+})
+export class NoticiaServiceService {
+  private CARPETA_IMAGENES='img';
+  private noticiasCollection: AngularFirestoreCollection<NoticiaModel>;
+  private slideCollection: AngularFirestoreCollection<SlideModel>;
+
+  constructor(private db:AngularFirestore) { 
+
+    this.noticiasCollection=db.collection<NoticiaModel>('home-noticias');
+    this.slideCollection=db.collection<SlideModel>('home-carrusel');
+
+  }
+
+  getNoticias():Observable<NoticiaModel[]>{
+    return this.noticiasCollection.snapshotChanges().pipe(
+      map(actions=>actions.map(a=>{
+        const data=a.payload.doc.data() as NoticiaModel;
+        data.id=a.payload.doc.id;
+        const id =a.payload.doc.id;
+        return {id, ...data}
+      }))
+    )
+  }
+
+  getSlides():Observable<SlideModel[]>{
+    return this.slideCollection.snapshotChanges().pipe(
+      map(actions=>actions.map(a=>{
+        const data=a.payload.doc.data() as SlideModel;
+        data.id=a.payload.doc.id;
+        const id =a.payload.doc.id;
+        return {id, ...data}
+      }))
+    )
+  }
+
+  async cargarNoticiaFirebase(imagenes:FileItems[], noticia:NoticiaModel): Promise<any>{
+    const storage=getStorage();
+    for(const item of imagenes){
+      let noticiaTrim=noticia.titulo;
+
+      //Extrae la referencia de storage no incluyendo en el nombre espacios.
+      const storageRef=ref(storage, `${this.CARPETA_IMAGENES}/${noticiaTrim.replace(/ /g, "")}`);
+
+      const uploadTask=uploadBytesResumable(storageRef,item.archivo);
+
+      uploadTask.on('state_changed', (snapshot)=>{
+        const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      }, (err)=>{
+      }, ()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
+          item.url=downloadUrl;
+          this.guardarNoticia({titulo:noticia.titulo, cuerpo:noticia.cuerpo, img:item.url});
+          return downloadUrl;
+        })
+      })
+
+
+    }
+  }
+
+  
+
+
+
+  async guardarNoticia(noticia:{titulo : string, cuerpo : string, img : string}):Promise<any>{
+    try{
+      Swal.fire({
+        icon:'success',
+        title:'El archivo se subió correctamente',
+        confirmButtonText:'Aceptar',
+        allowOutsideClick:false,
+      }).then((result)=>{
+        if(result.value){
+          $('#noticiasModal').modal('hide');
+        }
+      })
+      if(noticia.img == null){
+        noticia.img='../../../assets/noimage.png';
+      }
+      return await this.db.collection('home-noticias').add(noticia);
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  async cargarSlideFirebase(imagenes:FileItems[], slide:SlideModel): Promise<any>{
+    const storage=getStorage();
+    for(const item of imagenes){
+      let slideTrim=slide.titulo;
+
+      //Extrae la referencia de storage no incluyendo en el nombre espacios.
+      const storageRef=ref(storage, `${this.CARPETA_IMAGENES}/${slideTrim.replace(/ /g, "")}`);
+
+      const uploadTask=uploadBytesResumable(storageRef,item.archivo);
+
+      uploadTask.on('state_changed', (snapshot)=>{
+        const progresss=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      }, (err)=>{
+      }, ()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
+          item.url=downloadUrl;
+          this.guardarSlide({titulo:slide.titulo, cuerpo:slide.cuerpo, img:item.url});
+          return downloadUrl;
+        })
+      })
+
+
+    }
+  }
+
+  async guardarSlide(slide:{titulo : string, cuerpo : string, img : string}):Promise<any>{
+    try{
+      Swal.fire({
+        icon:'success',
+        title:'El archivo se subió correctamente',
+        confirmButtonText:'Aceptar',
+        allowOutsideClick:false,
+      }).then((result)=>{
+        if(result.value){
+          $('#slidesModal').modal('hide');
+        }
+      })
+      if(slide.img == null){
+        slide.img='../../../assets/noimage.png';
+      }
+      console.log("GUARDANDO SLIDE----")
+      return await this.db.collection('home-carrusel').add(slide);
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+
+
+  public eliminarNoticia(id:string, noticiaNombre:string):Promise<any>{
+    const storage = getStorage();
+    const desertRef = ref(storage, `${this.CARPETA_IMAGENES}/${noticiaNombre.replace(/ /g, "")}`);
+    deleteObject(desertRef).then(()=>{
+      Swal.fire('EXITO','El servicio se eliminó correctamente','success');
+    }).catch((error)=>{
+      console.error(error);
+    });
+    return this.noticiasCollection.doc(id).delete();
+  }
+
+  public eliminarSlide(id:string, slideNombre:string):Promise<any>{
+    const storage = getStorage();
+    const desertRef = ref(storage, `${this.CARPETA_IMAGENES}/${slideNombre.replace(/ /g, "")}`);
+    deleteObject(desertRef).then(()=>{
+      Swal.fire('EXITO','El slide se eliminó correctamente','success');
+    }).catch((error)=>{
+      console.error(error);
+    });
+    return this.slideCollection.doc(id).delete();
+  }
+
+}

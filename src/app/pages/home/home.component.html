@@ -1,40 +1,25 @@
 <body>
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-      </ol>
     
       <div class="carousel-inner">
-        <div class="carousel-item active" style="background-image: url(../../../assets/dist/img/carrusel-primera.png);">
+        
+        <div class="carousel-item active" style="background-image: url({{primerElementoCarrusel.img}});">
           <div class="carousel-caption">
-            
-            <button type="button" class="btn btn-secondary">Catálogo de servicios</button>
-          </div>
-        </div>
-        <div class="carousel-item" style="background-image: url(../../../assets/dist/img/carrusel-segunda3.png);">
-          <div class="carousel-caption">
-            
-            <button type="button" class="btn btn-primary">Conoce nuestro equipo CCT</button>
-          </div>
-        </div>
-        <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/5256816/pexels-photo-5256816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
-          <div class="carousel-caption">
-            <h5>¿Qué me ofrece Cenco Web?</h5>
-            <p>En esta página podrás ver, consultar y aprender a manejar los diferentes servicios entregados por el CCT.</p>
+            <h5>{{primerElementoCarrusel.titulo}}</h5>
+            <p>{{primerElementoCarrusel.cuerpo}}</p>
             <button type="button" class="btn btn-secondary">Presiona para más información</button>
           </div>
         </div>
-        <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
-          <div class="carousel-caption">
-            <h5>Tecnologías interesantes</h5>
-            <p>Conoce tecnologías interesantes recomendadas por el equipo de CCT, que te ayudarán a obtener ideas y facilitar tu trabajo.</p>
-            <button type="button" class="btn btn-secondary">Presiona para más información</button>
-          </div>
+
+          <div class="carousel-item" style="background-image: url({{slide.img}});" *ngFor="let slide of listaCarrusel">
+            <div class="carousel-caption">
+              <h5>{{slide.titulo}}</h5>
+              <p>{{slide.cuerpo}}</p>
+              <button type="button" class="btn btn-secondary">Presiona para más información</button>
+            </div>
         </div>
+        
       </div>
     
       <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -56,49 +41,24 @@
       <h2>Novedades y Recordatorios</h2>
     
       <!-- Lista de novedades -->
-      <ul class="list-group">
-    
-        <!-- Primera novedad -->
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-3">
-              <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid">
-            </div>
-            <div class="col-md-9">
-              <h4>Practicantes se encuentran en prototipado de Cenco Web</h4>
-              <p>El prototipo del portal <strong>Cenco Web</strong> , del equipo <strong>Cloud Core Team</strong>, se encuentra en desarrollo por el equipo de practicantes DevOps.</p>
-              <p>Esperando la aprobación de Diego Reos y de algunos .</p>
-            </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let noticia of listaNovedades; let indice = index" data-toggle="modal" data-target="#novedadesModal" (click)="setNovedadSeleccionada(indice)">
+        <div class="row" >
+          <div class="col-md-3">
+            <img
+              src={{noticia.img}}
+              class="img-fluid"
+            />
           </div>
-        </li>
-    
-        <!-- Segunda novedad -->
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-3">
-              <img src="https://images.pexels.com/photos/357514/pexels-photo-357514.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid">
+          <div class="col-md-9">
+            <div style="display: flex;">
+              <h4>{{noticia.titulo}}</h4>
             </div>
-            <div class="col-md-9">
-              <h4>Intrucciones para subir documentación en los servicios</h4>
-              <p>En este artículo aprenderás como <strong>adjuntar distintos archivos</strong>, ya sean PDF, Videos y documentación en la página de servicios.</p>
-            </div>
+            <p>{{noticia.cuerpo}}</p>
           </div>
-        </li>
-    
-        <!-- Tercera novedad -->
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-3">
-              <img src="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid">
-            </div>
-            <div class="col-md-9">
-              <h4>Instrucciones para crear un artículo en el Catálogo de servicios CCT</h4>
-              <p>En este blog aprenderás a crear artículos en el <strong>Catálogo de servicios</strong>, es necesario que sigas las <strong>buenas prácticas definidas por el CCT</strong> para crear los artículos y subir documentación.</p>
-            </div>
-          </div>
-        </li>
-    
-      </ul>
+        </div>
+      </li>
+    </ul>
     
     </div>
     
@@ -133,6 +93,29 @@
       <button type="button" class="btn btn-secondary" style="margin-top: 20px;" (click)="enviarConsultaRapida()">Enviar consulta</button>
   
     </div>
+
+    <div class="modal fade" id="novedadesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-lg" style="width: 90%; max-width: 1200px;padding-bottom: 100px;"> <!-- Agregamos la regla CSS aquí -->
+        <div class="modal-content" style="padding-bottom: 50px;">
+          <div class="modal-header bg-dark">
+            <h5 class="modal-title"><i class="fa fa-newspaper"></i> Noticias</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body"style="padding-top: 50px;">
+            <h1>Novedad {{listaNovedades[novedadSeleccionada].titulo}}</h1>
+            <h4 style="margin-top: 40px;">{{listaNovedades[novedadSeleccionada].cuerpo}}</h4>
+            <video controls poster="../../../assets/dist/img/preview.png" style="height: 720px; width: 1080px;">
+              <source src="https://firebasestorage.googleapis.com/v0/b/cenco-web-prot.appspot.com/o/video%2FvideoEjemplo2.mp4?alt=media&token=635a89cb-5954-41aa-a206-1fa56539ef70" type="video/mp4">
+              Tu navegador no soporta el elemento de video.
+            </video>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
     
   
   </body>

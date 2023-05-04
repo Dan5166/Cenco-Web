@@ -1,0 +1,43 @@
+.carousel-caption {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+  
+  .carousel-caption h5 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .carousel-caption p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-caption button {
+    font-size: 1.25rem;
+    padding: 10px 20px;
+  }
+  
+  .carousel-item {
+    height: 650px;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .border-dark{
+    border: solid 3px;
+    border-color: black;
+  }
+  
+  .container_style{
+    margin-top: 100px;
+  }
+  
+  .button_style{
+    margin-top: 20px;
+  }

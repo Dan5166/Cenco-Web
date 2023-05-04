@@ -54,7 +54,7 @@ import { AdminGuard } from './guards/admin.guard';
     provideStorage(() => getStorage()),
     NgbModule,
     FontAwesomeModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
 
    
   ],

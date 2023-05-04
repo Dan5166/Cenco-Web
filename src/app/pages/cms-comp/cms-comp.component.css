@@ -1,0 +1,77 @@
+
+.carousel-caption {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+  
+  .carousel-caption h5 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .carousel-caption p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-caption button {
+    font-size: 1.25rem;
+    padding: 10px 20px;
+  }
+  
+  .carousel-item {
+    height: 650px;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .border-dark{
+    border: solid 3px;
+    border-color: black;
+  }
+  
+  .container_style{
+    margin-top: 100px;
+  }
+
+  .contenedor-slides{
+    display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  align-items: center; /* Centrar verticalmente los elementos */
+  justify-content: flex-start; /* Alinear los elementos hacia la izquierda */
+  margin-bottom: 20px; /* Añadir un margen inferior para separar el botón de los cards */
+
+  }
+
+  .container-header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .card{
+    margin-right: 20px;
+  flex: 0 0 auto; /* Evitar que los cards se estiren para llenar el espacio */
+  width: 500px; /* Establecer un ancho fijo para los cards */
+  position: relative;
+  }
+
+  .card-content{
+    padding: 20px;
+    overflow-y: hidden; /* Ocultar el contenido que se desborde */
+  }
+
+  .card .button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+  }
+  
+  .button_style{
+    margin-top: 20px;
+  }
