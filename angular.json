@@ -117,8 +117,8 @@
             "prerender": false,
             "ssr": false,
             "browserTarget": "proy-adminlte3:build:production",
-            "firebaseProject": "cenco-web-prot",
-            "firebaseHostingSite": "cenco-web-prot.firebaseapp.com"
+            "firebaseProject": "plataforma-web-cct-test",
+            "firebaseHostingSite": "plataforma-web-cct-test.firebaseapp.com"
           }
         }
       }

@@ -161,45 +161,23 @@ export class ProductosService {
 
   async editarProductoCampo(id:string, nombre:string, imgURL:string, info:string){
     try{
-
       Swal.fire({
         icon:'success',
         title:'El archivo se subió correctamente',
         confirmButtonText:'Aceptar',
         allowOutsideClick:false,
       }).then((result)=>{
-
         if(result.value){
-          $('#productosEditarModal').modal('hide');
+          $('#slidesEditarModal').modal('hide');
         }
-
       })
       if(imgURL!="../../../assets/noimage.png"){
         return await this.productosCollection.doc(id).update({nombreProducto:nombre, info:info, imgUrl:imgURL});
       }
       return await this.productosCollection.doc(id).update({nombreProducto:nombre, info:info});
-
     }catch(error){
-      
-
-
-
-
-
       console.log(error);
-    }
-
-
-
-    /*
-    if(imgURL!="../../../assets/noimage.png"){
-      console.log("Servicio actualizado: "+id+" "+nombre+" "+info+" "+imgURL);
-      this.productosCollection.doc(id).update({nombreProducto:nombre, info:info, imgUrl:imgURL});
-    }else{
-      console.log("Servicio actualizado: "+id+" "+nombre+" "+info);
-      this.productosCollection.doc(id).update({nombreProducto:nombre, info:info});
-    }
-    */
+    } 
   }
 
 }

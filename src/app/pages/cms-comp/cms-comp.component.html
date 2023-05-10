@@ -2,12 +2,22 @@
   <div id="container" class="container">
     <div class="container-header">
       <h2>Slider de imágenes</h2>
+      <div class="button-container">
+        <button
+        class="btn btn-primary"
+        style="margin-bottom: 20px;margin-left: 30px;" (click)="limpiarForm()" data-toggle="modal" data-target="#slidesModal"
+      >
+      <i class="fa-solid fa-plus"></i> Agregar slide
+      </button>
       <button
-          class="btn btn-primary"
-          style="margin-bottom: 20px;margin-left: 30px;" (click)="limpiarForm()" data-toggle="modal" data-target="#slidesModal"
-        >
-          Agregar slide
-        </button>
+        class="btn btn-primary"
+        style="margin-bottom: 20px;margin-left: 30px;" (click)="ordenarSlides()" data-toggle="modal" data-target="#slidesOrderModal"
+      >
+      <i class="fa-solid fa-sort"></i> Ordenar slides
+      </button>
+      
+      </div>
+      
     
     </div>
     <div class="contenedor-slides">
@@ -17,8 +27,9 @@
           <h3>{{slide.titulo}}</h3>
           <p>{{slide.cuerpo}}</p>
           <div class="button-container">
-            <button class="edit-button btn-primary">Editar</button>
+            <button class="edit-button btn-primary" data-toggle="modal" data-target="#slidesEditarModal" (click)="setSlideSeleccionado(slide.id)">Editar</button>
             <button class="delete-button btn-danger" (click)="eliminarSlide(slide.id, slide.titulo, indice)">Eliminar</button>
+            <input type="text" style="width: 30px;" placeholder={{indice}}>
           </div>
         </div>
       </div>
@@ -42,7 +53,7 @@
     <!-- Lista de novedades -->
     <ul class="list-group">
       <!-- Primera novedad -->
-      <li class="list-group-item" *ngFor="let noticia of listaNovedades; let indice = index">
+      <li class="list-group-item" *ngFor="let noticia of listaNovedades2; let indice = index">
         <div class="row" >
           <div class="col-md-3">
             <img
@@ -51,11 +62,15 @@
             />
           </div>
           <div class="col-md-9">
-            <div style="display: flex;">
+            <div style="display: flex; justify-content: space-between;">
               <h4>{{noticia.titulo}}</h4>
-              <button class="btn btn-danger" style="margin-bottom: 20px;margin-left: 30px;" (click)="eliminar(noticia.id, noticia.titulo, indice)">
-                Eliminar
-              </button>
+              <div class="button-container">
+                <button class="edit-button btn-primary" data-toggle="modal" data-target="#noticiaEditarModal" (click)="setNoticiaSeleccionada(noticia.id)">Editar</button>
+                <button class="delete-button btn-danger" (click)="eliminar(noticia.id, noticia.titulo, indice)">
+                  Eliminar
+                </button>
+              </div>
+              
             </div>
             <p>{{noticia.cuerpo}}</p>
           </div>
@@ -130,6 +145,41 @@
     </div>
   </div>
 
+  <div class="modal fade" id="noticiaEditarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title"><i class="fa fa-cubes"></i> Editar Noticia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="editarNoticia()" [formGroup]="noticiasForm">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="titulo" placeholder={{tituloEditando}}>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="cuerpo" placeholder={{cuerpoEditando}}>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="video" placeholder="video">
+            </div>
+            <div class="form-group">
+              <input type="file" class="form-control-file" accept="image/*" (change)="selectChange($event)"><br>
+              <img [src]="imgEditando" with="100" height="100">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiarForm()">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="slidesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -160,9 +210,80 @@
         
       </div>
     </div>
+  </div>
 
-    
+  <div class="modal fade" id="slidesEditarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title"><i class="fa fa-cubes"></i> Agregar Slide</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="slidesForm" (ngSubmit)="editarSlide()">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="titulo" placeholder={{tituloEditando}}>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="cuerpo" placeholder={{cuerpoEditando}}>
+            </div>
+            <div class="form-group">
+              <input type="file" class="form-control-file" accept="image/*" (change)="selectChange($event)"><br>
+              <img [src]="imgEditando" with="100" height="100">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiarForm()">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
   </div>
   
+
+  <div class="modal fade" id="slidesOrderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title"><i class="fa fa-cubes"></i> Ordenar Slides</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group" cdkDropList (cdkDropListDropped)="onDrop($event)" style="cursor: pointer;">
+            <!-- Primera novedad -->
+            <li class="list-group-item" *ngFor="let slide of listaCarruselRespaldo; let indice = index" cdkDrag>
+              <div class="row" >
+                <div class="col-md-3">
+                  <img
+                    src={{slide.img}}
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="col-md-9">
+                  <div style="display: flex; justify-content: space-between;">
+                    <h4>{{slide.titulo}}</h4>
+                    <h4>{{slide.orden}}</h4>
+                  </div>
+                  <p>{{slide.cuerpo}}</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <form (ngSubmit)="guardarOrden()">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   
 </body>

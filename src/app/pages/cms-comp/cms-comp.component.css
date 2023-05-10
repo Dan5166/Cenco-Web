@@ -53,6 +53,11 @@
     display: flex;
     justify-content: space-between;
   }
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   .card{
     margin-right: 20px;
   flex: 0 0 auto; /* Evitar que los cards se estiren para llenar el espacio */

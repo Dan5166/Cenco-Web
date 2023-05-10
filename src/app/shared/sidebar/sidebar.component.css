@@ -2,6 +2,15 @@
     position: fixed; 
     background-color: #1e485f;
     max-width: 6000px;
+    max-height: 100vh; /* ajustar la altura máxima según sea necesario */
+    overflow-y: scroll;
+}
+
+/* Oculta la barra de desplazamiento */
+.side_bar_container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 .cencosud_logo {

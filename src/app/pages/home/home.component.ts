@@ -14,15 +14,15 @@ export class HomeComponent {
   asuntoContacto = '';
   infoContacto = '';
   listaNovedades: NoticiaModel[] = [{
-    titulo: 'Novedad Vacía',
-    cuerpo: 'Agrega novedades desde el CMS si tienes permisos de administrador.',
-    img: '../../../assets/noimage.png'
+    titulo: 'Cargando...',
+    cuerpo: '',
+    img: '../../../assets/dist/img/cargando.gif',
   }];
   listaCarrusel: SlideModel[] = [];
   primerElementoCarrusel = {
-    img: 'https://images.unsplash.com/photo-1561736778-92e52a7769ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-    titulo: 'Slider Vacío',
-    cuerpo: 'Agrega imágenes al slider desde el CMS si tienes permisos de administrador.',
+    img: '../../../assets/noimage.png',
+    titulo: 'cargando...',
+    cuerpo: '',
   };
   noticiasSubscripcion: any;
   carruselSubscripcion: any;
@@ -35,6 +35,8 @@ export class HomeComponent {
   ) {}
 
   async ngOnInit() {
+    let indicadorCarrusel = false;
+    let indicadorNoticias = false;
     try {
       Swal.fire({
         title: 'Cargando contenido...',
@@ -46,7 +48,7 @@ export class HomeComponent {
         console.log('close');
       });
       this.noticiasSubscripcion = this.noticiasSVC
-        .getNoticias()
+        .getNoticias2()
         .subscribe((res) => {
           this.listaNovedades = [];
           res.forEach((element: NoticiaModel) => {
@@ -54,10 +56,19 @@ export class HomeComponent {
               ...element,
             });
           });
+          if(this.listaNovedades.length > 0){
+            this.listaNovedades.forEach(element => {
+              //Mostrar fecha en formato dd/mm/yyyy
+              
+              
+              
+            });
+          }
+          indicadorNoticias = true;
         });
 
         this.carruselSubscripcion = this.noticiasSVC
-        .getSlides()
+        .getSlides2()
         .subscribe((res) => {
           this.listaCarrusel = [];
           res.forEach((element: SlideModel) => {
@@ -66,14 +77,15 @@ export class HomeComponent {
             });
           });
           this.creaCarrusel();
+          indicadorCarrusel = true;
+          if(indicadorNoticias && indicadorCarrusel){
+            Swal.close();
+          }
         });
         
     } catch (error) {
       console.log(error);
     }
-
-    
-    Swal.close();
   }
 
   enviarConsultaRapida() {

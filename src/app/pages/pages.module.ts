@@ -54,6 +54,7 @@ import { AdminGuard } from '../guards/admin.guard';
 import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.component';
 import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina-en-mantenimiento.component';
 import { CmsCompComponent } from './cms-comp/cms-comp.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -114,6 +115,7 @@ import { CmsCompComponent } from './cms-comp/cms-comp.component';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    DragDropModule
 
   ],
   exports: [

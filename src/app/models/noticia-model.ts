@@ -3,9 +3,11 @@ export class NoticiaModel {
     titulo: string;
     cuerpo: string;
     img: string;
-    constructor(titulo : string, cuerpo : string, img : string) {
+    fecha?: Date;
+    constructor(titulo : string, cuerpo : string, img : string, fecha?: Date) {
         this.titulo = titulo;
         this.cuerpo = cuerpo;
         this.img = img;
+        this.fecha = fecha || new Date();
     }
 }
