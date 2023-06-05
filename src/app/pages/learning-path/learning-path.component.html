@@ -1,20 +1,99 @@
+
+
+
+
 <body>
-      <div class="row" >
-        <div class="col-12" *ngFor="let curso of cursos; let indice = index">
-          <div class="producto">
-            <div class="imagen" style="background-color: #dbe1e4;cursor:pointer" [routerLink]="">
-              <img src="{{curso.imagen}}" alt="{{curso.nombre}}" style="width: 200px; height: 200px; border-radius: 20px;">
-            </div>
-            <div class="informacion" style="margin-top: 35px;">
-              <h3 style="font-size: 30px; color:white;">{{curso.nombre}}</h3>
-              <p class="info-producto">{{curso.descripcion}}</p>
-              <div class="botones-editar-eliminar">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#productosEditarModal">Editar</button>
-                <button class="btn btn-danger" >Eliminar</button>
-              </div>
-                
-            </div>
+
+  <div class="row" >
+    <div class="col-12" *ngFor="let curso of cursos; let indice = index">
+      <div class="producto">
+        <div class="imagen" style="background-color: #3c80a5;cursor:pointer" [routerLink]="['../learning-path/',curso.id]">
+          <img src="{{curso.imgUrl}}" alt="{{curso.nombre}}" style="width: 200px; height: 200px; border-radius: 20px;">
+        </div>
+        <div class="informacion" style="margin-top: 35px;">
+          <h3 style="font-size: 30px; color:white;">{{curso.nombre}}</h3>
+          <p class="info-producto">{{curso.descripcion}}</p>
+          <div class="botones-editar-eliminar">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#productosEditarModal" (click)="setCursoSeleccionado(curso.id)" *ngIf="hasRoleAdmin">Editar</button>
+            <button class="btn btn-danger" (click)="eliminar(curso.id, curso.nombre, indice)" *ngIf="hasRoleAdmin">Eliminar</button>
           </div>
+            
         </div>
       </div>
+    </div>
+  </div>
+
+  <p style="align-self: center;"><button (click)="limpiarForm()" class="btn btn-primary mb-3" data-toggle="modal" data-target="#productosModal" style="margin-left: 100px;" *ngIf="hasRoleAdmin"> 
+    <i class="fa fa-plus" ></i> Agregar</button></p>
+
+
+
+
+  <div class="modal fade" id="productosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title"><i class="fa fa-cubes"></i> Agregar Productos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form >
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="nombre" placeholder="Producto" required>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="info" required>
+            </div>
+            <div class="form-group">
+              <input type="file" class="form-control-file" accept="image/*" (change)="selectChange($event)"><br>
+              <img [src]="imgURL" with="100" height="100">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiarForm()">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+      
+  <div class="modal fade" id="productosEditarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title"><i class="fa fa-cubes"></i> Editar Producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="editarCurso()" [formGroup]="cursosForm2">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="nombre" placeholder="{{nombreEditando}}">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName ="info" placeholder="{{infoEditando}}">
+            </div>
+            <div class="form-group">
+              <input type="file" class="form-control-file" accept="image/*" (change)="selectChange($event)"><br>
+              <img src="{{imgUrlEditando}}" with="100" height="100">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiarForm()">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
 </body>
+
+
+

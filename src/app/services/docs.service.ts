@@ -22,12 +22,9 @@ export class DocsService {
   public uploadPercent:number=0;
 
   constructor(private db:AngularFirestore, private productoSVC:ProductosService, private storage:AngularFireStorage) { 
-
     this.productosCollection=db.collection<DocsModel>('productos');
-
   }
-
-
+  
   getProductos():Observable<DocsModel[]>{
     return this.productosCollection.snapshotChanges().pipe(
       map(actions=>actions.map(a=>{
@@ -39,11 +36,9 @@ export class DocsService {
     )
   }
 
-
   getProducto(id:string): Observable<DocsModel> {
     return this.db.collection('productos').doc(id).valueChanges() as Observable<DocsModel>;
-}
-
+  }
 
   cargarProductosFirebase(pdf:FileItems[], docs:DocsModel, llaveServicio:string, tipo:number){
     const storage=getStorage();
@@ -133,7 +128,6 @@ export class DocsService {
 
   async guardarDocs(docs:{arregloUrls:string[], info:string, linkVideo:string},indice:string):Promise<any>{
     try{
-
       Swal.fire({
         icon:'success',
         title:'El archivo se subió correctamente',

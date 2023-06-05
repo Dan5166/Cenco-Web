@@ -5,7 +5,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, filter, first, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { FileItems } from '../models/file-items';
-import { ProductoModel } from '../models/productos-model';
+import { CourseModel } from '../models/courses-model';
+
 
 declare var $:any;
 
@@ -13,43 +14,40 @@ declare var $:any;
 @Injectable({
   providedIn: 'root'
 })
-export class ProductosService {
+export class CoursesService {
+
+  private CARPETA_IMAGENES='imgCourses';
+  private coursesCollection: AngularFirestoreCollection<CourseModel>;
 
 
-  private CARPETA_IMAGENES='img';
-  private productosCollection: AngularFirestoreCollection<ProductoModel>;
-
-  constructor(private db:AngularFirestore) { 
-
-    this.productosCollection=db.collection<ProductoModel>('productos');
-
-  }
+  constructor(private db:AngularFirestore) {
+      
+      this.coursesCollection=db.collection<CourseModel>('courses');
+   }
 
 
-  getProductos():Observable<ProductoModel[]>{
-    return this.productosCollection.snapshotChanges().pipe(
+   getCourses():Observable<CourseModel[]>{
+    return this.coursesCollection.snapshotChanges().pipe(
       map(actions=>actions.map(a=>{
-        const data=a.payload.doc.data() as ProductoModel;
+        const data=a.payload.doc.data() as CourseModel;
         data.id=a.payload.doc.id;
         const id =a.payload.doc.id;
         return {id, ...data}
       }))
     )
-  }
+   }
 
+   getCursito(id:string): Observable<CourseModel> {
+    return this.db.collection('courses').doc(id).valueChanges() as Observable<CourseModel>;
+   }
 
-  getProducto(id:string): Observable<ProductoModel> {
-    return this.db.collection('productos').doc(id).valueChanges() as Observable<ProductoModel>;
-  }
-
-
-  async cargarProductosFirebase(imagenes:FileItems[], productos:ProductoModel): Promise<any>{
+   async cargarCursosFirebase(imagenes:FileItems[], cursos:CourseModel): Promise<any>{
     const storage=getStorage();
     for(const item of imagenes){
-      let productoTrim=productos.nombreProducto;
+      let cursoTrim=cursos.nombre;
 
       //Extrae la referencia de storage no incluyendo en el nombre espacios.
-      const storageRef=ref(storage, `${this.CARPETA_IMAGENES}/${productoTrim.replace(/ /g, "")}`);
+      const storageRef=ref(storage, `${this.CARPETA_IMAGENES}/${cursoTrim.replace(/ /g, "")}`);
 
       const uploadTask=uploadBytesResumable(storageRef,item.archivo);
 
@@ -58,21 +56,16 @@ export class ProductosService {
       }, (err)=>{
       }, ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
-          item.url=downloadUrl;
-          this.guardarProducto({nombreProducto:productos.nombreProducto, imgUrl:item.url, info:productos.info, docs:productos.docsPdf});
+          cursos.imgUrl=downloadUrl;
+          this.guardarCurso({nombre:cursos.nombre, imgUrl:cursos.imgUrl, info:cursos.descripcion, docs:cursos.docsPdf})
           return downloadUrl;
-        })
+        });
       })
-
-
     }
   }
 
-  
-
-
-
-  async guardarProducto(producto:{nombreProducto:string, imgUrl:string, info:string, docs:string[]}):Promise<any>{
+      
+  async guardarCurso(curso:{nombre:string, imgUrl:string, info:string, docs:string[]}):Promise<any>{
     try{
 
       Swal.fire({
@@ -83,18 +76,18 @@ export class ProductosService {
       }).then((result)=>{
 
         if(result.value){
-          $('#productosModal').modal('hide');
+          $('#cursosModal').modal('hide');
         }
 
       })
-      if(producto.imgUrl == null){
+      if(curso.imgUrl == null){
 
-        producto.imgUrl='../../../assets/noimage.png';
+        curso.imgUrl='../../../assets/noimage.png';
       }
       
-      let idProductoPromise = await this.db.collection('productos').add(producto);
-      let idProducto = idProductoPromise.id;
-      return await this.guardarProductoArchivosVarios(idProducto);
+      let idCursoPromise = await this.db.collection('courses').add(curso);
+      let idCurso = idCursoPromise.id;
+      return await this.guardarCursoArchivosVarios(idCurso);
 
     }catch(error){
 
@@ -108,26 +101,26 @@ export class ProductosService {
     }
   }
 
-  async guardarProductoArchivosVarios(id:string){
-    let producto={};
+  async guardarCursoArchivosVarios(id:string){
+    let curso={};
     this.db.collection('varios-servicio').doc(id).set({});
   }
 
-  public eliminarProducto(id:string, productoNombre:string):Promise<any>{
+  public eliminarCurso(id:string, cursoNombre:string):Promise<any>{
     const storage = getStorage();
-    const desertRef = ref(storage, `${this.CARPETA_IMAGENES}/${productoNombre.replace(/ /g, "")}`);
+    const desertRef = ref(storage, `${this.CARPETA_IMAGENES}/${cursoNombre.replace(/ /g, "")}`);
     deleteObject(desertRef).then(()=>{
       Swal.fire('EXITO','El servicio se eliminó correctamente','success');
     }).catch((error)=>{
       console.error(error);
     });
-    return this.productosCollection.doc(id).delete();
+    return this.coursesCollection.doc(id).delete();
   }
 
 
 
-  editarProducto(id:string, producto:ProductoModel):Promise<any>{
-    return this.productosCollection.doc(id).update(producto);
+  editarCurso(id:string, curso:CourseModel):Promise<any>{
+    return this.coursesCollection.doc(id).update(curso);
   }
 
   async guardarFotoEditada(id:string, nombre:string, imagenes:FileItems[], info:string){
@@ -148,7 +141,7 @@ export class ProductosService {
       }, ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
           item.url=downloadUrl;
-          this.editarProductoCampo(id, nombre, item.url, info);
+          this.editarCursoCampo(id, nombre, item.url, info);
           return downloadUrl;
         })
       })
@@ -157,7 +150,7 @@ export class ProductosService {
     }
   }
 
-  async editarProductoCampo(id:string, nombre:string, imgURL:string, info:string){
+  async editarCursoCampo(id:string, nombre:string, imgURL:string, info:string){
     try{
       Swal.fire({
         icon:'success',
@@ -170,12 +163,11 @@ export class ProductosService {
         }
       })
       if(imgURL!="../../../assets/noimage.png"){
-        return await this.productosCollection.doc(id).update({nombreProducto:nombre, info:info, imgUrl:imgURL});
+        return await this.coursesCollection.doc(id).update({nombre:nombre, descripcion:info, imgUrl:imgURL});
       }
-      return await this.productosCollection.doc(id).update({nombreProducto:nombre, info:info});
+      return await this.coursesCollection.doc(id).update({nombre:nombre, descripcion:info});
     }catch(error){
       console.log(error);
     } 
   }
-
 }

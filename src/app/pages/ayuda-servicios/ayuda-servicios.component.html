@@ -1,26 +1,77 @@
-<div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2 style="font-weight: bold;"></h2>
-      </div>
-    </div>
-    <div class="row" >
-      <div class="col-12" *ngFor="let producto of productos">
-        <div class="producto style_product">
-          <div class="imagen img_color">
-            <img src="{{producto.imagen}}" alt="{{producto.nombre}}" style="width: 180px; height: 180px; border-radius: 20px;">
-          </div>
-          <div class="informacion" style="margin-top: 35px;">
-            <h3 style="font-size: 25px; color:white;">{{producto.nombre}}</h3>
-            <p style="color:white;">{{producto.descripcion}}</p>
-            <div class="div_img">
-                <button class="btn btn-primary style_btn_primary">Editar</button>
-                <button class="btn btn-danger">Eliminar</button>
-            </div>
-            
-          </div>
+<!-- Contenedor principal -->
+<div class="container" style="margin-top: 80px;">
+    
+  <!-- Título de la página -->
+  <h2>Necesitas ayuda?</h2>
+
+  <!-- Lista de novedades -->
+  <ul class="list-group">
+
+    <!-- Primera novedad -->
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-5">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" class="img-fluid" style="opacity: 85%;">
+        </div>
+        <div class="col-md-6">
+          <h4></h4>
+          <p style="font-size: 20px; margin-left: 25px;margin-top: 25px;">
+
+              Para contactarnos en caso de necesitar alguna ayuda, puede hacerlo a través de nuestro correo electrónico: <a href="mailto:cct@cencosud.com">cct@cencosud.com</a> o mediante el siguiente formulario.</p>
+              <div class="comment-form">
+                <form>
+                  <div class="form-group">
+                    <label for="name">Asunto:</label>
+                    <input type="text" id="name" name="name" required [(ngModel)]="cajaNombre">
+                  </div>
+                  <div class="form-group">
+                    <label for="comment">Comentario:</label>
+                    <textarea id="comment" name="comment" required [(ngModel)]="cajaComentario"></textarea>
+                  </div>
+                  <button class="btn btn-secondary" type="submit" (click)="agregaComentario()">Enviar Solicitud</button>
+                </form>
+              </div>
         </div>
       </div>
+    </li>
+    
+
+  </ul>
+  <!-- <div class="comment-container" style="padding-bottom: 100px;">
+    <div class="comment-header">
+      <h2>Comentarios</h2>
     </div>
-  </div>
-  
+    <div class="comment-list" style="margin-top: 160px;">
+      <div class="comment-item" *ngFor="let comment of comments" style="margin-top: 30px;border-radius: 10px;border:rgba(88, 133, 175,0.2) solid 1px;background-color: rgb(237, 239, 243); ">
+        <div>
+            <div style="width: 100%;
+            height: 90px;
+            background-color: #ffffff;
+            border-bottom: solid 1px #E0E0E0;
+            display:flex;
+            align-items: center;
+            cursor: pointer;">
+            <div style="background: #E6E7ED;background-image: url({{comment.foto}}); margin-left:20px;
+              display: block;
+              width: 45px;
+              height: 45px;
+              border-radius: 50px;
+              background-position: center;
+              background-size: cover;
+              background-repeat: no-repeat; margin-right: 15px;"><div class="online"></div>
+            </div>
+            <h3 style="font-size: 25px;">{{ comment.name }}</h3>
+            
+          </div>
+          <div class="cuerpo-comentario" style="padding-left: 20px;padding-top: 20px;">
+            <h3 style="font-size: 20px; color:blue">{{ comment.asunto }}</h3>
+          
+            <p style="margin-top: 20px;">{{ comment.comment }}</p>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+</div> -->
+</div>

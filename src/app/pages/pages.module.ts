@@ -55,6 +55,9 @@ import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.compon
 import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina-en-mantenimiento.component';
 import { CmsCompComponent } from './cms-comp/cms-comp.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { CursitoComponent } from './cursito/cursito.component';
+import { LpCertificatesComponent } from './lp-certificates/lp-certificates.component';
+import { CoursesService } from '../services/courses.service';
 
 
 
@@ -90,6 +93,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ManejoDeRolesComponent,
     PaginaEnMantenimientoComponent,
     CmsCompComponent,
+    CursitoComponent,
+    LpCertificatesComponent,
     
   ],
   imports: [
@@ -125,7 +130,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     
   ],
   providers:[
-    PhotoService, ProductService, ContactoRapidoService, ServicioEspService, AuthGuard, AdminGuard
+    PhotoService, ProductService, ContactoRapidoService, ServicioEspService, AuthGuard, AdminGuard, CoursesService
   ]
 })
 export class PagesModule { }

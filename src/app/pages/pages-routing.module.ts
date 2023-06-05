@@ -30,7 +30,8 @@ import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.compon
 import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina-en-mantenimiento.component';
 import { CmsComponent } from 'public/src/app/pages/cms/cms.component';
 import { CmsCompComponent } from './cms-comp/cms-comp.component';
-
+import { CursitoComponent } from './cursito/cursito.component';
+import { LpCertificatesComponent } from './lp-certificates/lp-certificates.component';
 
 const routes:Routes=[
   {path:'home', component:PagesComponent, canActivate:[AuthGuard],
@@ -53,13 +54,15 @@ const routes:Routes=[
     {path:'seguridad', component:SeguridadComponent, data:{titulo:'Seguridad Cloud'}, canActivate:[AuthGuard]},
     {path:'como-navegar', component:ComoNavegarComponent, data:{titulo:'¿Cómo Navegar?'}, canActivate:[AuthGuard]},
     {path:'menu-cct', component:MenuCctComponent, data:{titulo:'Menu Interno CCT'}, canActivate:[AuthGuard]},
-    {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}, canActivate:[AdminGuard]},
     {path:'reconocimiento-excelencia', component:ReconocimientoExcelenciaComponent, data:{titulo:'Reconozcamos nuestros esfuerzos'}, canActivate:[AdminGuard]},
     {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}, canActivate:[AdminGuard]},
     {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}, canActivate:[AdminGuard]},
     {path:'dashboard', component:DashboardComponent, data:{titulo:'Dashboard'}, canActivate:[AdminGuard]},
     {path:'servicio/:id', component:ServicioComponent, data:{titulo:'Servicio'}, canActivate:[AuthGuard]},
     {path:'servicio/:id/docs', component:DocsComponent, data:{titulo:'Documentación'} , canActivate:[AuthGuard]},
+    {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}, canActivate:[AdminGuard]},
+    {path:'learning-path/:id', component:CursitoComponent, data:{titulo:'Cursito'}, canActivate:[AuthGuard]},
+    {path:'learning-path/:id/lp-certificates', component:LpCertificatesComponent, data:{titulo:'Learning Path Certificados'}, canActivate:[AuthGuard]},
     {path:'manejo-de-roles', component:ManejoDeRolesComponent, data:{titulo:'Manejo de Roles'}, canActivate:[AdminGuard]},
     {path:'mantenimiento', component:PaginaEnMantenimientoComponent, data:{titulo:'Mantenimiento'}, canActivate:[AuthGuard]},
     {path:'cms-component', component:CmsCompComponent, data:{titulo:'CMS'}, canActivate:[AuthGuard]}
