@@ -55,6 +55,7 @@ import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.compon
 import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina-en-mantenimiento.component';
 import { CmsCompComponent } from './cms-comp/cms-comp.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { PanelResponsableComponent } from './panel-responsable/panel-responsable.component';
 
 
 
@@ -90,6 +91,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ManejoDeRolesComponent,
     PaginaEnMantenimientoComponent,
     CmsCompComponent,
+    PanelResponsableComponent,
     
   ],
   imports: [

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { NoticiaModel } from '../models/noticia-model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable, Subject, map } from 'rxjs';
+import { Observable, Subject, map, switchMap, take } from 'rxjs';
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import Swal from 'sweetalert2';
 import { FileItems } from '../models/file-items';
 import { SlideModel } from '../models/slide-model';
 import { Timestamp } from 'firebase/firestore';
+import { ComponenteHTMLModel } from '../models/componente-model';
+import { ComponenteHTMLObjectModel } from '../models/componente-html-object-model';
 
 declare var $:any;
 
@@ -17,11 +19,13 @@ export class NoticiaServiceService {
   private CARPETA_IMAGENES='img';
   private noticiasCollection: AngularFirestoreCollection<NoticiaModel>;
   private slideCollection: AngularFirestoreCollection<SlideModel>;
+  private componenteCollection: AngularFirestoreCollection<ComponenteHTMLObjectModel>;
 
   constructor(private db:AngularFirestore) { 
 
     this.noticiasCollection=db.collection<NoticiaModel>('home-noticias');
     this.slideCollection=db.collection<SlideModel>('home-carrusel');
+    this.componenteCollection=db.collection<ComponenteHTMLObjectModel>('home-componentesHTMLObject');
 
   }
 
@@ -190,6 +194,79 @@ export class NoticiaServiceService {
   }
 
 
+  getComponentesHTML():Observable<ComponenteHTMLObjectModel[]>{
+    console.log("FIREBASE COMPONENTES HTML----")
+    return this.componenteCollection.snapshotChanges().pipe(
+      map(actions=>actions.map(a=>{
+        const data=a.payload.doc.data() as ComponenteHTMLObjectModel;
+        data.id=a.payload.doc.id;
+        const id =a.payload.doc.id;
+        return {id, ...data}
+      }))
+    )
+  }
+  
+  async cargarComponenteHTMLFirebase(componenteHTML: ComponenteHTMLObjectModel): Promise<any> {
+    try {
+      await this.db.collection('home-componentesHTMLObject').add(componenteHTML);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getComponente(id:string): Observable<ComponenteHTMLObjectModel> {
+    return this.db.collection('home-componentesHTMLObject').doc(id).valueChanges() as Observable<ComponenteHTMLObjectModel>;
+  }
+
+  async obtenerComponente(id: string): Promise<ComponenteHTMLObjectModel> {
+    try {
+      const data = await this.getComponente(id).toPromise();
+      return data;
+    } catch (error) {
+      // Manejar el error si ocurre
+      console.error('Error al obtener el componente:', error);
+      throw error;
+    }
+  }
+
+  async agregarComponenteinterior(id:string, elemento:{tipo: string; elementos: string[]}){
+    //recibir el array de pdfs
+    let listaComponentesInterior:[{tipo: string; elementos: string[]}];
+
+
+    const componente = await this.obtenerComponente(id);
+    listaComponentesInterior = componente.elementos;
+
+
+    
+    const componentesRef = this.db.collection<ComponenteHTMLObjectModel>('home-componentesHTMLObject').doc(id);
+    this.db.collection<ComponenteHTMLObjectModel>('home-componentesHTMLObject').doc(id).get().pipe(
+      take(1),
+      switchMap((doc) => {
+        let data = doc.data();
+        let elementos = data?.elementos || [];
+
+        listaComponentesInterior.push(elemento);
+        return componentesRef.update({elementos:listaComponentesInterior});
+
+
+        
+      })
+    )
+  }
+
+
+  public eliminarComponenteHTMLObject(id:string, componenteTitulo:string):Promise<any>{
+    const storage = getStorage();
+    const desertRef = ref(storage, `${this.CARPETA_IMAGENES}/${componenteTitulo.replace(/ /g, "")}`);
+
+    
+    return this.componenteCollection.doc(id).delete();
+  }
+
+
+
+
 
   public eliminarNoticia(id:string, noticiaNombre:string):Promise<any>{
     const storage = getStorage();
@@ -251,6 +328,10 @@ export class NoticiaServiceService {
       console.log(error);
     }
   }
+
+
+
+  
 
 
 

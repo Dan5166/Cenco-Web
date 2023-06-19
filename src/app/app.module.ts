@@ -25,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { MicrosoftApiService } from './services/microsoft-api.service';
 
 
 
@@ -55,10 +56,11 @@ import { AdminGuard } from './guards/admin.guard';
     NgbModule,
     FontAwesomeModule,
     AngularFireStorageModule,
-
+    
+    
    
   ],
-  providers: [PhotoService, ProductService, AuthGuard, AdminGuard],
+  providers: [PhotoService, ProductService, AuthGuard, AdminGuard, MicrosoftApiService],
   bootstrap: [AppComponent],
   exports: [
   

@@ -31,7 +31,7 @@ export class DocsComponent implements OnInit{
   servicio:any;
   docs:string[] = ["1"];
   videos:string[] = ["https://firebasestorage.googleapis.com/v0/b/cenco-web-prot.appspot.com/o/video%2FvideoEjemplo2.mp4?alt=media&token=635a89cb-5954-41aa-a206-1fa56539ef70", "https://firebasestorage.googleapis.com/v0/b/cenco-web-prot.appspot.com/o/video%2FvideoEjemplo2.mp4?alt=media&token=635a89cb-5954-41aa-a206-1fa56539ef70"];
-
+  responsables:string[] = ["1"];
   pdfArray = [
     'https://firebasestorage.googleapis.com/v0/b/cenco-web-prot.appspot.com/o/docs%2FPDF%2Faws-overview.pdf?alt=media&token=5bb2e3b3-e105-49ca-86d9-698417c97117',
   ];
@@ -56,6 +56,7 @@ export class DocsComponent implements OnInit{
       this.servicio=data;
       this.docs = data.docsPdf;
       this.videos = data.docsVideo;
+      this.responsables = data.responsables;
     });
 
 
@@ -126,7 +127,8 @@ export class DocsComponent implements OnInit{
       imgUrl:this.imgUrl,
       info:this.info,
       docsPdf:this.docs,
-      docsVideo:this.videos
+      docsVideo:this.videos,
+      responsables:this.responsables
     }
 
 

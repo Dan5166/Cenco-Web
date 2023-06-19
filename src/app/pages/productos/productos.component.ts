@@ -142,6 +142,7 @@ export class ProductosComponent implements OnInit {
       nombreProducto: this.productosForm.value.nombre,
       info: this.productosForm.value.info,
       docsPdf: pdf,
+      responsables:[""]
     };
 
     let timerInterval = 0;

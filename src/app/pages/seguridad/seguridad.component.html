@@ -1,1 +1,289 @@
-<p>seguridad works!</p>
+<body>
+  <button >
+    Imprime HTML
+  </button>
+  <button
+        class="btn btn-primary"
+        style="margin-bottom: 20px;margin-left: 30px;"
+      >
+      <i class="fa-solid fa-sort"></i> Ordenar párrafos
+      </button>
+  <div
+    class="container"
+    *ngFor="let componenteHTML of listaComponentesStr; let indice = index"
+  >
+    <div class="container-header" style="display: flex; justify-content: end">
+      <button
+        class="btn btn-primary"
+        style="margin-bottom: 20px; margin-left: 30px"
+        data-toggle="modal"
+        data-target="#agregarComponenteInterior"
+        (click)="seleccionarComponente(indice)"
+      >
+        <i class="fa fa-plus"></i> Agregar componente
+      </button>
+      <button
+        class="btn btn-primary"
+        style="margin-bottom: 20px;margin-left: 30px;" data-toggle="modal" data-target="#componentesIntOrderModal" (click) = "seleccionarComponente(indice)"
+      >
+      <i class="fa-solid fa-sort"></i> Ordenar componentes
+      </button>
+      <button
+        class="btn btn-danger"
+        style="margin-bottom: 20px;margin-left: 30px;" (click) = "seleccionarYEliminar(indice)"
+      >
+      <i class="fa-solid fa-sort"></i> Eliminar párrafo
+      </button>
+    </div>
+    <div id="myDiv2" [innerHTML]="componenteHTML.elementoHTML"></div>
+  </div>
+  <button
+    class="btn btn-primary"
+    style="margin-bottom: 20px; margin-left: 30px"
+    data-toggle="modal"
+    data-target="#agregarElementoModal"
+  >
+    <i class="fa fa-plus"></i> Agregar párrafo
+  </button>
+
+  <div
+    class="modal fade"
+    id="agregarElementoModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title">
+            <i class="fa fa-cubes"></i> Agregar párrafo
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <select [(ngModel)]="selectedForm">
+            <option value="form1">Nuevo párrafo</option>
+            <option value="form2">Nuevo párrafo sin título</option>
+          </select>
+
+          <form
+            *ngIf="selectedForm === 'form1'"
+            #form1="ngForm"
+            (ngSubmit)="submitForm1()"
+            [formGroup]="contenidoForm"
+          >
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="titulo"
+                placeholder="Titulo"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="cuerpo"
+                placeholder="Cuerpo"
+                required
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Guardar Cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="agregarComponenteInterior"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title">
+            <i class="fa fa-cubes"></i> Agregar párrafo
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <select [(ngModel)]="selectedForm">
+            <option value="form1">Nueva lista</option>
+            <option value="form2">Nueva imagen</option>
+          </select>
+
+          <form
+            *ngIf="selectedForm === 'form1'"
+            #form1="ngForm"
+            (ngSubmit)="submitForm2(0)"
+            [formGroup]="listaForm"
+          >
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="elemento1"
+                placeholder="elemento1"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="elemento2"
+                placeholder="elemento2"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="elemento3"
+                placeholder="elemento3"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="elemento4"
+                placeholder="elemento4"
+                required
+              />
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Guardar Cambios
+              </button>
+            </div>
+          </form>
+
+          <form
+            *ngIf="selectedForm === 'form2'"
+            #form2="ngForm"
+            (ngSubmit)="submitForm2(1)"
+          >
+            <div class="form-group">
+              <input
+                type="file"
+                class="form-control-file"
+                accept="image/*"
+                (change)="selectChange($event)"
+              /><br />
+              <img [src]="imgURL" with="100" height="100" />
+              <div class="form-group">
+                <label for="tamanoImagen">Tamaño de la imagen:</label>
+                <select name="tamanoImagen" id="tamanoImagen" class="form-control" [(ngModel)]="selectedTamano">
+                  <option *ngFor="let tamano of tamanoImagenes" [ngValue]="tamano">{{ tamano.nombre }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Guardar Cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  
+
+  <!-- 
+<div class="modal fade" id="componentesIntOrderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title"><i class="fa fa-cubes"></i> Ordenar Slides</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group" cdkDropList (cdkDropListDropped)="onDrop($event)" style="cursor: pointer;">
+            <li class="list-group-item" *ngFor="let componenteInterior of listaCompHTMLRec[componenteSeleccionado].elementos let indice = index" cdkDrag>
+              <div class="row" >
+                <div class="col-md-3" *ngIf="componenteInterior.tipo=='img'">
+                  <img
+                    class="img-fluid"
+                    src="../../../assets/noimage.png"
+                  />
+                </div>
+                <div class="col-md-9" *ngIf="componenteInterior.tipo=='ul'">
+                  <ul>
+                    <li *ngFor="let elemento of componenteInterior.elementos">
+                      {{elemento}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <form >
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+  
+</body>

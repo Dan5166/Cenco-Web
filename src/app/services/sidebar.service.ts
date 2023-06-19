@@ -62,7 +62,7 @@ export class SidebarService{
       titulo:'Panel de Responsable',
       icono:'fa-solid fa-clipboard-list',
       submenu:[
-        {titulo:'Lista de solicitudes', url:'mantenimiento', icono:'fa-solid fa-comment-dots'}
+        {titulo:'Lista de solicitudes', url:'panel-responsable', icono:'fa-solid fa-comment-dots'}
       ]
     },
     {

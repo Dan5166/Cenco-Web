@@ -59,7 +59,7 @@ export class ProductosService {
       }, ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
           item.url=downloadUrl;
-          this.guardarProducto({nombreProducto:productos.nombreProducto, imgUrl:item.url, info:productos.info, docs:productos.docsPdf});
+          this.guardarProducto({nombreProducto:productos.nombreProducto, imgUrl:item.url, info:productos.info, docs:productos.docsPdf, responsables:productos.responsables});
           return downloadUrl;
         })
       })
@@ -72,7 +72,7 @@ export class ProductosService {
 
 
 
-  async guardarProducto(producto:{nombreProducto:string, imgUrl:string, info:string, docs:string[]}):Promise<any>{
+  async guardarProducto(producto:{nombreProducto:string, imgUrl:string, info:string, docs:string[], responsables:string[]}):Promise<any>{
     try{
 
       Swal.fire({

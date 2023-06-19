@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 
@@ -16,7 +17,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OAuthModule.forRoot()
   ],
   exports: [LoginComponent, RegisterComponent],
 })

@@ -5,6 +5,7 @@ export class ProductoModel{
     info:string;
     docsPdf:string[];
     docsVideo:string[];
+    responsables:string[];
 
     constructor(nombreProducto:string, imgUrl:string, info:string, docsPdf:string[], docsVideo:string[]){
         this.nombreProducto=nombreProducto;

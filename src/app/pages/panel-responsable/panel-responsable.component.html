@@ -1,0 +1,34 @@
+<body>
+    <header>
+      <h1>Panel de Administración de Productos</h1>
+    </header>
+    <main>
+      <h2>Bienvenido al Panel de Responsable</h2>
+      <p>La tabla ubicada en la parte inferior le permite administrar los productos donde es respondable en CCT Web.</p>
+  
+      
+      <div class="table-container">
+        <h2>Productos</h2>
+        <table>
+          <thead>
+            <tr class="cabecera">
+              <th>Id</th>
+              <th>Producto</th>
+              <th>Comentarios</th>
+              <th>Solicitudes sin atender</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productos; let indice = index">
+              <td>{{producto.id}}</td>
+                <td>{{producto.nombreProducto}}</td>
+              <td><i class="fa-solid fa-message">   5</i></td>
+              <td><i class="fa-solid fa-reply"> 3</i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </main>
+  </body>
+  

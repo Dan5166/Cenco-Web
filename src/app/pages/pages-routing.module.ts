@@ -30,6 +30,7 @@ import { ManejoDeRolesComponent } from './manejo-de-roles/manejo-de-roles.compon
 import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina-en-mantenimiento.component';
 import { CmsComponent } from 'public/src/app/pages/cms/cms.component';
 import { CmsCompComponent } from './cms-comp/cms-comp.component';
+import { PanelResponsableComponent } from './panel-responsable/panel-responsable.component';
 
 
 const routes:Routes=[
@@ -62,7 +63,8 @@ const routes:Routes=[
     {path:'servicio/:id/docs', component:DocsComponent, data:{titulo:'Documentación'} , canActivate:[AuthGuard]},
     {path:'manejo-de-roles', component:ManejoDeRolesComponent, data:{titulo:'Manejo de Roles'}, canActivate:[AdminGuard]},
     {path:'mantenimiento', component:PaginaEnMantenimientoComponent, data:{titulo:'Mantenimiento'}, canActivate:[AuthGuard]},
-    {path:'cms-component', component:CmsCompComponent, data:{titulo:'CMS'}, canActivate:[AuthGuard]}
+    {path:'cms-component', component:CmsCompComponent, data:{titulo:'CMS'}, canActivate:[AuthGuard]},
+    {path:'panel-responsable', component:PanelResponsableComponent, data:{titulo:'Panel de Responsable'}, canActivate:[AdminGuard]},
     
 ]}];
 

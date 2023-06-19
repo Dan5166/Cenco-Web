@@ -40,6 +40,21 @@ export class LoginComponent implements OnInit {
 
   }
 
+  async onMicrosoftLogin(){
+
+    try {
+
+      await this.authSvc.loginMicrosoft().then(()=>{
+        //Llevame a la pagina de inicio
+        this.router.navigateByUrl('home');
+      })
+      
+    } catch (error:any) {
+      Swal.fire('ERROR', error.message, 'error')
+    }
+
+  }
+
   async login(){
 
       try {
