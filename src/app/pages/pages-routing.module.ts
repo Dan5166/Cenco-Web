@@ -34,9 +34,9 @@ import { PanelResponsableComponent } from './panel-responsable/panel-responsable
 
 
 const routes:Routes=[
-  {path:'home', component:PagesComponent, canActivate:[AuthGuard],
+  {path:'home', component:PagesComponent,
   children:[
-    {path:'', component:HomeComponent, data:{titulo:'Home'}, canActivate:[AuthGuard]}, 
+    {path:'', component:HomeComponent, data:{titulo:'Home'}}, 
 
     {path:'nubes-publicas', component:NubesPublicasComponent, data:{titulo:'Nubes Públicas'}, canActivate:[AuthGuard]},
     {path:'sobre-nosotros', component:SobreNosotrosComponent, data:{titulo:'Sobre Nosotros'}, canActivate:[AuthGuard]},

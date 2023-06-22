@@ -13,6 +13,7 @@ import {
 } from 'firebase/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserModel } from '../models/user-model';
+import { user } from '@angular/fire/auth';
 
 const provider = new OAuthProvider('oidc.portal-web-cct');
 
@@ -168,6 +169,15 @@ export class AuthService {
   }
 
   async logout() {
+    let usuarioVer = await this.getCurrentUser().then((user) => {
+      if (user) {
+        console.log('-------logout: ' + user.email);
+      }
+      else{
+        console.log('-------NO ESTAS LOGUEADO: ');
+      }
+    });
+    
     try {
       await this.authUser.signOut();
       location.reload();

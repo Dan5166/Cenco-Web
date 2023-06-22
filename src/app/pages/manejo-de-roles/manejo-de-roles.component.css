@@ -21,6 +21,37 @@ nav a {
   text-decoration: none;
   color: white;
 }
+.table-container {
+  max-height: 400px; /* ajusta el valor al alto que desees */
+  overflow: auto;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  
+}
+th,
+td {
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+.role {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+.role:hover {
+  color: #555;
+}
 /* Estilos version Desktop de la página */
 @media (min-width: 768px) {
   body {
@@ -54,30 +85,6 @@ nav a {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 2rem;
-    max-width: 100%;
-    overflow-x: auto;
-  }
-  th,
-  td {
-    padding: 0.5rem;
-    text-align: center;
-    border: 1px solid #ccc;
-  }
-  th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  .role {
-    cursor: pointer;
-    font-size: 1.5rem;
-  }
-  .role:hover {
-    color: #555;
   }
 }
 
