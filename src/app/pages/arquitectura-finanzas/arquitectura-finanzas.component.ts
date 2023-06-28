@@ -1,5 +1,6 @@
 import { OnInit, Component, HostListener, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import OrgChart from '@balkangraph/orgchart.js';
+
 @Component({
   selector: 'app-arquitectura-finanzas',
   templateUrl: './arquitectura-finanzas.component.html',
@@ -13,6 +14,7 @@ export class ArquitecturaFinanzasComponent implements AfterViewInit,  OnInit{
   constructor() {
     this.elements = [];
   }
+  
   ngOnInit() {
     const tree = document.getElementById('tree');
     if (tree) {

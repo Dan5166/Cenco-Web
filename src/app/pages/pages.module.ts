@@ -58,6 +58,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { CursitoComponent } from './cursito/cursito.component';
 import { LpCertificatesComponent } from './lp-certificates/lp-certificates.component';
 import { CoursesService } from '../services/courses.service';
+import { ArquitecturasComponent } from './arquitecturas/arquitecturas.component';
 
 
 
@@ -95,6 +96,7 @@ import { CoursesService } from '../services/courses.service';
     CmsCompComponent,
     CursitoComponent,
     LpCertificatesComponent,
+    ArquitecturasComponent,
     
   ],
   imports: [
