@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { NotificacionesService } from 'src/app/services/notificaciones.service';
 import { CoursesService } from 'src/app/services/courses.service';
 import Swal from 'sweetalert2';
-
+  
 @Component({
   selector: 'app-learning-path',
   templateUrl: './learning-path.component.html',

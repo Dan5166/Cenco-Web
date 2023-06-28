@@ -43,7 +43,11 @@ export class LoginComponent implements OnInit {
   async login(){
 
       try {
-
+        //revisar por regez que el email tenga @cencosud
+        // if (!this.loginForm.value.email.includes('@cencosud')) {
+        //   Swal.fire('ERROR', 'El email debe ser de Cencosud', 'error')
+        //   return;
+        // }
         await this.authSvc.login(this.loginForm.value.email, this.loginForm.value.password).then((user)=>{
 
           if (user && user.user.emailVerified) {
