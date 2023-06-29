@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SidebarService{
   userRoles = [];
   menu:any[]=[
@@ -122,7 +123,5 @@ export class SidebarService{
   
   
   }
-
-  
 
 }
