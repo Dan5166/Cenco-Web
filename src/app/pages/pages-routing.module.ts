@@ -33,6 +33,7 @@ import { CmsCompComponent } from './cms-comp/cms-comp.component';
 import { CursitoComponent } from './cursito/cursito.component';
 import { LpCertificatesComponent } from './lp-certificates/lp-certificates.component';
 import { ArquitecturasComponent } from './arquitecturas/arquitecturas.component';
+import { PlataformasComponent } from './plataformas/plataformas.component';
 
 const routes:Routes=[
   {path:'home', component:PagesComponent, canActivate:[AuthGuard],
@@ -68,7 +69,7 @@ const routes:Routes=[
     {path:'mantenimiento', component:PaginaEnMantenimientoComponent, data:{titulo:'Mantenimiento'}, canActivate:[AuthGuard]},
     {path:'cms-component', component:CmsCompComponent, data:{titulo:'CMS'}, canActivate:[AuthGuard]},
     {path: 'arquitecturas', component:ArquitecturasComponent, data:{titulo:'Arquitecturas'}, canActivate:[AuthGuard]},
-    
+    {path: 'plataformas', component:PlataformasComponent, data:{titulo:'Plataformas'}, canActivate:[AuthGuard]},
 ]}];
 
 

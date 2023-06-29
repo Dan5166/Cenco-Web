@@ -6,7 +6,7 @@ import OrgChart from '@balkangraph/orgchart.js';
   templateUrl: './arquitecturas.component.html',
   styleUrls: ['./arquitecturas.component.css']
 })
-export class ArquitecturasComponent implements AfterViewInit,  OnInit{
+export class ArquitecturasComponent implements AfterViewInit, OnInit{
   @ViewChild('fadeElements', { static: false }) fadeElements: ElementRef;
   elements: any[];
   

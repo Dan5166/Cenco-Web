@@ -2,11 +2,11 @@ import { OnInit, Component, HostListener, ElementRef, ViewChild, AfterViewInit }
 import OrgChart from '@balkangraph/orgchart.js';
 
 @Component({
-  selector: 'app-ingenieria-operaciones',
-  templateUrl: './ingenieria-operaciones.component.html',
-  styleUrls: ['./ingenieria-operaciones.component.css']
+  selector: 'app-plataformas',
+  templateUrl: './plataformas.component.html',
+  styleUrls: ['./plataformas.component.css']
 })
-export class IngenieriaOperacionesComponent implements AfterViewInit, OnInit{
+export class PlataformasComponent implements AfterViewInit, OnInit{
   @ViewChild('fadeElements', { static: false }) fadeElements: ElementRef;
   elements: any[];
   

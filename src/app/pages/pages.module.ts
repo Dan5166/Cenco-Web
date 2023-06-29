@@ -59,6 +59,7 @@ import { CursitoComponent } from './cursito/cursito.component';
 import { LpCertificatesComponent } from './lp-certificates/lp-certificates.component';
 import { CoursesService } from '../services/courses.service';
 import { ArquitecturasComponent } from './arquitecturas/arquitecturas.component';
+import { PlataformasComponent } from './plataformas/plataformas.component';
 
 
 
@@ -97,6 +98,7 @@ import { ArquitecturasComponent } from './arquitecturas/arquitecturas.component'
     CursitoComponent,
     LpCertificatesComponent,
     ArquitecturasComponent,
+    PlataformasComponent,
     
   ],
   imports: [

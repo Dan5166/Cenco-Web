@@ -1,0 +1,51 @@
+.texto{
+    font-size: 20px;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+.texto_derecha_izquierda{
+    font-size: 20px; 
+    margin-left: 25px; 
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+.format_img{
+    opacity: 85%;
+}
+
+img {
+    border-radius: 10px;
+}
+
+.container_style{
+    margin-top: 80px;
+}
+
+h2{
+    margin-top: 100px;
+}
+
+h1 {
+    font-family: "Arial", sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fade-in-element {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+  
+.fade-in-element.show {
+    opacity: 1;
+}
