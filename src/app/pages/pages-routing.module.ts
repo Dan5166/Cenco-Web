@@ -32,6 +32,7 @@ import { CmsComponent } from 'public/src/app/pages/cms/cms.component';
 import { CmsCompComponent } from './cms-comp/cms-comp.component';
 import { CursitoComponent } from './cursito/cursito.component';
 import { LpCertificatesComponent } from './lp-certificates/lp-certificates.component';
+import { ArquitecturasComponent } from './arquitecturas/arquitecturas.component';
 
 const routes:Routes=[
   {path:'home', component:PagesComponent, canActivate:[AuthGuard],
@@ -65,7 +66,8 @@ const routes:Routes=[
     {path:'learning-path/:id/lp-certificates', component:LpCertificatesComponent, data:{titulo:'Learning Path Certificados'}, canActivate:[AuthGuard]},
     {path:'manejo-de-roles', component:ManejoDeRolesComponent, data:{titulo:'Manejo de Roles'}, canActivate:[AdminGuard]},
     {path:'mantenimiento', component:PaginaEnMantenimientoComponent, data:{titulo:'Mantenimiento'}, canActivate:[AuthGuard]},
-    {path:'cms-component', component:CmsCompComponent, data:{titulo:'CMS'}, canActivate:[AuthGuard]}
+    {path:'cms-component', component:CmsCompComponent, data:{titulo:'CMS'}, canActivate:[AuthGuard]},
+    {path: 'arquitecturas', component:ArquitecturasComponent, data:{titulo:'Arquitecturas'}, canActivate:[AuthGuard]},
     
 ]}];
 

@@ -42,7 +42,8 @@ export class SidebarService{
       submenu:[
         {titulo:'Estrategia Tecnología Cloud', url:'estrategia-tecnologia-cloud', icono:'fa-solid fa-chess-knight'},
         {titulo:'Onboarding', url:'onboarding', icono:'fa-solid fa-ship'},
-        {titulo:'Arquitectura y Finanzas', url:'arquitectura-finanzas', icono:'fa-solid fa-coins'},
+        {titulo: 'Arquitecturas', url:'arquitecturas', icono:'fa-solid fa-network-wired'},
+        {titulo:'Finanzas', url:'arquitectura-finanzas', icono:'fa-solid fa-coins'},
         {titulo:'Ingeniería-Operaciones Cloud', url:'ingenieria-operaciones', icono:'fa-solid fa-sliders'},
         {titulo:'Seguridad Cloud', url:'seguridad', icono:'fa-solid fa-lock'},
       
