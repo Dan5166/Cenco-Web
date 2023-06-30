@@ -51,9 +51,7 @@
             />
           </div>
           <div class="col-md-9">
-            <div style="display: flex; justify-content: space-between;">
-              <h4>{{noticia.titulo}}</h4>
-            </div>
+            <h4>{{noticia.titulo}}</h4>
             <p>{{noticia.cuerpo}}</p>
           </div>
         </div>
@@ -103,10 +101,17 @@
                 <span aria-hidden="true">&times;</span>
               </button>
           </div>
-          <div class="modal-body"style="padding-top: 50px;">
-            <h1>Novedad {{listaNovedades[novedadSeleccionada].titulo}}</h1>
-            <h4 style="margin-top: 40px;">{{listaNovedades[novedadSeleccionada].cuerpo}}</h4>
-            <video controls poster="../../../assets/dist/img/preview.png" style="height: 720px; width: 1080px;">
+          <div class="modal-body"style="padding-top: 50px; display: flex; flex-direction: column;">
+            
+            <div style="padding: 10px; background-color: rgb(73, 84, 114); max-width: 100%;">
+              <h1 style="color:aliceblue; text-align: center;">Novedad {{listaNovedades[novedadSeleccionada].titulo}}</h1>
+            </div>
+            <div style="padding: 10px; align-self: center; max-width: 90%;">
+              <h4 style="margin-top: 40px;">{{listaNovedades[novedadSeleccionada].cuerpo}}</h4>
+            </div>
+            
+            
+            <video controls poster="../../../assets/dist/img/preview.png" style="height: 720px; width: 1080px; align-self: center;">
               <source src="https://firebasestorage.googleapis.com/v0/b/cenco-web-prot.appspot.com/o/video%2FvideoEjemplo2.mp4?alt=media&token=635a89cb-5954-41aa-a206-1fa56539ef70" type="video/mp4">
               Tu navegador no soporta el elemento de video.
             </video>

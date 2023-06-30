@@ -1,3 +1,6 @@
+body {
+  background-color: #fff;
+}
 .carousel-caption {
   bottom: 0;
   left: 0;
@@ -40,4 +43,13 @@
 
 .button_style{
   margin-top: 20px;
+}
+
+.list-group-item{
+  background-color: #f8f9fa;
+}
+
+.list-group-item:hover{
+  background-color: #e9ecef;
+  cursor: pointer;
 }

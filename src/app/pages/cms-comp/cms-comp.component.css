@@ -1,4 +1,6 @@
-
+body{
+  padding: 50px;
+}
 .carousel-caption {
     bottom: 0;
     left: 0;

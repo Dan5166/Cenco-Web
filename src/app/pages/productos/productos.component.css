@@ -85,6 +85,7 @@ body {
   margin-bottom: 20px;
   background-color: #114561; height: 250px; border-radius: 30px; position: relative;
   overflow: hidden;
+  transition: .3s ease-in-out;
 }
 
 .producto .imagen {
@@ -92,6 +93,13 @@ flex-basis: 30%;
 display: flex;
 justify-content: center;
 align-items: center;
+}
+
+.producto:hover{
+  box-shadow: 0px 0px 10px;
+  cursor: pointer;
+  zoom: 102%;
+  transition: .3s ease-in-out;
 }
 
 .producto .imagen img {

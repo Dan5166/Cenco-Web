@@ -1,0 +1,125 @@
+<body>
+      <header>
+        <h1>Documentación del curso "{{nombreCurso}}"</h1>
+      </header>
+      <main>
+        <section>
+          <h2>Descripción del servicio</h2>
+          <p>Aquí puedes escribir una descripción detallada del servicio, incluyendo sus características y funcionalidades.</p>
+          <p>Llave del servicio: {{indice}} - La llave del servicio es un identificador único con fines de administración.</p>
+        </section>
+        <section>          
+          <section id="video" class="bloque-documentacion">
+            <div class="header-bloque">
+              <h2>Video documentación</h2>
+              <p style="align-self: center;"><button class="btn btn-primary mb-3" data-toggle="modal" data-target="#videoModal" style="margin-left: 100px;" *ngIf="hasRoleAdmni"> <i
+                class="fa fa-plus" ></i> Agregar</button></p>
+            </div>
+            
+            <p>Mira un video de documentación del servicio en acción.</p>
+            <div *ngFor="let videoR of videos; let indice = index" class="array-group">
+              <video controls poster="../../../assets/noimage.png" style="height: 720px; width: 1244px;">
+                <source [src]="videoR" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+              <a (click)="eliminarCurso(videoR, 1)" target="_blank" class="btn-delete" *ngIf="hasRoleAdmni">Eliminar Video</a>
+            </div>
+            
+            
+          </section>
+        </section>
+        <section>
+          <div class="bloque-documentacion">
+            <div class="header-bloque">
+              <h2>PDF Documentación</h2>
+              <p style="align-self: center;"><button class="btn btn-primary mb-3" data-toggle="modal" data-target="#docsModal" style="margin-left: 100px;" *ngIf="hasRoleAdmni"> <i
+                class="fa fa-plus" ></i> Agregar</button></p>
+            </div>
+            
+          
+            <div *ngFor="let pdf of docs; let indice = index" class="array-group">
+              <h3>PDF {{indice+1}}</h3>
+              <p>Nombre del PDF: {{pdf}}</p>
+              <a href={{pdf}} target="_blank" class="btn-visualizar" *ngIf="hasRoleAdmni">Visualizar PDF</a>
+              <a (click)="eliminarCurso(pdf, 0)" target="_blank" class="btn-delete" *ngIf="hasRoleAdmni">Eliminar PDF</a>
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+
+
+        <section>
+
+          <div class="modal fade" id="docsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-dark">
+                  <h5 class="modal-title"><i class="fa fa-cubes"></i> Agregar Docs</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <form (ngSubmit)="registrarDocs(0)" [formGroup]="doscForm">
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" formControlName ="nombre" placeholder="Producto" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="file" class="form-control-file" accept=".pdf" (change)="selectChange($event)"><br>
+                      <img src="../../../assets/noimage.png" with="100" height="100">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" [disabled]="doscForm.invalid">Guardar Cambios</button>
+                    </div>
+                  </form>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+
+          <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-dark">
+                  <h5 class="modal-title"><i class="fa fa-cubes"></i> Agregar Video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <form (ngSubmit)="registrarDocs(1)" [formGroup]="doscForm">
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" formControlName ="nombre" placeholder="Video" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="file" class="form-control-file" accept=".mp4" (change)="selectChange($event)"><br>
+                      <img src="../../../assets/noimage.png" with="100" height="100">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" [disabled]="doscForm.invalid">Guardar Cambios</button>
+                    </div>
+                  </form>
+                </div>
+                <progress [value]="porcentaje" max="100"></progress>
+              </div>
+              
+            </div>
+            
+          </div>
+        </section>
+        
+        
+      </main>
+  </body>
+  

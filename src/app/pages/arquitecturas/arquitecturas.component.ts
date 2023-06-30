@@ -2,19 +2,17 @@ import { OnInit, Component, HostListener, ElementRef, ViewChild, AfterViewInit }
 import OrgChart from '@balkangraph/orgchart.js';
 
 @Component({
-  selector: 'app-arquitectura-finanzas',
-  templateUrl: './arquitectura-finanzas.component.html',
-  styleUrls: ['./arquitectura-finanzas.component.css']
+  selector: 'app-arquitecturas',
+  templateUrl: './arquitecturas.component.html',
+  styleUrls: ['./arquitecturas.component.css']
 })
-
-export class ArquitecturaFinanzasComponent implements AfterViewInit,  OnInit{
+export class ArquitecturasComponent implements AfterViewInit, OnInit{
   @ViewChild('fadeElements', { static: false }) fadeElements: ElementRef;
   elements: any[];
   
   constructor() {
     this.elements = [];
   }
-  
   ngOnInit() {
     const tree = document.getElementById('tree');
     if (tree) {
@@ -43,7 +41,8 @@ export class ArquitecturaFinanzasComponent implements AfterViewInit,  OnInit{
             { id: 7, pid: 3, name: "Fran Parsons", title: "Developer", img: "https://cdn.balkan.app/shared/8.jpg" }
         ]);
     }
-}
+
+  }
   ngAfterViewInit() {
     this.elements = this.fadeElements.nativeElement.querySelectorAll('.fade-in-element');
   }

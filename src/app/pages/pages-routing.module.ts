@@ -31,7 +31,10 @@ import { PaginaEnMantenimientoComponent } from './pagina-en-mantenimiento/pagina
 import { CmsComponent } from 'public/src/app/pages/cms/cms.component';
 import { CmsCompComponent } from './cms-comp/cms-comp.component';
 import { PanelResponsableComponent } from './panel-responsable/panel-responsable.component';
-
+import { CursitoComponent } from './cursito/cursito.component';
+import { LpCertificatesComponent } from './lp-certificates/lp-certificates.component';
+import { ArquitecturasComponent } from './arquitecturas/arquitecturas.component';
+import { PlataformasComponent } from './plataformas/plataformas.component';
 
 const routes:Routes=[
   {path:'home', component:PagesComponent,
@@ -54,7 +57,6 @@ const routes:Routes=[
     {path:'seguridad', component:SeguridadComponent, data:{titulo:'Seguridad Cloud'}, canActivate:[AuthGuard]},
     {path:'como-navegar', component:ComoNavegarComponent, data:{titulo:'¿Cómo Navegar?'}, canActivate:[AuthGuard]},
     {path:'menu-cct', component:MenuCctComponent, data:{titulo:'Menu Interno CCT'}, canActivate:[AuthGuard]},
-    {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}, canActivate:[AdminGuard]},
     {path:'reconocimiento-excelencia', component:ReconocimientoExcelenciaComponent, data:{titulo:'Reconozcamos nuestros esfuerzos'}, canActivate:[AdminGuard]},
     {path:'agradecimiento-reconocimiento', component:AgradecimientoReconocimientoComponent, data:{titulo:'Agradecimiento y Reconocimiento'}, canActivate:[AdminGuard]},
     {path:'nomina-a-alguien', component:NominaAAlguienComponent, data:{titulo:'Nomina a un compañero del CCT'}, canActivate:[AdminGuard]},
@@ -65,7 +67,11 @@ const routes:Routes=[
     {path:'mantenimiento', component:PaginaEnMantenimientoComponent, data:{titulo:'Mantenimiento'}, canActivate:[AuthGuard]},
     {path:'cms-component', component:CmsCompComponent, data:{titulo:'CMS'}, canActivate:[AuthGuard]},
     {path:'panel-responsable', component:PanelResponsableComponent, data:{titulo:'Panel de Responsable'}, canActivate:[AdminGuard]},
-    
+    {path:'learning-path', component:LearningPathComponent, data:{titulo:'¡Aprendamos Juntos!'}, canActivate:[AdminGuard]},
+    {path:'learning-path/:id', component:CursitoComponent, data:{titulo:'Cursito'}, canActivate:[AuthGuard]},
+    {path:'learning-path/:id/lp-certificates', component:LpCertificatesComponent, data:{titulo:'Learning Path Certificados'}, canActivate:[AuthGuard]},
+    {path: 'arquitecturas', component:ArquitecturasComponent, data:{titulo:'Arquitecturas'}, canActivate:[AuthGuard]},
+    {path: 'plataformas', component:PlataformasComponent, data:{titulo:'Plataformas'}, canActivate:[AuthGuard]},
 ]}];
 
 

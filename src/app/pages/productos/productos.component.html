@@ -14,7 +14,7 @@
           <h3 style="font-size: 30px; color:white;">{{producto.nombreProducto}}</h3>
           <p class="info-producto">{{producto.info}}</p>
           <div class="botones-editar-eliminar">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#productosEditarModal" (click)="setServicioSeleccionado(producto.id)" *ngIf="hasRoleAdmin">Editar</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#productosEditarModal" (click)="setServicioSeleccionado(producto.id)" *ngIf="hasRoleAdmin" style="margin-right: 10px;">Editar</button>
             <button class="btn btn-danger" (click)="eliminar(producto.id, producto.nombreProducto, indice)" *ngIf="hasRoleAdmin">Eliminar</button>
           </div>
             

@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    text-align: left;
+  }
+  
+  header {
+    background-color: #284f64;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    
+  }
+  
+  section {
+    margin-bottom: 30px;
+  }
+  
+  .bloque-documentacion {
+    margin-top: 30px;
+    background-color: #28576e;
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+  }
+  
+  .header-bloque{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-bloque p{
+    align-self: center;
+  }
+  
+  .header-bloque button{
+    margin-left: 100px;
+  }
+  
+  .video_style{
+    height: 720px; 
+    width: 1244px;
+  }
+  
+  .array-group{
+    background-color: #33657e;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  h1, h2 {
+    margin-top: 0;
+  }
+  
+  
+  video[poster]{
+    object-fit: cover;
+  }
+  
+  a {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 30px;
+  }
+  
+  a:hover {
+    background-color: #666;
+  }
+  
+  .btn-edit{
+    background-color: #948115;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 30px;
+    border: white 2px solid;
+    cursor: pointer;
+  }
+  
+  .btn-visualizar{
+    background-color: #14743f;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 30px;
+    border: white 2px solid;
+    cursor: pointer;
+  }
+  
+  .btn-delete{
+    background-color: #741414;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 30px;
+    border: white 2px solid;
+    cursor: pointer;
+  }
+  
+  #video video {
+    max-width: 100%;
+  }
+  
